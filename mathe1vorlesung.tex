@@ -2695,9 +2695,40 @@ Beispiel 21: $Q(x,y) = 13x^2 - 32xy + 37y^2 = 45$\\
 Welche Kurve?
 \begin{itemize}
 \item Matrix $\underline{S}$ (vgl. (\ref{Def14D2}), $\underline{S}= \begin{pmatrix} 13 & -16 \\ -16 & 37 \end{pmatrix} \quad ( s_{12} = -16 )$
+\item charakteristische Gleichung: $\det{(\underline{S} - \lambda \underline{E})} \begin{vmatrix} 13-\lambda & -16 \\ -16 & 37 - \lambda \end{vmatrix} = 0 \Leftrightarrow \lambda^2 - 50 \lambda + 225 = 0 \curvearrowright \underline{\underline{\lambda_1 = 5, \lambda_2 = 45}} (\text{EW})$
+\item EV zu $\lambda_1=5: 8x - 16y = 0 \curvearrowright x = 2y, y=t, x=2t (-16x + 32y = 0) \curvearrowright \underline{\underline{\begin{pmatrix} x \\y \end{pmatrix} = \begin{pmatrix} 2t \\ t \end{pmatrix} = t \cdot \begin{pmatrix} 2 \\ 1 \end{pmatrix}, t \neq 0 }}$
+\item EV zu $\lambda_2 = 45: (-32x -16y = 0 ), -16x -8y = 0 \curvearrowright y=-2x, x=u, y= -2u \curvearrowright \underline{\underline{ \begin{pmatrix} x \\y \end{pmatrix} = \begin{pmatrix} u \\ -2u \end{pmatrix} = u \cdot \begin{pmatrix} 1 \\ -2 \end{pmatrix}, u \neq 0}}$
+\item orthonormierte EV z.B: $\vec{v}_1 = \frac{1}{\sqrt{5}} \begin{pmatrix} 2 \\ 1 \end{pmatrix}, \vec{v}_2 = \frac{1}{\sqrt{5}} \begin{pmatrix}-1\\2\end{pmatrix}$ (Rechtssystem)
 \end{itemize}
+(\ref{Def14D32}) $\curvearrowright Q(x,y)= \lambda_1 x^{*2} + \lambda_2^{*2} = 5 x^{*2} + 45 y^{*2} = 45 \Leftrightarrow \frac{x^{*2}}{3^2} + \frac{y^{*2}}{1^2} =1$ Ellipse mit Halbachsen $a=3,b=1$
 
+\section{Folgen, Reihen, Grenzwerte}
+\subsection{Zahlenfolge}
+\subsubsection{Grenzwerte von Zahlenfolgen}
+\subparagraph{Definition 1}: Es sei $n_0 \in \mathbb{N}$. Eine Funktion $f$ mit $Db(f) = \{ n \in \mathbb{N} | n \geq n_0 \} \text{ und } Wb(f) \subseteq \mathbb{R}$ heißt reelle Zahlenfolge.\\
+Schreibweisen: \[a_n := f(n)\]
+$(a_n)_{n\geq n_0} = (a_{n_0}, a_{n_0 +1 }, a_{n_0 +2 },\dots)$\\
+Oft ist $n_0 = 0$ oder $ n_0=1$.
 
+\subparagraph{Beispiel 1}
+\begin{enumerate}
+\item $a_n = (-1)^n \cdot n (n \in \mathbb{N}), (a_n) = (0,-1,2,-3,4,-5,\dots)$
+\item $a_0 = -1, a_n = n \cdot a_{n-1} ( n \in \mathbb{N}^*)$ (rekursive Definition)\\
+$(a_n)= (-1,-1,-2,-6,-24,-120,\dots), a_n= -n!$
+\item $a_n= \sum\limits_n \frac{3}{10^n} (n\in\mathbb{N}^*), (a_n) = (0,3;0,33;0,333;\dots)$
+\item $a_n = a + (-1)^n \cdot \frac{1}{n^2} (n \in \mathbb{N}^*), (a_n) = (0,\frac{5}{4},\frac{8}{9},\frac{17}{16},\frac{24}{25},\dots)$
+\end{enumerate}
+
+\subparagraph{Definition 2}
+\begin{itemize}
+\item $(a_n)$ heißt konvergent, wenn es eine Zahl $a \in \mathbb{R}$ gibt mit:
+\[\forall \epsilon >0 \; \exists n_0(\epsilon)\; (n_0 \in \mathbb{N}), \forall n \in \mathbb{N}_{\geq n_0(\epsilon)}: \lvert a_n - a \rvert < \epsilon\]
+\item Die Zahl $a$ heißt Grenzwert von $(a_n)$.\\
+Schreibweise $a= \lim\limits_{n \to \infty} a_n$
+\item $(a_n)$ heißt divergent, wenn $(a_n)$ nicht konvergent ist.
+
+Diskussion 
+\end{itemize}
 
 
 
