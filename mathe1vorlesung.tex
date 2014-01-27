@@ -2728,11 +2728,116 @@ Schreibweise $a= \lim\limits_{n \to \infty} a_n$
 \item $(a_n)$ heißt divergent, wenn $(a_n)$ nicht konvergent ist.
 
 Diskussion 
+\item Folgen aus Beispiel 1\\
+$\begin{array}{l|c|r}
+\text{Folge} & \text{Monotonie} & \text{Beschränktheit}\\ \hline
+a) \; a_n = (-1)^n n & - & - \\
+b) \; a_n = -n! & \text{streng monoton fallend (ab } n=1) & -\\
+c)\; a_n = \frac{3}{10} + \dots + \frac{3}{10^n} & \text{streng monoton wachsend} & 0,3 \leq a_n < \frac{1}{3} \\
+d)\; a_n = 1 + (-1)^n \cdot \frac{1}{n^2} & - & 0 \leq a_n \leq \frac{5}{4}\\
+
+\end{array}$
 \end{itemize}
 
+\subparagraph{Satz 1} Jede konvergente Folge ist beschränkt.
+\subparagraph{Satz 2} Jede monotone und beschränkte Folge ist konvergent.
 
+\subparagraph{Definition 5} $(a_n)$ heißt bestimmt divergent gegen $\left\{ \begin{array}{rc}
+         +
+         & \infty \\ 
+        -
+         & \infty\\
+                \end{array}\right.$
+falls gilt: $\forall C \in \mathbb{R} \exists n_0 (C) \forall n \geq n_0 (C) \left\{ \begin{array}{lc} a_n & > C \\ a_n & <C\\ \end{array} \right. $
+\subparagraph{Satz 3} Jede unbeschränkte, monoton $\left\{ \begin{array}{l} \mbox{wachsende} \\ \mbox{fallende} \end{array} \right.$ Folge ist bestimmt divergent gegen $\left\{ \begin{array}{rc}
+         + & \infty \\ 
+        - & \infty\\
+\end{array}\right.$\\
+Schreibweise $\lim\limits_{n \to \infty} a_n = \left\{ \begin{array}{rc}
+         + & \infty \\ 
+        - & \infty\\
+\end{array}\right.$
 
+\subparagraph{Beispiel 2} \begin{enumerate}
+\item Bsp 1 c) $a_n = \frac{3}{10} + \dots + \frac{3}{10^n}, (a_n)$ ist monoton wachsend und beschränkt $\underbrace{\Rightarrow}_{\text{Satz 2}} (a_n)$ ist konvergent, $\lim\limits_{n \to \infty} a_n = \frac{1}{3}$
+\item Bsp 1 b) $a_n = -n!, (a_n)$ ist monoton fallend und unbeschränkt $\underbrace{\Rightarrow}_{\text{Satz 3}} (a_n)$ ist bestimmt divergent, $\lim\limits_{n \to \infty} a_n = - \infty$
+\end{enumerate}
 
+\subparagraph{Diskussion} Eine divergente Folge, die nicht bestimmt divergent ist, heißt unbestimmt divergent, z.B. Folge aus Beispiel 1a) $a_n = (-1)^n \cdot n$
+
+\subparagraph{Einige wichtige Grenzwerte}
+\begin{enumerate}
+\item $\lim\limits_{n \to \infty} ( 1 + \frac{1}{n})^n = e$
+\item $\lim\limits_{n \to \infty} \sqrt[n]{n} = 1$
+\item $\lim\limits_{n \to \infty} \frac{\ln{n}}{n} = 0$
+\item $\lim\limits_{n \to \infty} \sqrt[n]{a} = 1 \; (a > 0)$
+\end{enumerate}
+
+\subparagraph{Rechenregeln}(Grenzwertsätze)
+
+\subparagraph{Satz4} $(a_n) \text{ und } (b_n)$ seien konvergente Folgen mit
+$\lim\limits_{n \to \infty} a_n = a \text{ und } \lim\limits_{n \to \infty} b_n = b$.\\
+Dann gilt
+\begin{itemize}
+\item $\lim\limits_{n \to \infty} ( a_n + b_n) = a+b,\quad \lim\limits_{n \to \infty} ( c \cdot a_n) = c \cdot a$
+\item $\lim\limits_{n \to \infty} (a_n \cdot b_n) = a \cdot b, \quad \lim\limits_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b} \; (b \neq 0 )$
+\end{itemize}
+
+\subparagraph{Beispiel 3}
+\begin{enumerate}
+\item $a_n = \frac{2n^2 -1}{3n^2+n} ( n= 1,2,3,...)$\\
+$a_n = \frac{n^2(2-\frac{1}{n^2})}{n^2 (3 + \frac{1}{n})} = \frac{2- \frac{1}{n^2}}{3+ \frac{1}{n}} \curvearrowright \lim\limits_{n\to \infty} a_n = \frac{2}{3}$\\
+Ausklammern der jeweils höchsten Potenzen in Zähler und Nenner.
+\item $a_n = n \cdot ( \sqrt{n^2 +1} -n)$\\
+In Klammern "`$\infty - \infty$"' erweitern, 3. binomische Formel\\*
+$= frac{n \cdot ( \sqrt{n^2 +1} -n) \cdot (\sqrt{n^2 +1} +n)}{\sqrt{n^2+1} +n}$\\
+$= \frac{n ( n^2 +1 -n^2)}{n \sqrt{n + \frac{1 + \frac{1}{n^2} + n}}}  = \frac{n}{n (\sqrt{1+\frac{1}{n^2}} +1)} $%= \frac{1}{\sqrt{1+\frac{1}{n^2}} +1} \underbrace{\implies}_{n \to \infty} \frac{1}{2}$ %Todo Fehler
+
+\end{enumerate}
+
+\subsubsection{Lineare Rekursionsgleichungen (Differenzgleichungen)}
+\begin{itemize}
+\item Allgemeine Form einer Rekursionsgleichung k-ter Ordnung $x_n = f (n, x_{n-1}, x_{n-2}, \dots,x_{n-k}),k \geq 1, n \geq n_0 + k$
+\item Wir betrachten nur lineare Rekursionsgleichungen mit konstanten Koeffizienten (d.h. $a_j$ nicht von $n$ abhängig).
+
+\begin{equation}\label{LRG1}
+\begin{array}{c} x_n= a_1 x_{n-1} + a_2 x_{n-2} + \dots + a_k x_{n-k} + h_n \\
+k \geq 1, a_k \neq 0, n \geq n_0 + k \end{array}
+\end{equation}
+
+\item Indexverschiebung möglich (z.B. um k)
+\[ x_{n+k} = a_1 x_{n+k-1} + \dots + a_k x_n + h_{n+k}, \; n \geq n_0\]
+Wichtig ist die Differenz zwischen höchsten und niedrigsten Index von $x$ (= Ordnung der Rekursionsgleichung)
+\item  Die Differenzgleichung (\ref{LRG1}) heißt homogen, falls $h_n= 0(\forall n)$, sonst inhomogen
+\end{itemize}
+
+Zur Lösung von (\ref{LRG1})
+\begin{enumerate}
+\item Allgemeine Lösung von (\ref{LRG1}): \[x_n = x_n^{(h)} + x_n^{(p)}\] dabei ist $x_n^{(h)}$ die allgemeine Lösung der zugehörigen homogenen Gleichung
+\begin{equation}\label{LRG2} x_n = a_1 x_{n-1} + \dots + a_k x_{n-k} \end{equation} und $x_n^{(P)}$ eine (partikuläre) Lösung der inhomogenen Gleichung (\ref{LRG1})
+\item Es gibt $k$ Lösungen $x_n^{(1)}, \dots x_n^{(k)}$ der homogenen Gleichung, so dass gilt
+\[x_n^{(h)} = c_1 x_n^{(1)} + \dots + c_k x_n^{(k)} \] gilt.\\
+Diese erhält man mit Hilfe der Lösungen der charakteristischen Gleichung \begin{equation}\label{LRG3} \lambda^k = a_1 \lambda^{k-1} + a_2 \lambda^{k-2} + \dots + a_{k-1} \lambda + a_k \end{equation}
+Diese ergibt sich aus dem Ansatz $x_n^{(h)} = \lambda^n \; ( \lambda \neq 0) \overbrace{\curvearrowright}^{(\ref{LRG2})} \lambda^n = a_1 \lambda^{n-1} + \dots + a_k \lambda^{n-k} | : \lambda^{n-k} \curvearrowright (\ref{LRG3})$\\
+Bei $k$ verschiedenen Lösungen $\lambda_1, \dots, \lambda_k$ von (\ref{LRG3}) ergibt sich $x_n^{(h)} = c_1 \lambda_1^n + c_2 \lambda_2^n + \dots + c_k \lambda_k^n, \text{ falls z.B. } \lambda_2$ 2-fach auftritt, dann $x_n^{(h)}  = c_1 \lambda_1^n + c_2 \lambda_1^n \cdot n + \dots$
+\item Für die Partikularlösung $x_n^{(P)}$ führen spezielle Ansätze zum Ziel:\\
+\begin{tabular}{l|p{3cm}|p{4cm}}
+Inhomogenität $h_n$ & Bedingung & Ansatz für $x_n^{(P)}$ \\ \hline
+Polynom in $n$ (Grad $r$) & $\lambda = 1$ ist keine*) Lösung von (\ref{LRG3}) & Polynom vom gleichen Grade mit unbestimmten Koeffizienten \\
+Potenzfunktion $b^n$ & $\lambda = b$ ist keine*) Lösung von (\ref{LRG3}) & $x_n^{(P)} = A \cdot b^n$\\
+\end{tabular}
+*) bei $\xi$-facher Lösung ist der Ansatz mit $n^\xi$ zu multiplizieren
+\item unbestimmte Koeffizienten $A,\dots$ durch Einsetzen in die inhomogene Gleichung (\ref{LRG1}) und Koeffizientenvergleich ermitteln.
+\item Die $k$ Konstanzen $C_1,\dots,C_k$ in der allgemeinen Lösung können durch die Anfangsbedingungen (A,B) (Vorgabe der ersten $k$ Glieder von $(x_n)$) ermittelt werden.
+\end{enumerate}
+
+Es sind also folgende Schritte durchzuführen
+\begin{enumerate}
+\item Allgemeine Lösung$x_n^{(h)}$ der homogenen Gleichung (\ref{LRG2}) ermitteln
+\item eine spezielle Lösung $x_n^{(p)}$ der inhomogenen Gleichung (\ref{LRG1}) ermittlen
+\item $x_n = x_n^{(h)} + x_n^{(p)}$
+\item AB erfüllen
+\end{enumerate}
 
 
 
