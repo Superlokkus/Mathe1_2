@@ -2791,7 +2791,7 @@ Ausklammern der jeweils höchsten Potenzen in Zähler und Nenner.
 \item $a_n = n \cdot ( \sqrt{n^2 +1} -n)$\\
 In Klammern "`$\infty - \infty$"' erweitern, 3. binomische Formel\\*
 $= frac{n \cdot ( \sqrt{n^2 +1} -n) \cdot (\sqrt{n^2 +1} +n)}{\sqrt{n^2+1} +n}$\\
-$= \frac{n ( n^2 +1 -n^2)}{n \sqrt{n + \frac{1 + \frac{1}{n^2} + n}}}  = \frac{n}{n (\sqrt{1+\frac{1}{n^2}} +1)} $%= \frac{1}{\sqrt{1+\frac{1}{n^2}} +1} \underbrace{\implies}_{n \to \infty} \frac{1}{2}$ %Todo Fehler
+%$= \frac{n ( n^2 +1 -n^2)}{n \sqrt{n + \frac{1 + \frac{1}{n^2} + n}}}  = \frac{n}{n (\sqrt{1+\frac{1}{n^2}} +1)} = \frac{1}{\sqrt{1+\frac{1}{n^2}} +1} \underbrace{\implies}_{n \to \infty} \frac{1}{2}$ %Todo Fehler
 
 \end{enumerate}
 
@@ -2838,6 +2838,116 @@ Es sind also folgende Schritte durchzuführen
 \item $x_n = x_n^{(h)} + x_n^{(p)}$
 \item AB erfüllen
 \end{enumerate}
+
+Beispiel 4 $x_{n+1} = 2x_n + 3 \; n \geq 0, x_0 = 1$\\
+Erste Glieder: $1,5,13,29,61, \dots$\\
+Typ: Lineare Differenzengleichung 1. Ordnung\\
+
+Lösung:
+\begin{enumerate}
+\item homogene Gleichung $x_{n+1} = 2x_n \text{ char. Gleichung } \lambda^1 = 2 \curvearrowright \lambda_1 = 2$
+\item $h_n = 3$ (Polynom 0-ten Grades) $\curvearrowright$ Ansatz $x_n^{(p)}=A$\\
+Einsetzen in Ausgangsleichung $A=2 \cdot A + 3 \curvearrowright A = -3$\\*
+$\curvearrowright \underline{\underline{x_n^{(p)} = -3}}$
+\item $x_n = x_n^{(h)} + x_n^{(p)} = \underline{\underline{C \cdot 2^n -3}}$
+\item $AB: n=0 \curvearrowright x_0 =1 = C\cdot \underbrace{2^0}_{1} -3 \curvearrowright \underline{\underline{C=4}}$\\
+Also: $\underline{\underline{x_n= 4 \cdot 2^n -3}}$
+\end{enumerate}
+
+Beispiel 5: $x_{n+2} = x_{n+1} + 2 x_n \; n \geq 0, x_0 =2 , x_1 = 3$\\
+Erste Glieder: $2,3,7,13,27,53,\dots$\\
+Typ: lineare homogene DifferenzGleichung 2. Ordnung
+\begin{itemize}
+\item Schritt $A$ liefert bereits die allg. Lösung ($B$ und $C$ entfallen)\\*
+$\lambda^2 = \lambda +2 \curvearrowright \lambda_1 = -1, \lambda_2= 2 \curvearrowright x_n = x_n^{(h)} = c_1 \cdot (-1)^n + c_2 \cdot 2^n$
+
+\item Schritt D: AB erfüllen\\
+$n=0, \curvearrowright x_0 = 2 = C_1 + C_2$\\
+$n=1 \curvearrowright x_1 = 3 = -C_1 + 2 C_2$\\
+$\underline{\underline{C_2 = \frac{5}{3} , C_1 = \frac{1}{3}}}$\\
+$\curvearrowright \text{ Lösung } \underline{\underline{x_n = \frac{1}{3} (-1)^n + \frac{5}{3} \cdot 2^n}}$
+\end{itemize}
+
+Diskussion: Bei einer homogenen linearen Differenzgleichung 2. Ordnung können folgende Fälle auftreten:
+\begin{itemize}
+\item $\lambda_1 , \lambda_2$ reell und verschieden\\
+$\curvearrowright x_n = x_n^{(h)} = C_1 \lambda_1^n + C_2 \lambda_2^n$ (vgl. Beispiel 5)\\
+\item $\lambda_1 = \lambda_2$ (reelle Doppellösung)\\
+$\curvearrowright x_n = x_n^{(h)} = C_1 \lambda_1^n + C_2 n \lambda_1^n = \lambda_1^n (C_1 + C_2 \cdot n)$
+\item $\lambda_{1,2} = u \pm iv (v \neq 0 )$ konjugiert komplexe Lösungen\\
+\begin{equation}\label{DLD1} 
+\curvearrowright x_n = x_n^{(h)} = C_1 \lambda_1^n + C_2 \lambda_2^n
+\end{equation}
+(wie im 1. Fall, die Koeffizienten $C_1 \text{ und } C_2$ sind aber im allg. komplex, $x_n$ selbst ist aber reell.
+\end{itemize}
+
+Reeller Ansatz ist mit Hilfe der Formeln von \textsc{Euler} und \textsc{Moivre} möglich:\\
+$\lambda_1^n = (r e^{i \varphi})^n = r^n e^{in\varphi} = r^n(\cos{(n\varphi)} + i \sin{(n \varphi)})$\\
+$\lambda_2^n = (r e^{-i \varphi})^n = r^n e^{-in\varphi} = r^n(\cos{(n\varphi)} - i sin{(n \varphi)})$\\
+Damit reeller Ansatz:
+\begin{equation}\label{DLD2}
+x_n = x_n^{(h)} = K_1 r^n \cos{(n \varphi)} + K_2 r^n \sin{(n \varphi)}
+\end{equation}
+Bemerkung: Falls Rechner mit komplexer Arithmetik vorhanden, so ist (\ref{DLD1}) bequemer.
+
+\subsubsection{Unendliche Reihen}
+\paragraph{Grundbegriffe}
+\subparagraph{Definition 6}
+\begin{itemize}
+\item Geg. Zahlenfolge $(a_n) n \geq n_0, n_0 \in \mathbb{N}$\\
+Die Zahlenfolge $(s_n)_{n\geq n_0}$ mit\\
+$s_{n_0} := a_{n_0}, s_{n_0 +1} := a_{n_0} + a_{n_0 + 1}, s_{n_0 +2}, s_n := a_{n_0} + a_{n_0+1} + \dots + a_n , \dots$ (Partialsummenfolge)\\
+heißt unendliche Reihe. Bezeichnung: $\sum\limits_{n=n_0}^{\infty} a_n$
+\item Ist die Reihe konvergent, d.h. Folge $(s_n)$ ist konvergent, so heißt $s:= \lim\limits_{n\to \infty} s_n =: \sum\limits_{n=n_0}^{\infty} a_n$ die Summe der Reihe.
+\item Die Reihe heißt (bestimmt oder unbestimmt) divergent, wenn die Partialsummenfolge die entsprechende Eigenschaft hat.
+\end{itemize}
+
+Beispiel 6: $a_n = a \cdot q^n \quad a \neq 0, q \neq 0, n=0,1,2,\dots$\\
+d.h. $(a_n) = (a,aq,aq^2,aq^3,\dots)$\dots gemetrische Folge\\
+Quotient zweier aufeinanderfolgender Glieder\\
+$\frac{a_{n+1}}{a_n} = q$ \dots Quotient\\
+$(s_n) = \sum\limits_{n=0}^{\infty} a q^n$ \dots unendliche geometrische Reihe
+\begin{itemize}
+\item $s_0 = a, s_1 = a + aq, s_2 a + aq +aq^2, \dots$\\
+$\begin{array}{r|c}
+(1) & s_n = a + aq + \dots + aq^n |\cdot q\\
+(2) & s_n \cdot q = aq + \dots + aq^n + aq^{n+1}\\ \hline
+(1)-(2) & s_n(1-q) = a(1-q^{n+1})\\
+\end{array}$\\
+$\curvearrowright s_n = a \cdot \frac{1-q^{n+1}}{1-q}$ (falls $q \neq 1$)
+(Summenformel für die endliche geometrische Reihe, dabei $a$ \dots Anfangsglied, $q$ \dots Quotient, Anzahl der Summanden $n+1$)
+\item $\curvearrowright \lim\limits_{n \to \infty} s_n = \frac{a}{1-q} \quad (\text{ für } \lvert q \rvert < 1)$
+$\curvearrowright$ Summe der unendlichen geometrischen Reihe
+\[ s = \sum\limits_{n=0}^{\infty} a \cdot q^n = \frac{a}{1-q} \quad \text{ für } \lvert q \rvert < 1\]
+Anwendung z.B. periodischer Bruch: $0,\overline{72} = 0,7272727272... = \frac{72}{100} + \frac{72}{100^2} + \frac{72}{100^3} + ... = \frac{\frac{72}{100}}{1-\frac{1}{100}} = \underline{\underline{\frac{72}{99}}} = \underline{\underline{\frac{8}{11}}}$\\
+allg. $q=b^{-p}$ dabei $b$ \dots Basis $p$\dots Periodenlänge, hier ($q=10^{-2} = \frac{1}{100})$
+\end{itemize}
+
+Beispiel 7: $\sum\limits_{n=1}^{\infty} \frac{1}{n} = a + \frac{1}{2} + \frac{1}{3} + \dots$ harmonische Reihe\\
+Offensichtlich ist $(s_n)$ (streng) monoton wachsend. Man kann zeigen, dass $s_n$ nicht beschränkt ist.\\
+Damit folgt aus Satz 3: Die harmonische Reihe ist bestimmt divergent.
+(Schreibweise: $\sum\limits_{n=1}^{\infty} \frac{1}{n} = \infty$)
+
+\subparagraph{Definition 7} Die Reihe $\sum\limits_{n=n_0}^{\infty} a_n$ heißt 
+\begin{enumerate}
+\item absolut konvergent, falls $\sum\limits_{n=n_0}^{\infty} \lvert a_n\rvert$ konvergent
+\item bedingt konvergent falls $\sum\limits_{n=n_0}^{\infty} a_n$ konvergent $\wedge \sum\limits_{n=n_0}^{\infty} \lvert a_n \rvert$ divergent
+\end{enumerate}
+
+\subparagraph{Satz 5} $\sum\limits_{n=n_0}^{\infty} a_n$ absolut konvergent $\Rightarrow \sum\limits_{n=n_0}^{\infty} a_n$ konvergent
+
+Diskussion
+\begin{enumerate}
+\item Die Umkehrung gilt im allgemeinen nicht. Es gibt konvergente Reihen, die nicht absolut konvergent sind.\\
+z.B. $\sum\limits_{n=1}^{\infty} (-1)^{n-1} \cdot \frac{1}{n}$
+\item Für Reihen mit nicht negativen Gliedern $a_n \geq 0$ ist absolute Konvergent identisch mit (gewöhnlicher) Konvergenz (klar weegen $\lvert a_n \rvert = a_n$). Für solche Reihen gilt entweder $\sum\limits_{n=n_0}^{\infty} a_n < \infty$, d.h. (absolute) Konvergenz oder (XOR) $\sum\limits_{n=n_0}^{\infty} a_n = \infty$,d.h. bestimmte Divergenz
+\end{enumerate}
+
+
+
+
+
+
 
 
 
