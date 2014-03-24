@@ -910,6 +910,7 @@ Zusätzlich zur Folge $(r_n)$ aus Satz 4 bilde man die Folgen \[x_0 = 0, x_1 =1,
 $(j\leq n-1)$ und
 \[y_0=1, y_1=-q_1,y_2=y_0-q_2y_1,...,y_j=y_{j-2}-q_jy_{j-1}\]
 $(j\leq n-1)$\\
+Dabei ist $q_j$ der Quotient bei der Division von $r_{j-2}$ durch $r_{j-1}$, d.h. $r_{j-2} = q_jr_{j-1} + r_j$\\
 Dann gilt für alle $j=0,...,n-1: \; r_j=x_j a + y_j\cdot b$
 Insbesondere gilt $ggT(a,b)=x_{n-1}a + y_{n-1}b$
 
@@ -2943,14 +2944,430 @@ z.B. $\sum\limits_{n=1}^{\infty} (-1)^{n-1} \cdot \frac{1}{n}$
 \item Für Reihen mit nicht negativen Gliedern $a_n \geq 0$ ist absolute Konvergent identisch mit (gewöhnlicher) Konvergenz (klar weegen $\lvert a_n \rvert = a_n$). Für solche Reihen gilt entweder $\sum\limits_{n=n_0}^{\infty} a_n < \infty$, d.h. (absolute) Konvergenz oder (XOR) $\sum\limits_{n=n_0}^{\infty} a_n = \infty$,d.h. bestimmte Divergenz
 \end{enumerate}
 
+\paragraph{Konvergenzfunktion}
+\begin{enumerate}
+\item Notwendiges Konvergenzkriterium
+
+Satz 6
+\[\sum\limits_{n=n_0}^{\infty} a_n \text{ konvergent } \Rightarrow \lim\limits_{n \to \infty} a_n = 0\]
+
+Beweis: $a_n = s_n - s_{n-1} \curvearrowright \lim\limits_{n \to \infty} a_n = \underbrace{\lim\limits_{n \to \infty} s_n}_{s} - \underbrace{\lim\limits_{n \to \infty} s_{n-1}}_{s} = \underline{\underline{0}}$
+
+Bemerkungen:
+\begin{enumerate}
+\item Bedingung $\lim\limits_{n \to \infty} a_n = 0 $ ist nur notwendig (aber nicht hinreichend), z.B. $a_n = \frac{1}{n}, \lim\limits_{n \to \infty} a_n = 0$ aber $\sum\limits_{n=1}^{\infty} \frac{1}{n} = \infty$.
+\item Anwendung meist in logisch äquivalenter Form
+\[ \lim\limits_{n \to \infty} a_n \neq 0 \Rightarrow \sum\limits_{n = n_0}^{\infty} a_n \text{ divergent}\]
+\end{enumerate}
+
+Beispiel 8 
+$\sum\limits_{n=1}^{\infty} (\frac{n}{10n-1})^{50}$\\
+$a_1 = 1,94 \cdot 10^-48 , a_2 = 1,30 \cdot 10^{-49}, \dots$\\
+$\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} (\frac{1}{10 - \frac{1}{n}})^{50} = 10^{-50} \neq 0$
+$\Rightarrow$ Reihe divergent ( $\sum\limits_{n=1}^{\infty} a_n = \infty $)
+\item Hinreichende Konvergenzkriterien
+
+\begin{enumerate}
+\item \textsc{Leibniz}-Kriterium für alternierende Reihen
+
+Satz 7\\
+(o.B.d.A. sei $n_0 = 0$)
+\[ b_n \geq b_{n+1} > 0 (n \in \mathbb{N}) \wedge \lim\limits_{n \to \infty} b_n = 0 \Rightarrow \sum\limits_{n=0}^{\infty} (-1)^n b_n = b_0 - b_1 + b_2 - b_3 \pm \dots\]
+ist konvergent, d.h. wenn die Beträge $b_n$ der Glieder $a_n:= (-1)^n b_n$ einer alternierenden Reihe eine monotone Nullfolge bilden, dann ist die Reihe konvergent.\\
+Weiter gilt: $\lvert s -s_n \rvert \leq \lvert a_{n+1} \rvert$\\
+(Fehler bei Approximation von $s$ durch $s_n$ ist höchstens gleich dem Betrag des ersten weggelassenen Gliedes.)
+
+Beispiel 9: $\sum\limits_{n=1}^{\infty} (-1)^{n-1} \cdot \frac{1}{n} = a - \frac{1}{2} + \frac{1}{3} \pm \dots$ (alternierende harmonische Reihe)\\
+$s_1 = 1, s_2=0,5, s_3 = 0,8\overline{3}, s_4=0,58\overline{3}, s_5=0,78\overline{3}, s_6 = 0,61\overline{6}$
+
+Man kann zeigen $s= \ln{2} = 0,6931$
+
+\item Vergleichskriterien für Reihen mit nicht-negativen Gliedern
+
+Satz 8: Majoranten-Kriterium
+\[0 \leq a_n \leq b_n ( \text{für } n \geq n_1 \geq n_0)\wedge \sum\limits_{n = n_0}^{\infty} b_n \text{ konvergent } \Rightarrow \sum\limits_{n = n_0}^{\infty} a_n \text{ konvergent} \]
+
+Die Reihe $\sum b_n$ heißt konvergente Majorante von $\sum a_n$.
+
+Zum Beweis
+\[ a_n \leq b_n \Rightarrow \sum a_n \leq  \sum b_n < \infty\]
+
+Satz 9: Minoraten-Kriterium
+\[ 0 \leq b_n \leq a_n (\text{für } n \geq n_1 \geq n_0) \wedge \sum\limits_{n=n_0}^{\infty} b_n \text{ (bestimmt) divergent}\]
+\[\Rightarrow \sum\limits_{n=n_0}^{\infty} a_n \text{ ist (bestimmt) divergent}\]
+Reihe $\sum b_n$ heißt divergente Minorante von $\sum a_n$.
+
+Zum Beweis: $a_n \geq b_n \Rightarrow \sum a_n \geq \sum b_n  = \infty \curvearrowright \sum a_n = \infty$.
+
+Nützliche Vergleichsreihen für Anwedung der Sätze 8 und 9
+\begin{equation}\label{MajorMinor1}
+\sum\limits_{n=1}^{\infty} \frac{1}{n^\alpha} \left\{ \begin{array}{rcl}
+         \text{konvergent}
+         & \mbox{für}
+         & \alpha > 1 \\ 
+        \text{divergent}
+         & \mbox{für} 
+         & \alpha \leq 1\\
+                \end{array}\right.
+\end{equation}
+
+Beispiel 10: Man untersuche das Konvergenzverhalten folgender Reihen
+\begin{enumerate}
+\item $\sum\limits_{n=1}^{\infty} \underbrace{\frac{1}{n^2 -n +1}}_{a_n}$\\
+Vermutung: Verhalten wie $\sum \frac{1}{n^2}$ (Dominanz der höchsten Potenz) $\curvearrowright$ Konvergent wegen $\alpha = 2 > 1$ (\ref{MajorMinor1}))\\
+Wir versuchen eine konvergente Majorante zu finden.\\
+$a_n = \frac{1}{n^2 - n+1} \underbrace{\leq}_{\text{wegen } n \leq \frac{n^2}{2} \text{ für } n \geq 2} \frac{1}{n^2 - \frac{n^2}{2}} = \frac{2}{n^2} =: b_n$
+
+Wegen (\ref{MajorMinor1}) gilt $\sum\limits_{n=1}^{\infty} \frac{2}{n^2} = 2 \cdot \sum\limits_{n=1}^{\infty} \frac{1}{n^2} < \infty \Rightarrow \sum a_n < \infty$\\
+(Reihe $\sum a_n$ konvergent)
+
+\item $\sum\limits_{n=1}^{\infty} \frac{n^2 +4}{n^3 + n^2 + 31}$, Verhalten wie $\sum \frac{n^2}{n^3} = \sum \frac{1}{n}$, Divergenz, (\ref{MinorMajor1}) mit $\alpha = 1 \curvearrowright \sum\limits_{n=1}^{\infty} a_n = \infty$ (divergent)
+
+\end{enumerate}
+
+\item Quotienten- und Wurzelkriterium für Reihen mit beliebigen Gliedern
+
+Satz 10
+\[\lim\limits_{n \to \infty} \lvert \frac{a_{n+1}}{a_n} \rvert = \left\{ \begin{array}{c} <1 \\ >1 \end{array} \right. \Rightarrow \sum\limits_{n=n_0}^{\infty} a_n \text{ ist } \left\{ \begin{array}{c} \text{abs. konvergent} \\ \text{divergent} \end{array} \right. \]
+
+Satz 11
+\[\lim\limits_{n \to \infty} \sqrt[n]{\lvert a_n \rvert} = \left\{ \begin{array}{c} <1 \\ >1 \end{array} \right. \Rightarrow \sum\limits_{n=n_0}^{\infty} a_n \text{ ist } \left\{ \begin{array}{c} \text{abs. konvergent} \\ \text{divergent} \end{array} \right. \]
+
+Bemerkung: Falls im Satz 10 bzw. 11 $\lim \dots = 1$ gilt, dann ist mit Hilfe dieser Sätze keine Entscheidung möglich.\\
+(Das gilt z.B. für die Reihen aus Beispiel 10)
+
+Beispiel 11:
+\begin{enumerate}
+\item $\sum\limits_{n=2}^{\infty} ( \frac{1}{\ln{n}} )^n \cdot (-1)^n $\\
+Wurzelkriterium wegen $(\dots )^n$\\
+$\sqrt[n]{\lvert a_n \rvert} = \frac{1}{\ln{n}} \lim\limits_{n \to \infty} =  0 < 1 \curvearrowright$ Reihe absolut konvergent.
+\item $\sum\limits_{n=1}^{\infty} \frac{(-1)^n (2n)!}{(n!)^2}$, Quotientenkriterium wegen Fakultät (!)\\
+$\lvert \frac{a_{n+1}}{a_n} \rvert = \frac{\frac{(2(n+1))!}{((n+1)!)^2}}{\frac{(2n)!}{(n!)^2}} = \frac{(2n +2)! (n!)^2}{((n+1)!)^2 (2n)!} = \frac{(2n+2)(2n+1)}{(n+1)(n+1)} = \frac{n^2 (2+ \frac{2}{n}) (2+ \frac{1}{n})}{n^2 (1+ \frac{1}{n} ) (1 + \frac{1}{n} ) } \lim\limits_{n \to \infty} 4> 1 \curvearrowright $ Reihe ist divergent!
+\end{enumerate}
+
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{Rechenregeln}
+\begin{itemize}
+\item $\sum\limits_{n=n_0}^{\infty} a_n$ und $\sum\limits_{n=n_0}^{\infty} b_n$ konvergent, Summen $a$ bzw. $b$.\\
+Dann gilt $\sum\limits_{n=n_0}^{\infty} (a_n + b_n) = a+b, \sum\limits_{n=n_0}^{\infty} c \cdot a_n = c \cdot a$
+\item $\sum\limits_{n=n_0}^{\infty} a_n$ absolut konvergent $\Leftrightarrow$ Die Glieder $a_n$ beliebig umordnen, ohne dass sich die Summe ändert.
+\item $\sum\limits_{n=0}^{\infty} a_n$ und $ \sum\limits_{n=0}^{\infty} b_n$ seien absolut konvergent, Summen $a$ bzw. $b$. Dann ( $\sum\limits_{i=0}^{\infty} a_i ) \cdot ( \sum\limits_{j=0}^{\infty} b_j) = \sum\limits_{i,j=0}^{\infty} a_i b_j = a \cdot b$\\
+(bei beliebiger Reihenfolge der Summanden)
+z.B. Ordnung nach Index-Summe ( \textsc{Cauchy}-Produkt)\\
+$\sum\limits_{n=0}^{\infty}(\sum\limits_{i=0}^{n} a_i b_{n-i} ) = a \cdot b$
+\end{itemize}
+
+\subsection{Grenzwerte und Stetigkeit von Funktionen}
+\subsubsection{Grenzwerte von Funktionen}
+\paragraph{Definition 1} Es sei $x_0 \in \mathbb{R}$ und existiere eine Umgebung $U(x_0) \text{ mit } U(x_0) \backslash \{ x_0 \} \subseteq Db(f).$\\
+$\lim\limits_{x \to x_0} f(x) = a :\Leftrightarrow$ Für jede Folge $(x_n) \text{ mit } x_n \in Db(f), x_n \neq x_0 \text{  und }$ \\ $\lim\limits_{n \to \infty} x_n = x_0 \text{ gilt } \lim\limits_{n \to \infty} f(x_n) = a$
+
+Anschaulich: $f(x)$ strebt gegen $a$, wenn $x$ gegen $x_0$ strebt.\\
+Bermerkung: Die Stelle $x_0$ selbst muss nicht zu $Db(f)$ gehören!
+
+\subparagraph{Beispiel 1} $\lim\limits_{x \to \infty} \frac{\sin{x}}{x} = 1$
+
+$0 < x < \frac{\pi}{2} \curvearrowright F_{\delta MAB} < F_{\text{Sektor MAB}} < F_{\delta MAC} \Leftrightarrow \frac{1}{2} \sin{x} < \frac{1}{2} x < \frac{1}{2} \tan{x} \vert \cdot \frac{2}{\sin{x}} \Leftrightarrow 1 < \frac{1}{\sin{x}} < \frac{1}{\cos{x}} \Leftrightarrow 1 > \frac{\sin{x}}{x} > \cos{x} \curvearrowright$ Beh.
+
+Analog zu den Grenzwertsätzen für Zahlenfolgen gilt:
+
+\paragraph{Satz 1} Es gelte $\lim\limits_{x \to x_0} f(x) = a \text{ und } \lim\limits_{x \to x_0} g(x) = b$. Dann 
+\begin{itemize}
+\item $\lim\limits_{x \to \infty} (f(x) + g(x) ) = a + b, \; \lim\limits_{x \to \infty} (c \cdot f(x)) = c \cdot a$
+\item $\lim\limits_{x \to x_0} ( f(x) \cdot g(x) ) = a \cdot b, \lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \frac{a}{b} \;  (\text{ falls } b \neq 0)$
+\end{itemize}
+
+\subparagraph{Beispiel 2}
+\begin{enumerate}
+\item $\lim\limits_{x \to 0} \frac{3x^3 - 7x +4}{3 \cos{x}} = \underline{\underline{\frac{4}{3}}}$
+\item $\lim\limits_{x \to 3} \frac{x^2 -x -6}{x-3} \lim\limits_{x \to 3} \frac{(x-3) (x+2)}{x-3} = \lim\limits_{x \to 3} (x+2) = \underline{\underline{5}}$
+\end{enumerate}
+
+$\frac{0}{0}$ , Satz 1 nicht anwendbar, z.B. Zähler zerlegen (andere Möglichkeiten später, Diff-Rechnung)
+
+\paragraph{Definition 2}
+\begin{enumerate}
+\item rechtsseitiger Grenzwert\\
+$\lim\limits_{x \to x_0 + 0} f(x) = a :\Leftrightarrow \text{ Für jede Folge } (x_n) \text{ mit } x_n \in Db(f), x_n > x_0 \text{ und } \lim\limits_{n \to \infty} x_n = x_0 \text{ gilt } \lim\limits_{n \to \infty} f(x_n) = a$
+\item linksseitiger Grenzwert: $\lim\limits_{x \to x_0 - 0} f(x) = a$
+\item $\lim\limits_{x \to \infty} f(x) = a : \Leftrightarrow \text{ Für jede Folge } (x_n) \text{ mit } x_n \in Db(f) \text{ und } \lim\limits_{n \to \infty} x_n = \infty \text{ gilt } \lim\limits_{n \to \infty} f(x_n) = a$
+\item $\lim\limits_{x \to - \infty} f(x) = a$
+\end{enumerate}
+
+Diskussion: Uneigentliche Grenzwerte
+
+$\lim\limits_{x \to \dots} f(x) = \left\{ \begin{array}{rl} + & \infty \\ - & \infty\\ \end{array}\right.$
+
+(bei bestimmter Divergenz der Funktionswerte für $x \to \dots$, dabe steht \dots für $x_0 , x_0 -0, x_0 + 0, - \infty$ oder $+ \infty$)
+
+\paragraph{Satz 2}
+$\lim\limits_{x \to \infty} f(x) = a \Leftrightarrow \lim\limits_{x \to x_0 -0} f(x) = \lim\limits_{x \to x_0 + 0} f(x) = a$
+
+\subparagraph{Beispiel 5} (einseitige Grenzwerte)
+$f(x) = \left\{ \begin{array}{rcl} -x^2 & \mbox{für} & x <0\\
+\sqrt{x+1} & \mbox{für} & x \geq 0\\ \end{array}\right.$
+\begin{enumerate}
+\item $\lim\limits_{x \to [0] - 0} f(x) = \lim\limits_{x \to -0} (-x^2) = \underline{\underline{0}}$
+\item $\lim\limits_{x \to +0} f(x) = \lim\limits_{x \to +0} \sqrt{x+1} = \underline{\underline{1}}$\\
+$\curvearrowright \lim\limits_{x \to 0} f(x)$ existiert nicht
+\end{enumerate}
+
+\subparagraph{Beispiel 4} $(x \to + \infty, \dots)$
+$\lim\limits_{x \to \infty} (x \cdot \sin{\frac{4}{x}} ) \underbrace{=}_{u = \frac{4}{x} \Leftrightarrow x = \frac{4}{u}} \lim\limits_{u \to 0} (\frac{4}{u} \cdot \sin{u}) = 4 \cdot \lim\limits_{u \to 0} \underbrace{\frac{\sin{u}}{u}}_{1} = \underline{\underline{4}}$
+
+\subparagraph{Beispiel 5} (uneigentliche Grenzwerte)
+$\lim\limits_{x \to \frac{\pi}{2} - 0} \tan{x} = \infty, \lim\limits_{x \to \frac{\pi}{2} + 0} \tan{x} = - \infty$
+
+\subsubsection{Stetigkeit von Funktionen}
+\paragraph{Definition 3}
+\begin{enumerate}
+\item Es gelte $U(x_0) \subseteq Db(f) \; f$ heißt an der Stelle $x_0$ stetig, wenn $\lim\limits_{x \to x_0} f(x) = f(x_0)$ gilt. (Grenzwert = Funktionswert)
+\item $f$ in $x_0$ rechtsseitig stetig $\lim\limits_{x \to x_0 + 0} f(x) = f(x_0)$
+\item $f$ in $x_0$ linksseitig stetig $\lim\limits_{x \to x_0 -0} f(x) = f(x_0)$
+\end{enumerate}
+
+\subparagraph{Beispiel 6} (Unstetigkeitsstellen)
+\begin{enumerate}
+\item $f_1(x) =\frac{sin{x}}{x}, \, x \neq 0$ ist in $x_0 = 0$ nicht stetig, da dort nicht definiert\\
+$\tilde{f_1}(x) := \left\{ \begin{array}{rcl} f_1(x) & \mbox{für} & x \neq 0 \\ 1 & \mbox{für} & x = 0\\ \end{array}\right.$ ist stetig in $x_0= 0$.
+\item $f_2(x) = \left\{ \begin{array}{rl} \text{arctan}(\frac{1}{x}), & x \neq 0\\ 0, & x=0\\ \end{array}\right.$ ist unstetig in $x_0 = 0$, "`endlicher Sprung"'
+\item $f_3(x) = \frac{1}{x}, \, x \neq 0,$ ist unstetig in $x_0 = 0$
+\item $f_4(x) = \sin{(\frac{1}{x})},x \neq 0$, ist unstetig bei $x_0 = 0$
+\end{enumerate}
+
+\paragraph{Definition 4}: $f$ heißt stetig in einem Intervall $I$, wenn $f$ an jeder inneren Stelle $x_0 \in I$ stetig ist und in eventuell vorhandenen Randpunkten von $I$ einseitig stetig ist.
+
+Bemerkung: Jede der in 1.4.1. und 1.4.3. betrachteten Funktionen ist im gesamten Definitionsbereich stetig.
+
+\paragraph{Satz 3} $f$ und $g$ stetig in $x_0 \Leftarrow c_1f + c_2g, f \cdot g \text{ und } f/g (falls g(x_0) \neq 0) \text{ stetig in } x_0$
 
 
+\paragraph{Satz 4} (Stetigkeit mittelbarer Funktionen)
+$u = g(x) \text{ stetig in } x_0$\\
+$y = f(u) \text{ stetig in } u_0 = g(x_0) \Leftarrow y= f(g(x)) \text{ stetig in } x_0$
 
+\paragraph{Satz 5} (Zwischenwertsatz)
+$f$ sei stetig in $[a;b], f(a)$ und $f(b)$ seinen $\neq 0$ und haben unterschiedliches Vorzeichen. $\Leftarrow \forall x^* \in (a;b) \; f(x^*)=0$ d.h. es existieren wenigstens eine Nullstelle.
 
+$\curvearrowright$ Verfahren zur Nullstellenermittlung
+\begin{itemize}
+\item Regula falsi (Schantenverfahren)
+\item Intervallhalbierungsmethode
+\end{itemize}
 
+\paragraph{Satz 6} $f$ sei stetig in $[a;b]$, dann hat $f$ in $[a;b]$ sowohl ein Maxium als auch ein Minimum.
 
+\subsection{Potenzreihen}
+\paragraph{Definition 1}: 
+\begin{equation}\label{PotR1} \sum\limits_{n=0}^{\infty} a_n (x - x_0)^n \end{equation}
+heißt Potenzreihe mit dem Mittelpunkt $x_0$
 
+Diskussion:
+\begin{enumerate}
+\item Für jedes feste $x \in \mathbb{R}$ stellt (\ref{PotR1}) eine unendliche (Zahlen)-Reihe dar.
+\item Konvergenzbereich $K=\{x\in \mathbb{R} |$ (\ref{PotR1}) ist konvergent $\}$
+\item Für jedes $x \in K$ existiert der Summenwert $=: f(x)$. Die Funktion $f(x),x\in K$ heißt Grenzfunktion der Potenzreihe (\ref{PotR1}).
+\end{enumerate}
 
+Zur Bestimmung des Konvergenzbereiches: Mit Hilfe der Sätze 10 und 11 aus 2.1.3 (Quotienten/Wurzelkriterium), erhält man absolute Konvergenz in einem symmetrisch um $x_0$ liegenden sogenannten Konvergenzintervall: $I=(x_0 -r, x_0 +r)$\\
+
+Dabei ist $r$ der Konvergenzradius:\\
+\begin{equation} \label{PotR2}
+r = \lim\limits_{n \to \infty} \lvert \frac{a_n}{a_{n+1}} \rvert = \lim\limits_{n \to \infty} \frac{1}{\sqrt[n]{\lvert a_n \rvert}} \end{equation}
+
+\paragraph{Satz 1}: $\sum\limits_{n=0}^{\infty} a_n (x-x_0)^n$ ist absolut konvergent für alle $x$ mit $\lvert x - x_0 \rvert < r \text{, d.h. } x \in I$, divergent für alle $x$ mit $\lvert x - x_0 \rvert > r$. 
+
+Diskussion:
+\begin{enumerate}
+\item Formel (\ref{PotR2}) nicht verwechseln mit den Sätzen 10 und 11 (dort Zahlen $\sum a_n$, hier Potenzreihen $\sum a_n (x -x_0)^n$, d.h. $a_n$ ist hier nur der Faktor von $(x- x_0)^n$
+\item Falls die Grenzwerte in ($\ref{PotR2}$) nicht existieren, gibt es trotzdem  einen Konvergenzradius (auf andere Weise berechenbar, vgl. Beispiel 1c)
+\item Satz 1 sagt nichts über das Verhalten in den Randpunkten des Konvergenzintervalls aus $\rightarrow$ gesponderte Untersuchungen notwendig.
+\end{enumerate}
+
+Beispiel 1:
+\begin{enumerate}
+\item $\sum\limits_{n=1}^{\infty} \frac{x^n}{n},$ d.h. $x_0 = 0, a_n = \frac{1}{n} (n=1,2,\dots)$ (allg. Gestalt: $\sum a_n (x - x_0 )^n$)
+\[ r = \lim\limits_{n \to \infty} \frac{1}{\sqrt[n]{\lvert a_n \rvert}} = \lim\limits_{n \to \infty} \frac{1}{\sqrt[n]{\frac{1}{n}}} = \lim\limits_{n \to \infty} \sqrt[n]{n} = 1\]
+Konvergenzintervall $I=(-1;1)$\\
+Randpunkte: $x=-1 \curvearrowright \sum\limits_{n=1}^{\infty} \frac{(-1)^n}{n}$ (bedingt) konvergent nach \textsc{Leibnitz}-Kriterium
+$x=1 \curvearrowright \sum\limits_{n=1}^{\infty} \frac{1}{n}$ divergent (harmonische Reihe bzw. $\alpha = 1$)\\
+$\curvearrowright$ Konvergenzbereich $K=[-1;1)$
+\item $\sum\limits_{n=0}^{\infty} \frac{x^n}{n!}, \text{ d.h. } x_0 = 0, a_n = \frac{1}{n!}$\\
+$\lvert \frac{a_n}{a_{n+1}} \rvert  = \frac{\frac{1}{n!}}{\frac{1}{(n+1)!}} = \frac{(n+1)!}{n!} \underbrace{\rightarrow}_{n \to \infty} \infty$\\
+$\curvearrowright r = \infty, \text{ d.h. } K=I=(-\infty;\infty)$ (Reihe überall absolut konvergent)
+\item $\sum\limits_{n=0}^{\infty} \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots, \; x_0 = 0$\\
+$(\sum A_n x^n \text{ mit } A_n = \left\{ \begin{array}{lr} \frac{1}{n!} & \mbox{(n gerade)}\\ 0 & \mbox{(n ungerade)}\\ \end{array} \right. )$\\
+$\curvearrowright$ Formale (\ref{PotR2}) nicht unmittelbar anwendbar.\\
+Substitution: $u=x^2 \curvearrowright \sum\limits_{n = 0}^{\infty} \frac{u^n}{(2n)!}$ untersuchen, $u_0 = 0, a_n = \frac{1}{(2n)!}$\\
+$\lvert \frac{a_n}{a_{n+1}} \rvert = \frac{\frac{1}{(2n)!}}{\frac{1}{(2n+2)!}} = \frac{(2n+2)!}{(2n)!} = (2n + 1)(2n +2) \underbrace{\rightarrow}_{n \to \infty} \infty \curvearrowright r_u = \infty$\\
+absolute konvergent für alle $u$) $\curvearrowright r_x = \infty \curvearrowright K=I=(-\infty;\infty)$
+\end{enumerate}
+
+Beispiel 2 (einige Grenzfunktionen)
+\begin{enumerate}
+\item $\sum\limits_{n=0}^{\infty} x^n = \frac{1}{1-x}, x \in (-1;1)$ (s. 2.1.3.1, geometrische Reihe $a=1, g=x \curvearrowright s = \frac{a}{1-g} = \frac{1}{1-x})$
+\item $\sum\limits_{n=0}^{\infty} \frac{x^n}{n!} = e^x, x \in \mathbb{R},$ Beweis: in 3.3.1.
+\end{enumerate}
+\paragraph{Satz 2} Die Grenzfunktion jeder Potenzreihe ist im Konvergenzbereich stetig.
+
+\section{Differentialrechnung für Funktionen einer reellen Variablen}
+\subsection{Grundbegriffe}
+Tangentenproblem\\
+Geg: $y=f(x),$ gesucht Tangente in $P_0 (x_0, f(x_0))$
+%ToDo 2014-03-19T12:37
+\begin{itemize}
+\item zunächst Sekante durch $P_0$ und $P_1$
+\item jetzt $P_1 \to P_0, \text{ d.h. } x_1 \to x_0$
+$\curvearrowright$ Sekante geht über in Tangete in Punkt $P_0$
+$\curvearrowright \varphi \to \alpha$
+\end{itemize}
+(\textsc{Leibnitz} 1646-1716)
+\[\tan{\alpha} = \lim\limits_{\varphi \to \alpha} \tan{\varphi} \lim\limits_{x_1 \to x_0} \frac{f(x_1) - f(x_0)}{x_1 -x_0}\]
+
+\paragraph{Definition 1} Die Funktion $y=f(x)$ heißt an der Stelle $x_0$ ( mit $U(x_0) \subseteq Db(f) )$ differenzierbar, falls der Grenzwert
+\[f'(x_0) := \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} \] existiert. $f'(x_0)$ heißt 1. Ableitung von $f$ an der Stelle $x_0$.
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $f'(x_0) = \lim\limits_{h \to 0} \frac{f(x_0 +h) - f(x_0)}{h}$
+\item Gleichung der Tangente in $(x_0,f(x_0))$
+\[ y= f(x_0) + f'(x_0) \cdot (x-x_0) \]
+Anstieg der Tangente $m=\tan{\alpha} = f'(x_0)$
+\item $f$ in $x_0$ differenzierbar bedeutet, es existiert eine eindeutige Tangente an die Kurve dieser Stelle. Zum Beispiel ist $f(x) = \lvert x \rvert$ nicht diffbar in $x_0 = 0$
+\end{enumerate}
+
+\paragraph{Satz 1}
+\[ f \text{ in } x_0 \text{ diffbar  } \Rightarrow f \text{ in } x_0 \text{ stetig}\]
+
+\subparagraph{Definition 2} $f$ heißt im Intervall $I$ diffbar, wenn $f$ an jeder inneren Stelle $x_0$ von $I$ diffbar ist und in eventuell vorhandenen Randpunkten einseitig diffbar ist.\\
+Schreibweise: $y' = f'(x), x \in I$
+
+\subparagraph{Definition 3} (höhere Ableitungen)\\
+Rekursive Definition der $n$-ten Ableitung
+\[ f^{(n)} (x) := (f^{(n-1)} (x))', n=1,2,3,\dots \text{ mit } f^{(0)} (x) := f(x)\]
+
+\subparagraph{Beispiel 1} $f(x) = x^n \; n \in \mathbb{N}^*, x\in \mathbb{R}$\\
+$\frac{f(x+h) - f(x)}{n} = \frac{1}{h} ((x+h)^n - x^n)$\\ $ \underbrace{=}_{\text{Binomischer Satz}} \frac{1}{h} (x^n + (\frac{n}{1}) x^{n-1} h + (\frac{n}{2}) x ^{n-2} h^2 + \dots + (\frac{n}{n}) h^n - x^n)$\\
+$\overrightarrow{h \to 0} n \cdot x^{n-1} ( x \in \mathbb{R})$, d.h. $f$ ist auf $\mathbb{R}$ diffbar mit $f'(x) = nx^{n-1}$
+
+\subparagraph{Beispiel 2} $f(x)=\sin{x}, x \in \mathbb{R}$\\
+$\frac{f(x+h) - f(x)}{h} = \frac{\sin{x+h} - \sin{x}}{h} = \frac{2 \cos{\frac{2x+h}{2}} \cdot \sin{\frac{h}{2}}}{h} = \underbrace{\cos{(x+\frac{h}{2})}}_{\to \cos{x}} \cdot \frac{\sin{\frac{h}{2}}}{\underbrace{\frac{h}{2}}_{\to 1}} \; \overrightarrow{h \to 0} \cos{x}, \text{ also } f'(x) = \cos{x}$
+
+\subparagraph{Bemerkung} Ableitungen der Grundfunktionen s.z.B. Merkblatt Ableitungen zusammengesetzter Funktionen vgl. Ableitungsregeln (3.2)
+
+\subparagraph{Differential} $dy = h \cdot \tan{\alpha} = h \cdot f'(x_0)$
+
+\subparagraph{Definition 4}
+\begin{enumerate}
+\item $dy:= f'(x_0) \cdot h$ heißt das zur Stelle $x_0$ und den Zuwachs $h=\Delta x$ gehörende Differential von $f$
+\item $\Delta y = f(x_0 +h) - f(x_0)$ heißt die zur Stelle $x_0$ und dem Zuwachs $h=\Delta x$ gehörende Differenz von $f$
+\end{enumerate}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $\Delta y$ ist die Änderung der Funktion $f(x)$, wenn $x$ von $x_0$ in $x_0+h$ übergeht. $dy$ ist die entsprechende Änderung, wenn $f(x)$ durch die Tangente an der Stelle $x_0$ ersetzt wird (Linearisierung)
+\item Für kleine Zuwächse $\Delta x$ gilt $\Delta y \approx dy$, d.h. $\Delta y \approx f'(x_0) \cdot \Delta x \text{ für kleines } \Delta x \curvearrowright$ Fehlerrechnung
+\item Es sei $y= f(x) = x \curvearrowright dy = dx$, andererseits ist $dy= 1 \cdot h = h \curvearrowright h = \Delta x = dx$
+\item Damit ist $f'(x) = \frac{dy}{dx};$ 1. Ableitung = Differentialquotient andere Schreibweise $f'(x) = \frac{d}{dx} f(x)$
+\item Höhere Ableitungen $f^{(n)} (x) = \frac{d^ny}{(dx)^n} f(x)$
+\end{enumerate}
+
+\subsection{Differentionsregeln}
+\paragraph{Satz 1} Falls die Ableitungen auf den rechten Seiten existieren, gilt:
+\[(c_1 u(x) + c_2 v(x))' = c_1 u'(x) + c_2 v'(x) = \text{ Linearität}\]
+\[u(x) \cdot v(x))' = u'(x) \cdot v(x) + u(x) \cdot v'(x) = \text{ Produktregel}\]
+\[(\frac{u(x)}{v(x)})' = \frac{u'(x) v(x) - u(x) v'(x)}{v(x)^2} = \text{ Quotientenregel}\]
+
+\subparagraph{Beispiel 1}
+\begin{enumerate}
+\item $f(x) = 7x^4 + \sqrt[3]{x} + \frac{2}{\sqrt{x}} = 7x^4 + x^{\frac{1}{3}} + 2x^{-\frac{1}{2}} \rightarrow f'(x) = 7\cdot 4x^3 + \frac{1}{3} x^{-\frac{2}{3}} + 2 \cdot (-\frac{1}{2} ) \cdot x^{-\frac{3}{2}} = 28x^3 + \frac{1}{3 \cdot \sqrt[3]{x^3}} - \frac{1}{\sqrt{x^3}}$
+\item $f(x) = x \ln{x} (x>0)$\\
+$f'(x) = 1 \cdot \ln{x} + x \cdot \frac{1}{x} = 1 + \ln{x}$ (Produktregel!)
+\item $f(x) = e^x x^2 + 2 \curvearrowright f'(x) = \frac{e^x (x^2+2) -e^x \cdot 2x}{(x^2 +2)^2} = \frac{(e^x (x^2 - 2x +2)}{(x^2 +2)^2}$ (Quotientenregel!)
+\end{enumerate}
+
+\paragraph{Satz 2} (Differentiation mittelbarer Funktionen, Kettenregel)
+\[(f(g(x)))' = f'(g(x)) \cdot g'(x)\]
+
+Diskussion: $y=f(\underbrace{g(x)}_{u}) =f(u)$ mit $u=g(x)$
+
+Differentialschreibweise: $y'=\frac{dy}{dx} = \underbrace{\frac{dy}{du}}_{\text{äußere Ableitung}} \cdot \underbrace{\frac{du}{dx}}_{\text{innere Ableitung}}$
+
+\subparagraph{Beispiel 2}
+\begin{enumerate}
+\item $y=f(x) = \sin{(\underbrace{3x}_{u}}$\\
+$y'=\frac{dy}{dx} = \frac{dy}{du}=\frac{du}{dx} = \cos{u} \cdot 3 = \underline{\underline{ 3 \cdot \cos{(3x)}}}$
+\item $y=f(x)=2^{\tan{(3x)}}$\\
+Subst. $u= \tan{(3x)}, v=3x$\\
+$\curvearrowright y= 2^u, u = \tan{v}, v=3x$\\
+$\curvearrowright \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{dy}{dv} \cdot \frac{dv}{dx} = 2^u \cdot \ln{2} \cdot (1+ \tan^2{v}) \cdot 3 = 3 \cdot \ln{2} \cdot 2^{\tan{(3x)}} \cdot (1+\tan^2{(3x)})$
+\end{enumerate}
+
+\subparagraph{Beispiel 3} Logarithmische Differentiation
+$f(x) = x^{\sin{x}}, \quad x>0$\\
+(Basis und Exponent von x abhängig; die Regeln $(x^a)' = ax^{a-1}$ und $(a^x)' = a^x \ln{a}$ sind nicht unmittelbar anwendbar!)
+\begin{itemize}
+\item Logarithmieren: $\ln{f(x)} = \sin{x} \cdot \ln{x}$
+\item Diff. nach $x$: $\underbrace{\frac{1}{f(x)} \cdot f'(x)}_{\text{Kettenregel}} = \underbrace{\cos{x} \cdot \ln{x} + \sin{x} \frac{1}{x}}_{\text{Produktregel}} \; | \cdot f(x)$
+\item Auflösen nach $f'(x): \underline{\underline{f'(x) = x^{\sin{x}} ( \cos{x} \cdot \ln{x} + \frac{\sin{x}}{x})}}$
+\end{itemize}
+
+\subparagraph{Satz 3} (Ableitung der Grenzfunktionen einer Potenzreihe)
+\[f(x) = \sum\limits_{n=0}^{\infty} a_n(x-x_0)^n \quad x\in (x_0 - r_,x_0 +r) \Rightarrow f'(x) = \sum\limits_{n=1}^{\infty} a_n \cdot n \cdot (x-x_0)^{n-1}\]
+(gliedweises Differenzieren!)
+
+\subparagraph{Beispiel 4} $\frac{1}{1-x}=1+x+x^2+x^3+\dots = \sum\limits_{n=0}^{\infty} x^n, \quad x\in (-1;1)$\\
+$(\frac{1}{1-x})' = \frac{1}{(1-x)^2} = 1 + 2x +3x^2 + \dots = \sum\limits_{n=1}^{\infty} nx^{n-1}, \quad x\in (-1;1)$
+
+\subsection{Anwendungen}
+\subsubsection{\textsc{Taylor}sche Formel, \textsc{Taylor}-Reihe}
+\subparagraph{Problem} "`Komplizierte"' Funktion $f(x)$ soll in Umgebung von $x_0$ durch ein Polynom $p_n(x)$ n-ten Grades angenähert werden.
+\subparagraph{Ansatz} $p_n(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)^2 + \dots +a_n(x-x_0)^n$
+\subparagraph{Forderung} $p_n(x_0) = f(x_0), p_n'(x_0) = f'(x_0), p_n'' (x_0) = f''(x_0), \dots$\\
+liefert: $a_k = \frac{f^{(k)}(x_0)}{k!} \; (k=0,1,2,\dots,n)$
+
+\subparagraph{Definition 1} Das sich ergebende Polynom \[p_n(x) = f(x_0) + \frac{f'(x_)}{1!} (x-x_0) + \frac{f''(x_0)}{2!} (x-x_0)^2 + \dots + \frac{f^{(n)} (x_0)}{n!} (x-x_0)^n\]
+heißt \textsc{Taylor}-Polynom $n$-ten Grades, Entwicklungsstelle $x_0$
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $p_n(x)$ ist eine Näherung für $f(x)$\\
+Fehler: $f(x)-p_n(x) =: R_n(x)$ \dots Restglied
+\item Restglied im allgemeinem umso kleiner, je größer $n$ ist, und je kleiner $\lvert x -x_0 \rvert$ ist. Oft gilt $\lim\limits_{n \to \infty} R_n(x) =0$
+\end{enumerate}
+
+\subparagraph{Satz 1} (\textsc{Taylor}sche Formel)\\
+Es sei $f(x)$ in $[a;b] \; (n+1)$-mal diffbar, sowie $x_0,x \in [a;b]$. Dann existiert ein $\xi$ zwischen $x_0$ und $x$, d.h. $\xi = x_0 + \vartheta \cdot (x-x_0), 0 < \vartheta < 1$, so dass gilt: $R_n (x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}$ (Restgliedform von \textsc{Lagrange}). Es gilt also:
+\[f(x) = \underbrace{\sum\limits_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k}_{p_n(x)} + \underbrace{\frac{f^{(n+1)} (x_0 + \vartheta \cdot (x-x_0))}{(n+1)!} (x-x_0)^{n+1}}_{R_{n+1}}\]
+
+\subparagraph{Diskussion} speziell $n=0 \curvearrowright$
+\begin{equation}\label{MWSD}
+f(x) = f(x_0) + f'(\xi) \cdot (x-x_0) \quad \text{ mit } \xi = x_0 + \vartheta \cdot (x-x_0),0<\vartheta <1
+\end{equation} (Mittelwertsatz der Diff-Rechnung)
+(\ref{MWSD}) $ \Leftrightarrow \underbrace{\frac{f(x)-f(x_0)}{x-x_0}}_{\text{Sekantenanstieg}} = \underbrace{f'(\xi)}_{\text{Tangentenanstieg}}$
+
+\subparagraph{Beispiel 1} $f(x) = e^x, f'(x) = e^x, f''(x) = e^x, \dots, x_0 = 0 \curvearrowright f(x_0) = 1, f'(x_0) = 1, f''(x_0) = 1, \dots \curvearrowright$
+\[e^x= \sum\limits_{k=0}^{n} \frac{1}{k!} x^k + \frac{e^{\sqrt{x}}}{(n+1)!} x^{n+1}, \; 0 < \vartheta < 1\]
+z.B: $x=0,1; n=4$\\
+$\curvearrowright e^{0,1} = 1 + \frac{0,1}{1!} + \frac{0,1^2}{2!} + \frac{0,1^3}{3!} + \frac{0,1^4}{4!} + \frac{0,1^5}{5!} e^{\vartheta \cdot 0,1}$\\
+$e^{0,1} = 1,10517083(3) + R_4(0,1)$\\
+Fehler: $0< R_4(0,1) = \frac{0,1^5}{5!} \underbrace{e^{\vartheta \cdot 0,1}}_{< e^{0,1} < e^1 < 3} < \frac{0,1^5}{5!} \cdot 3 = 2,5 \cdot 10^{-7} = 25 \cdot 10^{-8}$\\
+$\curvearrowright 1,10517083 < e^{0,1} < 1,10517109$\\
+$\curvearrowright \underline{\underline{ e^{0,1} = 1,105171}}$ (6 Stellen nach Komma genau) (exakt : 1,105170918)
+
+\subparagraph{Beispiel 2}$x_0 = 0$ 
+\begin{align*}
+f(x) &= \cos{x} &\curvearrowright f(x_0) &= 1\\
+f'(x) &= -\sin{x} &\curvearrowright f'(x_0) &= 0\\
+f''(x) &= -\cos{x} &\curvearrowright f''(x_0) &= -1\\
+f'''(x) &= \sin{x} &\curvearrowright f'''(x_0 &= 0\\
+f^{(4)}(x) &= \cos{x} &\curvearrowright f^{(4)} (x_0) &= 1\\
+\end{align*}
+$n=2m+1 \curvearrowright$\\*
+$\cos{x} = \underbrace{1}_{f(x_0)} + \underbrace{0}_{\frac{f'(x_0)}{1!} (x-x_0)} \underbrace{- \frac{x^2}{2!}}_{\frac{f''(x_0)}{2!} (x-x_0)^2} + 0 + \frac{x^4}{4!} + \dots + (-1)^m \cdot \frac{x^{2m}}{(2m)!} + 0 + R_{2m+1}$\\
+$\curvearrowright$ Näherung z.B: $\cos{x} = 1 - \frac{x^2}{2!}$ für $\lvert x \rvert << 1$ Fehler: $R_3(x) \leq \frac{x^4}{4!}$\\
 
 
 
