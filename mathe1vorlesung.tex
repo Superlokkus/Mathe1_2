@@ -8,9 +8,11 @@
 \usepackage{tikz}
 \usepackage{ulem}
 \usepackage{hyperref}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
 
-\title{Skriptum Mathematik 1}
-\date{WS 2013/2014}
+\title{Skriptum Mathematik 1 und 2}
+\date{WS 2013/2014, SS 2014}
 \author{Markus Klemm.net}
 
 \begin{document}
@@ -3368,6 +3370,1771 @@ f^{(4)}(x) &= \cos{x} &\curvearrowright f^{(4)} (x_0) &= 1\\
 $n=2m+1 \curvearrowright$\\*
 $\cos{x} = \underbrace{1}_{f(x_0)} + \underbrace{0}_{\frac{f'(x_0)}{1!} (x-x_0)} \underbrace{- \frac{x^2}{2!}}_{\frac{f''(x_0)}{2!} (x-x_0)^2} + 0 + \frac{x^4}{4!} + \dots + (-1)^m \cdot \frac{x^{2m}}{(2m)!} + 0 + R_{2m+1}$\\
 $\curvearrowright$ Näherung z.B: $\cos{x} = 1 - \frac{x^2}{2!}$ für $\lvert x \rvert << 1$ Fehler: $R_3(x) \leq \frac{x^4}{4!}$\\
+
+\subparagraph{Beispiel 3} \begin{align*}
+f(x) &= (1+x)^\alpha, x_0 = 0 &\curvearrowright f(x_0) &= 1\\
+f'(x) &= \alpha (1+x)^{\alpha -1} &\curvearrowright f'(x_0) &= \alpha\\
+f''(x) &= \alpha(\alpha-1)\cdot (1+x)^{\alpha-2} &\curvearrowright f''(x_0) &= \alpha (\alpha-1)\\
+\vdots\\
+\end{align*}
+$\curvearrowright f^{(k)} (x_0) = \binom{\alpha}{k} \cdot k!$\\
+$\curvearrowright (1+x)^\alpha = \sum\limits_{k=0}^{n} \binom{\alpha}{k} x^k + \binom{\alpha}{n+1} (1+\vartheta x)^{\alpha - n -1} x^{n+1} \quad (0 < \vartheta < 1)$
+
+\subparagraph{Beispiel 4} $f(x)$ Polynom $n$-ten Grades $\curvearrowright f^{(n+1)} (x) = 0 (\forall x \in \mathbb{R})$\\
+$\curvearrowright R_n(x) = 0(\forall x \in \mathbb{R}) \curvearrowright$ \textsc{Taylor}-Polynom stellt $f(x)$ exakt dar.\\
+$f(x) = p_n(x)$ (Entwicklung nach Potenzen von $(x-x_0)$)
+
+\paragraph{Taylor-Reihen}
+\subparagraph{Satz 2} Es sei $f$ auf $U(x_0)$ beliebig oft diffbar und es gelte $\lim\limits_{n \to \infty} R_n(x) = 0$. Dann gilt:
+\[f(x) = \sum\limits_{k=0}^{\infty} \frac{f^{(k)} (x_0)}{k!} (x-x_0)^k \text{ (\textsc{Taylor}-Reihe)}\]
+
+Denn: \textsc{Taylor}-Formel
+\[ f(x) = \sum\limits_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k + R_n(x) \]
+$n\to \infty \curvearrowright$ Behauptung
+
+\subparagraph{Beispiel 5} $e^x = \sum\limits_{k=0}^{n} \frac{x^n}{n!} + R_n(x)$, vgl. Beispiel 1.\\
+Es gilt $\lim\limits_{n \to \infty} R_n (x) = 0 \quad \forall x \in \mathbb{R}$.
+
+Beweis: $n_0$ werde so gewählt, dass $q:= \frac{\lvert x \rvert}{n_0} < 1$ gilt. Es sei $n>n_0 \curvearrowright$\\
+$\lvert R_n(x) \rvert = \lvert e^{\vartheta x} + \frac{x^{n+1}}{(n+1)!} \rvert < e^{\lvert x \rvert} \cdot \underbrace{\frac{\lvert x \rvert}{1} \cdot \frac{\lvert x \rvert}{2} \cdot \dots \cdot \frac{\lvert x \rvert}{n_0}}_{n_0 \text{ Faktoren}} \cdot \underbrace{\frac{\lvert x \rvert}{n_0} \cdot \dots  \cdot \frac{\lvert x \rvert}{n_0}}_{n+1 - n_0 \text{ Faktoren}}$\\
+$=e^{\lvert x \rvert} \cdot \frac{\lvert x \rvert^{n_0}}{n_0!} \cdot q^{n+1-n_0} \; \overrightarrow{n\to \infty} \; 0$\\
+Es gilt also \[e^x = \sum\limits_{k=0}^{\infty} \frac{x^k}{k!}, \; x \in\mathbb{R}\]
+
+\subparagraph{Beispiel 6} $\cos{x} = \sum\limits_{k=0}^{m\infty} (-1)^k \frac{x^{2k}}{(2k)!} + R_{2m+1}^{(x)},$ vgl. Beispiel 2 ähnlich wie im Beispiel 5 folgt $\lim\limits_{m\to \infty} R_{2m+1} (x) = 0$ für $x \in \mathbb{R} \curvearrowright$\\
+$\cos{x} = \sum\limits_{k=0}^{\infty} (-1)^k \cdot \frac{x^{2k}}{(2k)!}, x\in \mathbb{R}$\\
+$\sin{x} = \sum\limits_{k=0}^{\infty} (-1)^k \cdot \frac{x^{2k+1}}{(2k+1)!}, x \in \mathbb{R}$
+
+\subparagraph{Beispiel 7} Restglieduntersuchung im Beispiel 3 führt auf die Binomialreihe
+\[(1+x)^\alpha = \sum\limits_{k=0}^{\infty} \binom{\alpha}{k} x^k, \lvert x \rvert < 1, \alpha \in \mathbb{R}\]
+
+\subsubsection{Grenzwertbestimmung mittels Regel von \textsc{Bernoulli}-l'\textsc{Hospital}}
+\paragraph{Satz 3} (Regel von \textsc{Bernoulli}-l'\textsc{Hospital})
+\begin{itemize}
+\item Es gelte
+\begin{enumerate}
+\item $\lim\limits_{x\to a} f(x) = 0 \wedge \lim\limits_{x \to a} g(x)  = 0$
+\item $\lim\limits_{x \to a} \frac{f'(x)}{g'(x)}$ existiert (als endlicher oder unendlicher Grenzwert)
+\end{enumerate}
+$\Rightarrow \lim\limits_{x \to a} \frac{f(x)}{g(x)} = \lim\limits_{x \to a} \frac{f'(x)}{g'(x)}$ (Typ: "`$\frac{0}{0}$"')
+\item Die gleiche Aussage gilt, wenn 1. ersetzt wird durch 
+\begin{enumerate}
+\item $\lim\limits_{x \to a} f(x) = \pm \infty \wedge \lim\limits_{x \to a} g(x) = \pm \infty$ (Typ "`$\frac{\infty}{\infty}$"')
+\end{enumerate}
+\end{itemize}
+
+Zum Beweis: Es seien $f,g,f',g'$ stetig in $x_0$. Außerdem sei $g'(x_0) \neq 0$.\\
+MWS: $\frac{f(x)}{g(x)} = \frac{\overbrace{f(x_0)}^{0} + (x-x_0) \cdot f'(\xi_1)}{\underbrace{g(x_0)}_{0} + (x-x_0) \cdot g'(\xi_2)} = \frac{f'(\xi_1)}{g'(\xi_2)} \; \overrightarrow{x \to x_0} \; \frac{f'(x_0)}{g'(x_0)}$
+
+\subparagraph{Beispiel 8}
+\begin{enumerate}
+\item $\lim\limits_{x \to 1} \frac{\ln{x}}{x-1} = \underline{\underline{\frac{0}{0}}} \lim\limits_{x \to 1} \frac{\frac{1}{x}}{1} = \underline{\underline{1}}$
+\item $\lim\limits_{x \to \infty} \frac{ln{x}}{\sqrt{x}} = \underline{\underline{\frac{\infty}{\infty}}} \lim\limits_{x\to \infty} \frac{\frac{1}{x}}{\frac{1}{2\sqrt{x}}} = \lim\limits_{x \to \infty} \frac{2}{\sqrt{x}} = \underline{\underline{0}}$
+\item $\lim\limits_{x \to 0} \frac{x^2}{1-\cos{x}} = \underline{\underline{\frac{0}{0}}} \lim\limits_{x \to 0} \frac{2x}{\sin{x}} = \underline{\underline{\frac{0}{0}}} \lim\limits_{x \to 0} \frac{2}{\cos{x}} = \underline{\underline{2}}$\\
+(u.U. Regel mehrfach anwenden!) Aber Vorsicht!)
+\item $\lim\limits_{x \to \infty} \frac{\text{sinh} (x+1)}{\text{cosh} x} = \underline{\underline{\frac{\infty}{\infty}}} \lim\limits_{x \to \infty} \frac{\text{cosh}(x+1)}{\text{sinh} x} = \underline{\underline{\frac{\infty}{\infty}}} \lim\limits_{x \to \infty} \frac{\text{sinh} (x+1)}{\text{cosh} x} = ?$\\
+Regel führt nicht immer zum Ziel
+\end{enumerate}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Man beachte bei Anwendung von Satz 3: Zähler und Nennen einzeln differenzieren, keine Quotientenregel.
+\item Falls $\lim\limits_{x \to a} \frac{f'(x)}{g'(x)}$ nicht existiert, darf man nicht folgern, dass $\lim\limits_{x \to a} \frac{f(x)}{g(x)}$ ebenfalls nicht existiert.
+\end{enumerate}
+
+\subparagraph{Beispiel 9} $g:= \lim\limits_{x \to \infty} \frac{5x + \sin{x}}{3x-\cos{x}} = \frac{\infty}{\infty} \lim\limits_{x \to \infty} \frac{5+\cos{x}}{3+ \sin{x}}$ existiert nicht\\
+Anderes Vorgehen:\\
+$g=\lim\limits_{x\to \infty} \frac{x(5+\frac{\sin{x}}{x})}{x(3- \frac{\cos{x}}{x})} = \underline{\underline{\frac{5}{3}}}$
+
+\subparagraph{Weitere unbestimmte Ausdrücke} Zurückführung auf Grundtypen "`$\frac{0}{0}$"' bzw. "`$\frac{\infty}{\infty}$"'\\
+"`$0 \cdot \infty$"': $f(x) \cdot g(x)$ als Doppelbruch schreiben $\frac{f(x)}{\frac{1}{g(x)}}$ oder $\frac{g(x)}{\frac{1}{f(x)}} \curvearrowright$ "`$\frac{0}{0}$"' oder "`$\frac{\infty}{\infty}$"'\\
+"`$\infty-\infty$"': Ausklammern $f(x)-g(x) = f(x) (1-\frac{g(x)}{f(x)})$ oder falls Brüche vorliegen $\to$ Hauptnenner.
+"`$0^0$"': Umformung: $\lim\limits_{x \to a} f(x)^{g(x)} = \lim\limits_{x \to a} e^{\ln}$ %TODO MA Vorlesung vor 31-03-2014
+"`$1^1$"':
+"`$\infty^0$"' 
+
+\begin{enumerate}
+\item $\lim\limits_{x \to 0} ( \frac{1}{\sin{x}} - \frac{1}{e^x -1} ) \overbrace{=}^{\text{"`} \infty - \infty \text{"'}} \lim\limits_{x \to 0} \frac{e^x -1 - \sin{x}}{\sin{x} (e^x -1)}$\\
+$\overbrace{=}^{\text{"`}\frac{0}{0}\text{"'}} \lim\limits_{x \to 0} \frac{e^x - \cos{x}}{\cos{x} \cdot (e^x -1) + \sin{x} \cdot e^x}$\\
+$= \lim\limits_{x \to 0} \frac{e^x + \sin{x}}{- \sin{x} \cdot (e^x -1 ) + \cos{x} \cdot e^x + \cos{x} \cdot e^x + \sin{x} \cdot e^x} = \underline{\underline{\frac{1}{2}}}$
+\end{enumerate}
+
+\subparagraph{Beispiel 11}
+$\lim\limits_{x \to 0} (1-x)^{\frac{1}{x}} = \lim\limits_{x \to 0} e^{ln{((1-x)^{\frac{1}{x}})}} = e^{\lim\limits_{x \to 0} ( \frac{1}{x} \ln{(1-x)})} \underbrace{=}_{\text{NR}} \underline{\underline{e^{-1}}}$\\
+NR: $\lim\limits_{x \to 0} \frac{\ln{(1-x)}}{x} = \lim\limits_{x \to 0} \frac{\frac{1}{1-x} \cdot (-1)}{1} = -1$
+
+\subsubsection{Kurvendiskussion}
+\paragraph{Problemstellung} $y = f(x), x \in Db(f)$\\
+Der Graph $\{(x,y) \in \mathbb{R}^2 | y= f(x) \wedge x \in Db(f)\}$ ist zu untersuchen auf:
+\begin{enumerate}
+\item Nullstellen
+\item Stellen und Art lokaler und globaler Extrema
+\item Wendestellen
+\item Verhalten im Unendlichen bzw. an den Randstellen des Definitionsbereiches und (falls vorhanden) bei Annäherung an Unstetigkeitsstellen
+\end{enumerate}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Nullstellenermittlung zB. mit dem \textsc{Newton}-Verfahren (vgl. Abschnitt 3.3.5).\\
+Definition: $x_0$ heißt Nullstelle $n$-ter Ordnung, falls
+\[ f(x_0) = f'(x_0) = \dots = f^{(n-1)} (x_0) = 0 \wedge f^{(n)} (x_0) \neq 0 \]
+\item Lokale Extrema sind extremal bzgl. einer Umgebung $U(x_0) \subseteq Db(f)$\\
+Globale Extrema sind extremal bzgl. des gesamten Definitionsbereiches.\\
+Bezeichnungen: 
+\begin{itemize}
+\item $x_E$ \dots Extremstelle 
+\item $y_E$ \dots Extremwert 
+\item $(x_E, y_E)$ \dots Extrempunkt
+\end{itemize}
+\item Wendepunkte sind Punkte, an denen die Kurve (von "`unten"' betrachtet) von konkav in konvex bzw. von konvex in konkav übergeht.\\
+Dabei:
+\begin{itemize}
+\item konkav %TODO 2014-03-31T13:47
+\item konvex \begin{tikzpicture}[yscale=0.75, xscale=1]
+\draw [->,very thick] (0,-1) -- (0,5); \node [left] at (0,5) {y};
+\draw [->,very thick] (-1,0) -- (5,0); \node [below] at (5,0) {x};
+
+
+\draw [domain=1:4] plot (\x, {pow(\x-2.5,2)+1.5});
+%\draw [domain=0:5] plot (\x, {sqrt(\x)});
+\end{tikzpicture}
+
+\end{itemize}
+\item Einige einfache Zusammenhänge zwischen Eigenschaften der Kurve und Ableitungen an der Stelle $x_0$. ($f$ sei auf $U(x_0)$ hinreichend oft diff-bar.)\\
+$\begin{array}{c|c|c} \hline\\
+f'(x_0) \begin{array}{c} < \\ >\\\end{array} 0 & \Rightarrow & f \text{ in } U(x_0) \text{ streng monoton } \left\{ \begin{array}{c} \text{fallend} \\ \text{wachsend}\end{array} \right.\\ \hline 
+f'(x_0) = 0 & \Leftarrow & f \text{ in } x_0 \text{ lokal extremal}\\ \hline \hline
+f''(x_0) \begin{array}{c} < \\ >\\\end{array} 0 & \Rightarrow & f \text{ in } U(x_0) \left\{ \begin{array}{c} \text{konkav} \\ \text{konvex}\\\end{array} \right.\\ \hline
+f''(x_0) = 0 & \Leftarrow & x_0 \text{ ist Wendestelle}\\ \hline \hline
+f'(x_0) = 0 \wedge f''(x_0) \begin{array}{c} < \\ >\\\end{array} 0 & \Rightarrow & f \text{ in } x_0 \text{ lokal } \left\{ \begin{array}{c} \text{maximal} \\ \text{minimal} \end{array} \right.\\ \hline
+\end{array}$
+\item Problem: $f'(x_0) = 0, f''(x_0) = 0, \dots \curvearrowright$ Verhalten bei $x_0$?
+\end{enumerate}
+
+\subparagraph{Hinreichende Bedingungen für Vorliegen einer Extremstelle}
+\paragraph{Satz 4} Es sei $f'(x_0) = \dots = f^{(n-1)} (x_0) = 0 \wedge f^{(n)} (x_0) \neq 0$ und $f^{(n)} (x)$ stetig in $U(x_0)$. Dann gilt:
+\begin{enumerate}
+\item $n=2,4,6,\dots (n \text{ gerade}) \Rightarrow x_0$ ist Extremstelle (lokal), Maximum, falls $f^{(n)} (x_0) < 0$, Minimum falls $f^{(n)}(x_0) > 0$
+\item $n=3,5,7, \dots (n \text{ ungerade}) \Rightarrow x_0$ ist Horizontal-Wendestelle
+\begin{itemize}
+\item konvex $\to$ konkav, falls $f^{(n)} (x_0) <0$
+\item konkav $\to$ konvex, falls $f^{(n)} (x_0) >0$
+\end{itemize}
+\end{enumerate}
+(Beweis mitels \textsc{Taylor}-Formel $f(x)= p_{n-1} (x) + R_{n-1}$)
+
+\subparagraph{Diskussion} Oft günstig
+\paragraph{Satz 4'} Es sei $f'(x_0) = 0$
+\begin{enumerate}
+\item $f'(x)$ wechselt in $x_0$ das Vorzeichen\\
+$\left\{ \begin{array}{lcr}
+\text{von } + \text{ auf } - & \Rightarrow & x_0 \text{ lokale Max. Stelle} \\
+\text{von } - \text{ auf } + & \Rightarrow & x_0 \text{ lokale Min. Stelle} \\ \end{array} \right.$
+\item kein Vorzeichenwechsel $\Rightarrow x_0$ ist Horizontal-Wendestelle
+\end{enumerate}
+
+\subparagraph{Hinreichende Bedinungen für Vorliegen einer Wendestelle}
+\paragraph{Satz 5} $f''(x_0) = \dots = f^{(n-1)} (x_0) = 0 \wedge f^{(n)} (x_0) \neq 0$ und $f^{(n)}(x)$ stetig in $U(x_0)$. Dann gilt:
+\begin{enumerate}
+\item $n=3,5,7,\dots \Rightarrow x_0$ ist Wendestelle $ \left\{ \begin{array}{lr} f^{(n)} (x_0) <0 & \text{konvex} \to \text{konkav} \\
+f^{(n)} (x_0) > 0 & \text{konkav} \to \text{konvex}\\ \end{array} \right. $
+\item $n=4,6,8 \Rightarrow x_0$ ist keine Wendestelle (sogenannte Flachstelle, Extremum falls zusätzlich $f'(x_0 ) = 0$)
+\end{enumerate}
+
+\paragraph{Satz 5'} Es sei $f''(x_0) = 0$
+\begin{enumerate}
+\item $f''(x)$ wechselt bei $x_0$ das Vorzeichen $\Rightarrow x_0$ Wendestelle
+\item kein Vorzeichenwechsel $\Rightarrow$ keine Wendestelle
+\end{enumerate}
+
+\subparagraph{Bemerkung zu Satz 4' und 5'} Vorzeichenwechsel von $f'$ bzw. $f''$ bei $x=x_0 \Leftrightarrow f' \text{ bzw. } f'' \text{ bei } x_0$ eine Nullstelle ungerader Ordnung besitzt
+
+\subparagraph{Beispiel 12} Kurvendiskussion zu $y=f(x) = x^2 ( \ln{x})^4, x > 0$\\
+(Unbedingt) benötigte Ableitungen: $f'(x) = 2x (\ln{x})^4 + x^2 \cdot 4 ( \ln{x})^3 \cdot \frac{1}{x} \quad f''(x) = 2(\ln{x}^4 + 12(\ln{x})^3 + 12(\ln{x})^2$
+
+\begin{enumerate}
+\item Nullstellen $f(x) = 0 \Leftrightarrow x = 0 \vee \ln{x} = 0 \curvearrowright x_1 = 1$ (4-fach)
+\item lokale Extremstellen
+\begin{itemize}
+\item notwendige Bed. $f'(x) 0$\\
+$\Rightarrow 2x(\ln{x})^3 ( \ln{x} + 2) = 0$\\
+$\Rightarrow \ln{x} = 0 \vee \ln{x} = -2 \Rightarrow x_{E_1} = 1, x_{E_2} = e^{-2}$ (mögliche Extremstellen)
+\item (Zunächst) Untersuchung mittels Satz 4
+\end{itemize}
+weitere Ableitungen (für $x_{E_1} = 1$ benötigt)\\
+$f'''(x) = (8 (\ln{x})^3 + 36 ( \ln{x})^2 + 24 \ln{x} ) \cdot \frac{1}{x}$\\
+$f^{(4)} (x) = (-8 (\ln{x})^3 - 12(\ln{x})^2 + 48 \ln{x} + 24)\cdot \frac{1}{x^2}$
+\item Wendestellen, notwendige Bedingungen $f''(x) = 0$\\
+$\curvearrowright 2(\ln{x})^2 ((\ln{x})^2 + b \ln{x} + 6) = 0$\\
+$\curvearrowright \ln{x} = 0 \vee (\ln{x})^2 + 6 \ln{x} + 6 = 0 \curvearrowright$\\
+$\ln{x} = -3 \pm \sqrt{3} \curvearrowright \begin{array}{c} x_{w_1} = e^{-3 - \sqrt{3}} \\ x_{w_2} = e^{-3+ \sqrt{3}} \end{array}$(mögliche Wendestellen)
+%\item
+Untersuchung: günstig Satz 5', einfache Nullstellen von $f''$ (ungerade Ordnung) $\curvearrowright$ Vorzeichenwechsel von $f''$\\
+$\curvearrowright \text{ Wendestellen } \curvearrowright w_1(\underbrace{0,0088}_{x_{w_1}};\underbrace{0,0389}_{y_{w_2}}), w_2(\underbrace{0,2814}_{x_{w_2}},\underbrace{0,2047}_{y_{w_2}})$\\
+(oder Satz 5: $f'''(x_{w_{1,2}}) \neq 0$
+\item Verhalten für $x \to  \infty \text{ und } x \to +0$
+\begin{itemize}
+\item $\lim\limits_{x \to +0} \frac{(\ln{x})^4}{x^{-2}} = \lim\limits_{x \to +0} \frac{4(\ln{x})^3 \cdot \frac{1}{x}}{-2 x^{-3}} = \lim\limits_{x \to +0} \frac{-2(\ln{x})^3}{x^{-2}} = \dots = \underline{\underline{0}}$
+\item analog $\lim\limits_{x \to +0} f'(x) = 0$
+\item $\lim\limits_{x \to \infty} f(x) = \infty$
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{Kurvendarstellungen, Tangenten- und Normalengleichungen, Krümmung}
+\paragraph{Darstellung ebener Kurven}
+\begin{enumerate}
+\item Explizite kartesische Darstellung 
+\[y=f(x), x \in I\] vgl. Abschnitt 3.3.3.
+\item Implizite kartesische Darstellung
+\[F(x,y) =0 \]
+Für graphische Darstellung ungünstig, unter bestimmten Bedingungen lässt sich $F(x,y) = 0$ auflösen nach $y$ (oder $x$). Mehr dazu im Kapitel 5 (Differential Rechnung für Funktionen mehrerer Variablen)
+\item Parameterdarstellung
+\[x=x(t), y=y(t), t \in I\]
+vektorielle Form mit $\vec{r} = \begin{pmatrix} x \\y \end{pmatrix} : \; \vec{r} = \begin{pmatrix} x(t)\\y(t)\end{pmatrix}, t \in I$
+
+\subparagraph{Beispiel 13}
+$x = a \cos{t}, y=b \sin{t}\quad t \in [0;2\pi], \underbrace{a>0,b>0}_{\text{Konstanten}}$
+Übergang zu parameterfreier Darstellung: $t$ eliminieren\\
+$\curvearrowright \frac{x}{a} = \cos{t}, \frac{y}{b} = \sin{t}$\\
+$\curvearrowright \frac{x^2}{a^2} = \cos^2{t}, \frac{y^2}{b^2} = \sin^2{t} \curvearrowright \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$
+
+\item Explizite Darstellung in Polarkoordinaten
+\begin{itemize}
+\item Darstellung eines Punktes in der Ebene\\
+\begin{tikzpicture}
+\draw [->,thick] (-0.5,0) -- (3,0); \node [below] at (3,0) {$x$};
+\draw [->,thick] (0,-0.5) -- (0,3); \node [left] at (0,3) {$y$};
+
+\draw [thick] (0,0) -- (2,2); \node [right] at (2,2){$P(x,y)$};
+\draw [->] (1,0) arc [radius=1, start angle=0, end angle=45]; \node [above] at (0.5,0){$\varphi$};
+\node [above] at (1,1) {r};
+\draw[help lines] (2,0) -- (2,2); \draw[help lines] (0,2) -- (2,2);
+
+\end{tikzpicture}\\
+$x,y$ \dots kartesische Koordinaten\\
+$r,\varphi$ \dots Polarkoordinaten (analog Betrag und Argument einer Komplexen Zahl) $r\geq 0, \varphi \in \mathbb{R}$\\
+Umrechnung: $x = \cos{\varphi}, y = r\sin{\varphi}$
+\item Kurvendarstellung: \[r=r(\varphi), \varphi \in [\alpha,\beta]\]
+Für jeden Winkel $\varphi \in [\alpha,\beta]$ die Strecke $r(\varphi)$ auf dem $\varphi$ entsprechenden Strahl von $0$ aus abtragen
+
+\end{itemize}
+\subparagraph{Bemerkungen}
+\begin{itemize}
+\item Übergang explizite kartesische Darstellung zu Polarkoordinaten
+\[y=f(x), x \in [a,b] \curvearrowright x=t, y=f(t), t \in [a,b] \]
+\item Übergang explizite Polarkoordinatendarstellung zu Polarkoordinaten (Parameter $\varphi$)
+\[r=r(\varphi),\varphi \in [\alpha,\beta] \curvearrowright x=r(\varphi)\cos{\varphi}, y= r(\varphi) \sin{\varphi}\; \varphi \in [\alpha,\beta]\]
+
+\end{itemize}
+
+\end{enumerate}
+
+\paragraph{Tangenten und Normalen ebener Kurven}
+\begin{itemize}
+\item Anstieg $y'$ einer in Parameterdarstellung gegebenen Kurve $x=x(t)$, $y=y(t), t \in I$. Es sei $y=f(x)$ sei die explizite kartesische Darstellung (ohne die Elimination von $t$ tatsächlich auszuführen)\\
+$\curvearrowright \frac{dy}{dt} = \frac{dy}{dx} \cdot \frac{dx}{dt}$ (Kettenregel). In Anwendungen ist $t$ oft die Zeit, übliche Schreibweise dann $\frac{dx}{dt} =: \dot{x}$,\\
+$\frac{dy}{dt} =: \dot{y}$, also gilt $y'=\frac{\dot{y}}{\dot{x}}$\\
+Höhere Ableitungen $\frac{d^2x}{dt^2} = \dot{\dot{x}}$ usw.
+\item Tangente im Punkt $(x_0,y_0),y_0 = f(x_0) \text{ bzw. } x_0 = x(t_0), y_0 = y(t_0)$
+
+Beispielvektor für Tangente $t=\begin{pmatrix} \dot{x} (t_0) \\ \dot{y} (t_0) \\ \end{pmatrix} =: \vec{\dot{r}} (t_0)$\\
+Für $\vec{n} = \vec{n} (t_0) := \begin{pmatrix} -\dot{y}(t_0)\\ \dot{x} (t_0)\\ \end{pmatrix}$ gilt $(\vec{t},\vec{n}) = 0 \curvearrowright \vec{n} \perp \vec{t}$, damit ist $\vec{n}$ ein Richtungsvektor der Normalen
+\end{itemize}
+
+Tabelle 1 (Anstieg, Tangenten- und Normalenvektor):\\
+$\begin{array}{c|c|c}
+\text{Kurve} & y=f(x), x \in I & x = x(t), y= y(t), t \in I\\  \hline
+\text{Punkt } P_0(x_0,y_0) & P_0(x_0,\underbrace{f(x_0)}_{y_0}) & P_0(x(t_0),y(t_0))\\ \hline
+\text{Anstieg } m=\tan{\alpha} \text{ im Punkt } P_0 & f'(x_0) & \frac{\dot{y}(t_0)}{\dot{x} (t_0)} \\  \hline
+\text{Tangentenvektor } \vec{t} & \begin{pmatrix} 1 \\ f'(x_0) \\ \end{pmatrix} & \begin{pmatrix} \dot{x} (t_0) \\ \dot{y} (t_0)\\ \end{pmatrix} \\  \hline
+\text{Normalenvektor } \vec{n} & \begin{pmatrix} -f'(x_0) \\ 1\\ \end{pmatrix} & \begin{pmatrix} - \dot{y} (t_0) \\ \dot{x} (t_0) \\ \end{pmatrix}\\
+\end{array}$
+
+\begin{itemize}
+\item Tangetengleichung
+\[ y=y_0 + m \cdot (x-x_0) \quad \vec{r} = \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x_0 \\ y_0 \\ \end{pmatrix} + s \cdot \vec{t}, s \in \mathbb{R} \]
+\item Normalengleichung
+\[ y = y_0 - \frac{1}{m} \cdot (x-x_0) \quad \vec{r} = \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x_0 \\ y_0 \\ \end{pmatrix} + u \cdot \vec{n}, u \in \mathbb{R} \]
+\end{itemize}
+
+\paragraph{Krümmung ebener Kurven}
+Gegeben sei Kurve $C$, fester Punkt $P_0 (x_0,y_0)$. $R$ und $S$ seien zwei weitere Punkte in $C$. Durch 3 Punkte $P_0,R,S$ ist im Allgemeinen eindeutig ein Kreis festgelegt. Es sei $K$ die Grenzlage des Kreieses, wenn $R$ und $S$ un $P_0$ übergehen.\\
+\begin{itemize}
+\item $K$ \dots Krümmungskreis
+\item $\varkappa$ \dots Krümmung, vorzeichenbehaftet
+\item $\varrho$ \dots Krümmungsradius $\varrho = \frac{1}{\lvert \varkappa \rvert}$
+\item $M$ \dots Mittelpunkt von $K \;  \overrightarrow{0M} = \begin{pmatrix} x_0 \\ y_0 \end{pmatrix} + \frac{1}{\varkappa} \cdot \frac{\vec{n}}{\lvert \vec{n} \rvert}$
+\end{itemize}
+
+Tabelle 2\\
+$\begin{array}{l|c|c|c}
+\text{Kurve} & y=f(x), x \in I & \begin{array}{c} x = x(t)\\ y = y(t) \\ \end{array} , t \in I & r = r(\varphi), \varphi \in I\\ \hline
+\text{Krümmung } \varkappa \text{ in } P(x,y) & \varkappa = \frac{y''}{(1+(y')^2)^{\frac{3}{2}}} & \varkappa = \frac{\dot{x} \dot{\dot{y}} - \dot{\dot{x}} \dot{y}}{(\dot{x}^2 + \dot{y}^2)^{\frac{3}{2}}} & \varkappa = \frac{r^2 + 2(r')^2 - rr''}{(r^2+(r')^2)^{\frac{3}{2}}} \\
+\end{array}$
+
+\paragraph{Raumkurven}
+\begin{itemize}
+\item Parameterdarstellung $\begin{array}{c} x=x(t)\\ y= y(t) z = z(t)\\ \end{array} t \in I$ vektoriell $\vec{r} = \vec{r} (t) = \begin{pmatrix} x(t) \\ y(t) \\ z(t) \\ \end{pmatrix}, t \in I$ mit $\vec{r} = \vec{r} = \begin{pmatrix} x \\ y \\ z \\ \end{pmatrix}$
+\item Tangente in Punkt $P_0 (x(t_0),y(t_0),z(t_0))$
+\[ \vec{r} = \vec{r} (t_0) + s \cdot \vec{\dot{r}}, s \in \mathbb{R}\]
+\item Krümmung
+\[ \varkappa = \frac{\lvert \vec{\dot{r}} \times \vec{\dot{\dot{r}}} \rvert}{\lvert \vec{\dot{r}} \rvert^3}, \text{ Radius } \varrho = \frac{1}{\varkappa} \]
+\end{itemize}
+
+\subsubsection{\textsc{Newton}-Verfahren zur Nullstellenermittlung}
+\subparagraph{Satz 6} (\textsc{Newton}sches Iterationsverfahren)
+Es sei $x^*$ eine Lösung der Gleichung $f(x) = 0$ für ein geeignetes Intervall $I=(x^*-r,x^*+r)$ gelte $f'(x) \neq 0 \wedge \lvert \frac{f(x) \cdot f''(x)}{(f'(x))^2} \rvert \leq k < 1 \; (x \in I)$\\
+Dann konvergiert für jeden Startwert $x_0 \in I$ die mittels $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \quad (n=0,1,2,\dots)$ festgelegte Folge gegen $x^*$. $\lim\limits_{n \to \infty} x_n = x^*$\\
+Ferner gilt:
+\[\lvert x^* -x_n \rvert \leq  \frac{K}{1-K} \lvert x_{n-1} - x_n \rvert \leq \frac{K^n}{1-K} \lvert x_1 - x_0 \rvert \]
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Geometrische Veranschaulichung
+\begin{itemize}
+\item Tangente in $P_0$\\
+$y = f(x_0) + f'(x_0) \cdot (x - x_0)$
+\item $x_1$ \dots Nullstelle der Tangente\\
+$0 = f(x_0) + f'(x_0) \cdot (x_1 - x_0)$\\
+$\curvearrowright x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}$
+\end{itemize}
+\item Zur Wahl des Startwertes $x_0$:\\
+Falls in $I$ gilt $f''(x) \begin{array}{c} > \\ < \\ \end{array} 0$, dann günstig für Startwert: $f (x_0) \begin{array}{c} > \\ < \\ \end{array} 0$
+\item Praktisches Vorgehen: Abbruch falls $\lvert x_{n+1} - x_n \rvert < \varepsilon$
+\end{enumerate}
+
+\section{Integralrechnung für Funktionen einer reellen Veränderlichen}
+\subsection{Integralbegriff}
+\subsubsection{Das bestimmte Integral}
+\subparagraph{Problem} Geg: Kurve $y=f(x), \; x \in [a,b]$ (zunächst $f(x) \geq 0$)\\
+Ges: Flächeninhalt $I$ unter der Kurve.
+\subparagraph{Vorgehensweise}
+\begin{itemize}
+\item Zerlegung $Z$ des Intervalls $[a,b] \cdot a = x_0 < x_1 < x_2 < \dots < x_{n-1} < x_n = b$
+\item In jedem Teilintervall Zwischenstelle $\xi \in [x_{i-1}, x_i]$ wählen $\curvearrowright$ Zerlegung $Z^*$ ($Z$ mit Zwischenstellen $\xi_i$)
+\item $\Delta (Z^*) := \max{(x_i - x_{i-1} )}_{i = 1,\dots,n} $ \dots max. Teilintervalllänge
+\item Approximation von $I$ durch Summe von Rechtecksflächen:
+\[ S(Z^*,f) := \sum\limits_{i=1}^{n} f(\xi_i) \cdot (x_i - x_{i-1} )\]
+\dots sogenannte \textsc{Riemann}sche Summe (Näherung für $I$)
+\end{itemize}
+\subparagraph{Definition 1} Die Funktion $f$ heißt (im \textsc{Riemann}schen Sinne) über $[a,b]$ integrierbar, wenn für jede Zerlegungsfolge $ \forall (Z^*\mu)$ von $[a,b]$ mit $\lim\limits_{\mu \to \infty} \Delta (Z_\mu^*) = 0$ gilt. $\lim\limits_{\mu \to \infty} S(Z_\mu^*,f) = I$\\
+Die Zahl $I$ heißt bestimmtes Integral von $f$ über $[a,b]$\\
+Bezeichnung $I = \int\limits_{a}^{b} f(x) \,dx$
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Definition 1 basiert nicht auf der Forderung $f(x) \geq 0$. Falls $f(x) < 0 \text{ für } x \in [a,b]$, so gilt im Falle der Integrierbarkeit: $\int\limits_{a}^{b} f(x) \, dx <0$ 
+\item Man definiert: $\int\limits_{a}^{a} f(x) \, dx := 0, \int\limits_b^* f(x) \, dx, \; b > a$
+\item Eigenschaften des bestimmten Integrals
+$\int\limits_a^b f(x) \, dx =  \int\limits_a^c f(x) \, dx  + \int\limits_c^b f(x) \, dx \quad (a,b,c \in \mathbb{R} ) $
+\[ \int\limits_a^b (c_1 u(x) + c_2 v(x)) \, dx = c_1 \int\limits_a^b u(x) \, dx + c_2 \int\limits_a^b v(x) \, dx \]
+\end{enumerate}
+
+\subparagraph{Satz 1} Es sei $f(x)$ stetig in $[a,b]$. Dann ist $f(x)$ über $[a,b]$ integrierbar.
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Falls $f(x)$ stückweise stetig ist mit endlichen vielen endlichen Sprungstellen, so ist $f$ ebenfalls integrierbar
+\item Nicht integrierbar (im \textsc{Riemann}schen Sinne) ist z.B.
+\[f(x) = \left\{ \begin{array}{lccr} 1 & \mbox{für} & x & \text{ irrational}\\ 0 & \mbox{für} & x & \text{ rational} \\ \end{array} \right. , x \in [0,1] \]
+\end{enumerate}
+
+\subsubsection{Stammfunktionen, unbestimmtes Integral}
+\subparagraph{Satz 2}(Mittelwertsatz der Integralrechnung)\\
+$f$ sei auf $[a,b]$ stetig $\Rightarrow \exists \xi \in (a;b]: \int\limits_a^b f(x) \, dx = f(\xi) \cdot (b-a)$\\
+$m = \frac{1}{b-a} \int\limits_a^b f(x) \, dx$ \dots (Integral)- Mittelwert von $f$ über $[a,b]$\\
+Integrale mit variabler oberer Grenze\\
+\[ \int\limits_a^x f(t) \, dt =: F(x) \]
+
+\subparagraph{Satz 3} $f$ stetig auf $[a,b] \Rightarrow F(x) = \int\limits_a^x f(t) \, dt, \; x \in [a,b]$ ist auf $[a,b]$ differenzierbar, und es gilt $F'(x) = f(x)$
+
+Beweis: $\frac{F(x+h) - F(x)}{h} = \frac{\int\limits_{x}^{x+h} f(t) \, dt}{h} = \frac{h \cdot f(\xi)}{h} \underbrace{=}_{\text{Satz 2}, \xi \in [x,x+h]} f(\xi) \Leftarrow_{h \to 0} f(x)$
+$\underline{\underline{F'(x) = f(x)}}$
+
+\subparagraph{Definition 2} Die Funktion $F(x)$ heißt Stammfunktion von $f(x)$ (auf $[a,b]$), wenn gilt $F'(x) = f(x)$.
+\subparagraph{Diskussion} Ist $F(x)$ eine Stammfunktion, so ist auch $F(x) + c$ ($c \in \mathbb{R}$, konstant) eine Stammfunktion.
+\subparagraph{Definition 3} Die Menge aller Stammfunktionen von $f$, d.h. $\{ F(x) +c | c \in \mathbb{R} \}$, wobei $F(x)$ eine beliebige Stammfunktion von $f$ ist, heißt unbestimmtes Integral von $f$ :\\
+Bezeichnung $\int f(x) \, dx = F(x) +c $
+
+\subsubsection{Hauptsatz der Differential- und Integralrechnung}
+\subparagraph{Satz 4} $f$ sei stetig auf $[a,b], F(x)$ \dots bel. Stammfunktion $\Rightarrow \int\limits_a^b f(x) \, dx = F(b) - F(a)$\\
+Schreibweise: $[ F(x)]_a^b := F(b) - F(a)$
+
+Beweis: Satz 3, $F_1(x) := \int\limits_a^x f(t) \, dt$ ist Stammfunktion von $f$, also gilt $F(x) = F_1(x) + k$\\
+$\curvearrowright F(b) - F(a) = (F_1(b) + k) - (F_1(a) +k) = F_1(b) - \underbrace{F_1(a)}_{0} = F_1(b) = \int\limits_a^b f(t) \, dt = \int\limits_a^b f(x) \, dx$
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item \begin{tabular}{p{5cm}p{1cm}p{5cm}} $\int\limits_a^b f(x) \, dx$ & $ =$ & $ F(b) - F(a)$ \\
+Flächeninhaltsproblem (\underline{\underline{Integralrechnung}}) && Stammfunktion, Umkehrung der \underline{\underline{Differentialrechnung}}\\ \end{tabular}
+\item Symbolik $\frac{dF(x)}{dx} = f(x) \Leftrightarrow \underbrace{\int dF(x)}_{F(x)+c} = \int f(x) \, dx$
+\item Differential Tabelle: Tabelle unbestimmter Grundintegrale\\
+Beispiele:
+\begin{enumerate}
+\item $\frac{d}{dx} \cos{x} = - \sin{x} \Leftrightarrow \int (-\sin{x}) \, dx = \cos{x} + c^* \; | \cdot (-1)$\\
+$\int\sin{x} \, dx = - \cos{x} +c$ (mit $c = -c^*$)
+\item $\frac{d}{dx} x^{\alpha +1} = (\alpha +1 ) x^\alpha \Leftrightarrow \int (\alpha +1) x^\alpha \, dx = x^{\alpha +1} + c^* \; | \cdot \frac{1}{\alpha +1}$\\ $  \Leftrightarrow \int x^\alpha \, dx = \frac{x^{\alpha +1}}{\alpha +1} +c, \alpha \neq -1$
+\end{enumerate}
+
+\end{enumerate}
+
+\subsection{Integrationsmethoden}
+\subsubsection{Substitution}
+Zu berechnen sei $\int f (g(x)) \cdot g'(x) \, dx$. Bekannt sei eine Stammfunktion $F(x)$ von $f(x)$.\\
+Lösung: Substitution $u=g(x) \curvearrowright \frac{du}{dx} = g'(x) \curvearrowright du = g'(x) \, dx$
+
+\begin{equation}\label{421Sbst1}
+\int f(g(x)) g'(x) \, dx = \int f(u) \, du = F(u) +c \underbrace{=}_{\text{Rücksubst.}} F(g(x)) + c
+\end{equation}
+
+Merke: Anwendung zweckmäßig, wenn der Integrand das Produkt einer mittelbaren Funktion und der Ableitung der inneren Funktion ist, und außerdem eine Stammfunktion der äußeren Funktion bekannt ist.
+
+\subparagraph{Beispiel 1} $\int \frac{1}{x} \cdot \sqrt[3]{\ln{x}} \, dx \underbrace{=}_{u = \ln{x}; \frac{du}{dx} = \frac{1}{x} \curvearrowright du=\frac{1}{x} dx} = \int \sqrt[3]{u} \, du = \frac{3}{4} u^{\frac{4}{3}} + c = \frac{3}{4} ( \ln{x})^{\frac{4}{3}} +c$
+
+\subparagraph{Beispiel 2} $\int x e^{-x^2} \, dx \underbrace{=}_{u = -x^2, \frac{du}{dx} = -2x, \curvearrowright dx =- \frac{du}{2x}} \int e^u \cdot (-\frac{du}{2}) = -\frac{1}{2} \int e^u \, du = -\frac{1}{2} e^u +c = -\frac{1}{2} e^{-x^2} +c$
+
+\subparagraph{Beispiel 3} (Substitution bei bestimmten Integralen)
+\begin{enumerate}
+\item Möglichkeit: Grenzen mit Substituieren: $x=0 \curvearrowright u = 1, x= \sqrt{8} \curvearrowright u = 9$\\
+ $I = \int\limits_{x=0}^{\sqrt{8}} x \cdot \sqrt{1 +x^2} \, dx \underbrace{=}_{u=1+x^2, \frac{du}{dx} = 2x, dx= \frac{du}{2x}} \int\limits_{u=1}^{9} \sqrt{u} \frac{du}{2} = \frac{1}{2} \cdot \frac{2}{3} [ u ^{\frac{3}{2}}]^9_{u=1} = \frac{1}{3} (27-1) = \frac{26}{3}$
+\item Möglichkeit: Unbestimmte Integration (mit Rücksubstituion) anschließend $x$-Grenzen einsetzten\\
+$\int x \sqrt{1+x^2} \, dx = \frac{1}{3} (1+x^2)^{frac{3}{2}} + c$\\
+$I = [ \frac{1}{3} (1+x^2)^{\frac{3}{2}} ]_{x=0}^{\sqrt{8}} = \frac{26}{3}$
+\end{enumerate}
+
+\subparagraph{Beispiel 4}(Lineare Substitution)\\
+Allgemein: $\int f(ax+b) \, dx \underbrace{=}_{u = ax+b, \frac{du}{dx} = a, dx= \frac{du}{a}} \int f(u) \frac{du}{d} = \frac{1}{a} F(u) +c = \frac{1}{a} F(ax+b) +c$
+
+\begin{enumerate}
+\item $\int \cos{(3x)} \, dx = \frac{1}{3} \sin{(3x)} + c$
+\item $\int e^{-2x} \, dx = - \frac{1}{2} e^{-2x} +c$
+\item $\int (3x -4)^6 \, dx  = \frac{1}{3} \cdot \frac{1}{7} (3x-4)^7 +c = \frac{1}{21} (3x-4)^7 +c$
+\item $\int \sin{(\frac{x}{2} + \pi )} \, dx = \frac{1}{\frac{1}{2}} \cdot (-\cos{(\frac{x}{2} + \pi)})+c = -2\cos{(\frac{x}{2} + \pi)} +c$
+\end{enumerate}
+
+\subparagraph{Diskusison} Neben diesen "`natürlichen"', leicht(?!) [!sic] erkennbaren Substitutionen sind weitere denkbar durch Einführung "`künstlicher"' Variabler
+\begin{equation}\label{421_1'}
+\int f(x) \, dx \underbrace{=}_{x= \varphi (t), \frac{dx}{dt} = \varphi' (t) \curvearrowright dx = \varphi' (t) \,dt} \int f(\varphi (t)) \varphi' (t) \, dt
+\end{equation}
+
+(\ref{421_1'}) entspricht (\ref{421Sbst1}) von rechts nach links gelesen. Falls rechte Seite von (\ref{421_1'}) integrierbar (Stammfunktion $H(t)$), dann 
+\[ \int f(x) \, dx = H(t) +c = H(\varphi^{-1} (x)) +c \]
+(Vorraussetzung: $\varphi^{-1}$ existiert)
+
+\subparagraph{Beispiel 5} $\int \frac{1}{\sqrt{1+x^2}} \, dx \underbrace{=}_{ x= \text{sinh}\, t \curvearrowright \sqrt{1+x^2} = \text{cosh}\, t, \frac{dx}{dt} = \text{cosh}\, t \curvearrowright dx = \text{cosh} \, dt} \int \frac{1}{\text{cosh}\, t} \, dt = \int dt = t+c = \text{arcsinh}\, x + c = \ln{(x+\sqrt{x^2+1})} +c$
+
+\subparagraph{Beispiel 6} $\int \frac{f'(x)}{f(x)} \, dx = \ln{\lvert f(x) \rvert} +c$ (Zähler = 1. Abbleitung des Nenners)\\
+(denn : $u=f(x) \curvearrowright \frac{du}{dx} = f'(x) \curvearrowright du= f'(x) \, dx \curvearrowright \int \dots = \int \frac{1}{u} \cdot du = \ln{\lvert u \rvert} + c = \ln{\lvert f(x)\rvert} +c$
+
+\subsubsection{Partielle Integration}
+Produktregel der Differentialrechnung\\
+$\frac{d}{dx} (u(x) \cdot v(x)) = u'(x) \cdot v(x) + u(x) \cdot v'(x)$\\
+$u(x) \cdot v(x) = \int u'(x) \cdot v(x) \, dx + \int u(x) v'(x) \, dx$
+\[\curvearrowright \int u(x) \cdot v'(x) \, dx = u(x) \cdot v(x) - \int u'(x) \cdot v(x) \, dx\]
+(partielle Integration)
+
+\subparagraph{Beispiel 8} $\int \arctan{x} \, dx = x \cdot \arctan{x} - \frac{1}{2} \int \frac{2x}{1+x^2} \, dx$\\
+$\begin{array}{|c|c|}\hline
+u=\arctan{x} & u'= \frac{1}{1+x^2} \\ \hline
+v'=1 & v=x \\ \hline
+\end{array}$\\
+$= x \arctan{x} - \frac{1}{2} \ln{\lvert 1 + x^2 \rvert} + c$\\
+$\underline{\underline{= x \arctan{x} - \frac{1}{2} \ln{(1+x^2)}+c}}$
+
+\subsubsection{Integration gebrochenrationaler Funktionen}
+\begin{itemize}
+\item Geg.: Gebrochen rationale Funktion: $f(x) = \frac{p(x)}{q(x)}$
+\item Integration erfolgt in den Schritten 1.-5.
+\end{itemize}
+\begin{enumerate}
+\item Falls $f$ unecht gebrochen: Polynomdivision
+\[f(x) = \underbrace{a(x)}_{\text{Polynom}} + \underbrace{\frac{r(x)}{q(x)}}_{\text{echt gebrochen}} \quad | r(x) \dots \text{ Rest} \]
+\item Nullstellen des Nenners $q(x)$ ermitteln
+Zerlegung \begin{equation}\label{4231} q(x) = (x-\alpha_1)^{k_1} \cdot (x-\alpha_2)^{k_2} \cdot \dots \cdot (x^2 + p_1 x + q_1)^{m_1} \cdot \dots \end{equation}
+($\alpha_n$ \dots reelle Nullstellen, $p_n$ \dots reell nicht zerlegbar)\\
+Eventuell gemeinsame Faktoren in $r(x)$ und $q(x)$ kürzen!
+\item Ansatz für die sogenannte Partialbruchzerlegung (PZ)
+\[\frac{r(x)}{q(x)} = \text{Summe von Partialbrüchen}\]
+Jedem Faktor $\left\{ \begin{array}{c} (x-\alpha)^k \\ (x^2 + px +q)^m \\ \end{array} \right.$ aus (\ref{4231}) entspricht\\ der Anteil $\left\{ \begin{array}{c}
+\frac{A_1}{x-\alpha} + \frac{A_2}{(x-\alpha)^2} + \dots + \frac{A_k}{(x-\alpha)^k} \\
+\frac{B_1x + c_1}{x^2 +px +q} + \dots + \frac{B_mx + c_m}{(x^2 + px + q)^m} \\
+\end{array}\right.$
+in dieser Summe.
+
+\subparagraph{Beispiel 9} $f(x) = \frac{x^2+4}{(x-1)^3 \cdot (x+5) \cdot (x^2 + 2x + 2)^2}$\\
+Ansatz für PZ:
+\[f(x) = \frac{A}{x-1} + \frac{B}{(x-1)^2} + \frac{C}{(x-1)^3} + \frac{D}{x+5} + \underbrace{ \frac{Ex+F}{x^2+2x+2} + \frac{Gx+H}{(x^2 + 2x +2)^2}}_{(x^2 +2x +2 \text{ ist reell nicht zerlegbar, Nullstellen sind } -1\pm i)}\]
+
+\item Ermittlung der Koeffizienten durch
+\begin{enumerate}
+\item Multiplikation des Ansatzes für PZ mit Nenner $q(x)$
+\item Kombination der beiden folgenden Methoden
+\begin{enumerate}
+\item Einsetzten der reellen Nullstellen (Falls alle Nullstellen reell und einfach sind, können damit alle Koeffizienten bestimmt werden)
+\item Restliche Koeffizienten durch Koeffizientenvergleich bestimmen!
+\end{enumerate}
+(vgl. Beispiele)
+\end{enumerate}
+\item Interpretation der Partialbrüche
+\begin{enumerate}
+\item $\int \frac{1}{(x-\alpha)^j} \, dx = \left\{ \begin{array}{lr}
+\ln{\lvert x - \alpha \rvert } + c & (j=1)\\
+\frac{1}{1-j} \cdot (x-\alpha)^{1-j} + c & (j=2,3,\dots)\\ \end{array} \right.$
+\item $\int \frac{Bx+c}{(x^2 + px +q)^j} \, dx \underbrace{=}_{\text{Zerlegung}} \int ( \frac{\frac{B}{2} (2x + p) }{(x^2 + px +q)^j} + \frac{c- \frac{B}{2} p}{(x^2 + px +q)^j} ) \, dx$
+\begin{enumerate}
+\item $\int \frac{ 2x+p}{(x^2 + px +q)^j} \, dx:$ Substitution $x^2+px+q=u$\\ $du=(2x+p) \, dx$ usw.
+\item $\int \frac{dx}{(x^2 + px +q)^j} = \int \frac{dx}{((x + \frac{p}{2})^2 + q- \frac{p^2}{4} )^j} = \int \frac{du}{(u^2 + a^2 )^j}$\\
+(mit $a^2 := q - \frac{p^2}{4} > 0$ und $ u = x + \frac{p}{2}, du=dx$)\\
+$j=1$: vgl. Merkblatt\\
+$j > 1$: s geeignete Formelsammlung
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+\subparagraph{Beispiel 10} $I = \int \frac{3x+4}{x^2+2x-3} \, dx$
+\begin{itemize}
+\item Echt gebrochen, Nullstellen des Nenners $x_1 = -3, x_2 = 1$\\
+Zerlegung: $q(x) = x^2 +2x -3 = (x+3)(x-1)$
+\item Ansatz für PZ: $\frac{3x+4}{(x+3)(x-1)} = \frac{A}{x+3} + \frac{B}{x-1} \quad | \cdot \underbrace{(x+3)+(x-1)}_{q(x)}$\\
+$3x+4 = A \cdot (x-1) + B(x+3)$\\
+Einsetzen $x=-3: -5 = A (-4) \curvearrowright \underline{\underline{A= \frac{5}{4}}}$\\
+$x= 1: 7 = B \cdot 4 \curvearrowright \underline{\underline{ B = \frac{7}{4}}}$\\
+$I = \int (\frac{\frac{5}{4}}{x+3} + \frac{\frac{7}{4}}{x-1} ) \, dx = \underline{\underline{\frac{5}{4} \ln{\lvert x + 3 \rvert} + \frac{7}{4} \ln{\lvert x -1 \rvert} +c}}$
+
+\end{itemize}
+
+\subsubsection{Integration von Potenzreihen}
+\subparagraph{Satz 1} Es sei 
+\[ f(x) = \sum\limits_{n=0}^{\infty} a_n(x-x_0)^n, x \in ( x_0 -r , x_0 +r)\]
+\[ \Rightarrow F(x) = \sum\limits_{n=0}^{\infty} \frac{a_n}{n+1} (x - x_0)^{n+1}, x \in (x_0 -r, x_0 + r )\] ist Stammfunktion von $f(x)$. (gliedweise Integration)
+
+\subparagraph{Beispiel 12}
+\[ \arctan{x} = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} \pm \dots \quad (\lvert x \rvert < 1)\]
+Folgerung: $x=1 \curvearrowright \underbrace{\frac{\pi}{4}}_{\arctan{1}} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \dots$
+
+\subparagraph{Beispiel 13} Gesucht Stammfunktion $F(x)$ zu $f(x) = e^{-x^2}$\\
+$[ ! e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots ]$\\
+$\int\limits_{0}^x e^{-t^2} \, dt = \int\limits_0^x (1-t^2 + \frac{t^4}{2!} - \frac{t^6}{3!} \pm \dots) \, dt = x-\frac{x^3}{3} + \frac{x^5}{5\cdot 2!} - \frac{x^7}{7\cdot 3!} + \frac{x^9}{9 \cdot 4!} \pm \dots = F(x) \quad (x \in \mathbb{R}$
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $\int e^{-x^2} \, dx$ ist nicht in geschlossener Form darstellbar.
+\item Für nicht zu große $x$: Reihendarstellung zur Berechnung von $\int\limits_0^x e^{-t^2} \, dt$ gut geeignet: z.B. gilt:
+\begin{itemize}
+\item $I=\int\limits_0^1 e^{-x^2} \, dx = 1 -\frac{1}{3} + \frac{1}{5\cdot 2!} - \frac{1}{7\cdot 3!}  \pm \dots + \frac{1}{17\cdot 8!} \pm \dots \approx 0,74682427 $
+\item $\lvert \text{Fehler} \rvert \leq \frac{1}{19\cdot 9!} = 1,4504 \cdot 10^-7$ (vgl. \textsc{Leibnitz}-Kriterium,2.1.3.)\\
+$\underline{\underline{I = 0,746824}} \quad (b$ Stellen genau)
+\end{itemize}
+\end{enumerate}
+
+\subsection{Numerische Integration}
+\subparagraph{Ziel} Berechnung ovn $\int\limits_a^b f(x) \, dx$ falls Stammfunktion nicht in geschlossener Form darstellbar.
+\subparagraph{Prinzip}
+\begin{enumerate}
+\item Zerlegung von $[a,b]$ in $n$ gleichlange Teilintervalle der Länge $h= \frac{1}{n} (b-q)$\\
+$\curvearrowright \text{ Teilpunkte } x_k = a + k\cdot h (k=0,1,\dots,n), y_k = f(x_k)$
+\item Ersetzen von $f(x)$ über den Teilintervallen durch einfachere Funktionen, z.B. lineare Funktionen (Trapezregel), quadratische Funktionen (\textsc{Simpson}-Regel)\\
+Näherung für I:
+\begin{equation}\label{431}I \approx S_n(h) = \frac{h}{3} ((y_0 + y_n ) +4(y_1+y_3+\dots + y_{n-1}) + 2(y_2 +y_4 + \dots + y_{n-2}))\end{equation}
+($n$ gerade)
+
+\end{enumerate}
+
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Fehlerabschätzung
+\[ I = S_n (h) - \frac{h^4 (b-a)}{180} \cdot f^{(4)} (\xi), \quad a < \xi < b\]
+(falls $f^{(4)}$ stetig auf $[a,b]$)
+\item \textsc{Simpson}-Regel ist für Polynome bis einschließlich 3. Grades exakt.
+\item Praktische Durchführung: Schrittweitenhalbierung.\\
+Startwert $S^{(1)} := S_n(h)$ für geeignetes $n$ (z.B: $n=4$).\\
+$S^{(2)} = S_{2n} (\frac{h}{2}), S^{(3)} = S_{4n} (\frac{h}{4})$ usw., bis sich die Ziffern im Rahmen der gewünschten Genauigkeit nicht mehr ändern.
+\end{enumerate}
+
+\subparagraph{Beispiel 1} $I = \int\limits_0^1 e^{-x^2} \, dx$
+\begin{itemize}
+\item $n= 4, h=0,25$\\
+$\begin{array}{c|c|c|c|c}
+k & x_k & y_0,y_n & y_{2_{j+1}} & y_{2_j}\\ \hline
+0 & 0 & 1,000000 & \\
+1 & 0,25 & & 0,939413 \\
+2 & 0,5 & & &0,778801\\
+3 & 0,75 & & 0,569783 \\
+4 & 1,0 & 0,367879 &  \\ \hline
+ & & 1,367879 & 1,509196 & 0,778801\\
+\end{array}$
+
+(\ref{431}) $\curvearrowright S_4(0,25) = \frac{0,25}{3} (\dots + 4 \cdot \dots + 2 \cdot \dots) = 0,746855$
+
+\item Schrittwertenhalbierung
+$\begin{array}{c|c|c}
+n & h & S_n(h)\\ \hline
+4 & 0,25 & 0,746855\\
+8 & 0,125 & 0,746826\\
+16 & \dots & 0,746824 \\
+32 & \dots & 0,746824\\
+\end{array}$
+$\curvearrowright I = 0,746824$ (vgl. Beispiel 13, Kapitel 4.2.)
+\end{itemize}
+
+\subsection{Uneigentliche Integrale}
+\begin{itemize}
+\item Vorbetrachtung\\
+Bisher $\int\limits_a^b f(x) \, dx$ (endliches Intervall $[a,b]$, stückweise stetig und damit beschränkte Funktion $f$
+\item 2 Erweiterungen
+\begin{enumerate}
+\item Unendliches Intervall $[a;\infty), (-\infty;b]$ bzw. $(-\infty;\infty)$
+\item Unbeschränkte Funktionen (Polstellen)
+\end{enumerate}
+\item Vorgehensweise: "`Herausschneiden"' der kritischen Stelle(n), anschließend Grenzübergang
+\begin{enumerate}
+\item Unendliches Intervall
+\begin{enumerate}
+\item $\int\limits_{-\infty}^b f(x) \, dx := \lim\limits_{A \to - \infty} \int\limits_{A}^{b} f(x) \, dx$\\
+analog $\int\limits_a^\infty f(x) \, dx := \lim\limits_{B \to \infty} \int\limits_a^B f(x) \, dx$
+\item $\int\limits_{-\infty}^{\infty} f(x) \, dx := \lim\limits_{\begin{array}{c}A\to - \infty \\ B \to \infty \end{array}} \int\limits_A^B f(x) \, dx$
+\end{enumerate}
+\end{enumerate}
+
+\end{itemize}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Falls Grenzwerte existieren, Sprechweise: Integral is konvergent, sonst divergent
+\item Vorkommen z.B: \[\Gamma (x) = \int\limits_0^\infty e^{-t} t^{x-1} \, dt \quad (x > 0)\]
+(Gamma Funktion) Eigenschaft: $\Gamma (n) = (n-1)!$ für $n\in \mathbb{N}^*$
+
+
+\subparagraph{Beispiel 1}
+\begin{itemize}
+\item $\int\limits_0^\infty e^{-x} \, dx = \lim\limits_{A \to \infty} \int\limits_0^A e^{-x} \, dx = \lim\limits_{A \to \infty} [-e^{-x}]_0^A = \lim\limits_{A \to \infty} (-e^{-A} +1 ) = \underline{\underline{1}}$
+\item $\int\limits_0^\infty \cos{x} \, dx = \lim\limits_{A \to \infty} \int\limits_{0}^A \cos{x} \, dx = \lim\limits_{A \to \infty} [\sin{x}]_0^A  = \lim\limits_{A \to \infty} \sin{A} \curvearrowright$ existiert nicht (unbestimmt divergent)
+\item $\int\limits_1^\infty \frac{1}{x} \, dx = \lim\limits_{A \to \infty} \int\limits_1^A \frac{1}{x} \, dx = \lim\limits_{A \to \infty} [\ln{\lvert x \rvert}]_1^A = \lim\limits_{A \to \infty} \ln{A} = \underline{\underline{\infty}}$ (bestimmt divergent)
+\end{itemize}
+
+\item Unbeschränkter Integrand
+\begin{enumerate}
+\item Z.B: Unendlichkeitsstelle bei $b$
+\[ \int\limits_a^b f(x) \, dx := \lim\limits_{\varepsilon \to + 0} \int\limits_{a}^{b-\varepsilon} f(x) dx\]
+\item Unendlichkeitsstelle $x_0 \in (a;b)$ (Im Inneren)
+\[ \int\limits_a^b f(x) \, dx = \lim\limits_{\delta \to + 0} \int\limits_{a}^{x_0 - \delta} f(x) \, dx + \lim\limits_{\varepsilon \to +0} \int\limits_{x_0 + \varepsilon}^b f(x) \, dx\]
+\end{enumerate}
+\subparagraph{Beispiel 2} $\int\limits_0^4 \frac{1}{\sqrt{x}} \, dx = \lim\limits_{\varepsilon \to +0} \int\limits_\varepsilon^4 \, dx = \lim\limits_{\varepsilon \to + 0} [2 \sqrt{x} ]_\varepsilon^4 = \underline{\underline{4}} $
+
+\item Unendliches Intervall und unendliche Funktion
+\subparagraph{Beispiel 3} $I = \int\limits_{1}^{\infty} \frac{dx}{x \cdot \sqrt{x-1}}$\\
+NR: $\int \frac{dx}{x \sqrt{x-1}} \underbrace{=}_{u = \sqrt{x-1} \leftrightarrow x = u^2 +1, \frac{dx}{du} = 2u} \int \frac{2u du}{(u^2 +1)u} = 2 \arctan{u} +c = 2 \arctan{\sqrt{x-1}} +c$\\
+$I = \lim\limits_{\varepsilon \to +0; A \to \infty} \int\limits_{1+\varepsilon}^A \dots = \lim\limits_{\varepsilon \to +0; A \to \infty} [2 \arctan{\sqrt{x-1}}]^A_{1+\varepsilon} = \lim\limits_{A \to \infty} 2 \arctan{\sqrt{A-1}} - \lim\limits_{\varepsilon \to + 0}  2 \arctan{\sqrt{\varepsilon}} = \underline{\underline{\pi}}$
+\end{enumerate}
+
+\subsection{Anwendungen}
+\subsubsection{Geometrische Anwendungen}
+\paragraph{Inhalt ebener Flächenstücke}
+\begin{itemize}
+\item $y=f(x) \geq  0, \quad a<b$\\
+\[ F=\int\limits_a^b f(x) \, dx\]
+\item \[F= \int\limits_a^c \lvert f(x) \rvert \, dx = \lvert \int\limits_a^b f(x) \, dx \rvert + \lvert \int\limits_b^c  f(x) \, dx \rvert \]
+\item \[ F= \int\limits_{x_1}^{x_2} (f(x) - g(x) ) \, dx\]
+\end{itemize}
+
+\subparagraph{Beispiel} Gesucht ist der Flächeninhalt $F$ des von der Ellipse $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \; (a >0, b>0)$ begrenzten Bereiches.
+\begin{itemize}
+\item Auflösen nach $y: \; y= \pm b \cdot \sqrt{1-\frac{x^2}{a^2}}$\\
+$\underbrace{\curvearrowright}_{\text{Symmetrie}} F= 4 \cdot \int\limits_0^a b \cdot \sqrt{1-\frac{x^2}{a^2}} \, dx -= \frac{4b}{a} \int\limits_0^a \sqrt{a^2-x^2} \, dx \underbrace{=}_{(1)} \frac{4b}{a} \left [ \frac{1}{2} ( x \sqrt{a^2-x^2} + a^2 \arcsin{(\frac{x}{a})} ) \right ]_0^a$\\
+$=\frac{4b}{a} \cdot \frac{1}{2} a^2 \underbrace{\arcsin{1}}_{\frac{\pi}{2}} = \underline{\underline{\pi a b}}$\\
+(1) s Tabelle oder Substituiere $x= a \sin{t}, \sqrt{a^2-x^2} = a \cos{t} \; \frac{dx}{dt} = a \cos{t}$ usw.
+\end{itemize}
+
+\paragraph{Bogenlänge}
+\subparagraph{Bogenlänge ebener Kurven} Kurve K mit P.d.\\
+$x=x(t) \; y=y(t) \; \alpha \leq t \leq \beta$\\
+\definecolor{qqqqff}{rgb}{0.0,0.0,1.0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.019919504841264316,0.0) -- (14.71960362224012,0.0);
+\foreach \x in {,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.0,-2.636086465572875) -- (0.0,5.3594095703439155);
+\foreach \y in {-2.0,-1.0,1.0,2.0,3.0,4.0,5.0}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.019919504841264316,-2.636086465572875) rectangle (14.71960362224012,5.3594095703439155);
+\draw [shift={(8.279243955481641,-7.430657541256236)}] plot[domain=1.2460831447972658:2.2281480975538117,variable=\t]({1.0*11.913215108603938*cos(\t r)+-0.0*11.913215108603938*sin(\t r)},{0.0*11.913215108603938*cos(\t r)+1.0*11.913215108603938*sin(\t r)});
+\draw (5.2362500631179465,3.5517322057018585) node[anchor=north west] {Kurve K};
+\begin{scriptsize}
+\draw [fill=qqqqff] (1.0,2.0) circle (1.5pt);
+\draw[color=qqqqff] (1.120307755932956,2.230737208463432) node {$P_0$};
+\draw [fill=qqqqff] (5.7,4.2) circle (1.5pt);
+\draw[color=qqqqff] (5.820268904002303,4.4416656775256405) node {$P_1$};
+\draw [fill=qqqqff] (12.08,3.86) circle (1.5pt);
+\draw[color=qqqqff] (12.202760522238489,4.094035415094476) node {$P_n$};
+\end{scriptsize}
+\end{tikzpicture}
+
+\begin{itemize}
+\item Vorgehen: Approx. durch Streckenzug, Verfeinerung. Länge des Streckenzugs:
+\[\sum\limits_{i=1}^n \overline{P_{i-1}P_j} = \sum\limits_{i=1}^n \sqrt{(\Delta x_i)^2 + ( \Delta y_i)^2} \underbrace{=}_{*} \sum\limits_{i=1}^n \sqrt{(\dot{x} (u_i))^2 + (\dot{y} (v_i))^2} \Delta t_i\] 
+$*$) MWS der Diff-Rechnung, Zwischenstellen $u_i,v_i \in (t_{i-1},t_i)$
+
+Verfeinerung: $\int\limits_\alpha^\beta  \sqrt{(\dot{x} (t))^2 + (\dot{y} (t))^2 } \, dt$
+
+\item Diskussion
+\begin{enumerate}
+\item Bogenlänge der Kurve $\vec{r} = \vec{r}(t) = \begin{pmatrix} x(t) \\ y(t) \\ \end{pmatrix}$ zwischen $\alpha$ und $t$ ($t$ variabel)\\
+$s= \int\limits_\alpha^t \underbrace{\sqrt{(\dot{x} (u))^2 + ( \dot{y} (u))^2}}_{\lvert \vec{\dot{r}} (u) \rvert}$\\
+$\frac{ds}{dt} = \lvert \dot{\vec{r}} (t) \rvert \curvearrowright ds = \lvert \dot{\vec{r}} (t) \rvert \, dt = \sqrt{\dot{x}^2 + \dot{y}^2} \, dt$ \dots Bogenelement
+\item Tabelle (Bogenlänge ebener Kurven)\\
+$\begin{array}{c|c}
+\text{Kurvendarstellung} & \text{Bogenlänge } s, \text{ Bogenelement } ds \\ \hline
+x=x(t), y=y(t) , t \in [a;\beta] & s = \int\limits_\alpha^\beta \sqrt{(\dot{x}(t))^2 + (\dot{y}(t))^2} \, dt \\
+y=f(x), x \in [a;b] & s= \int\limits_a^b \sqrt{1+(f'(x))^2} \, dx \\
+x=g(y), y \in [c;d] & s = \int\limits_c^d \sqrt{1+(g'(y))^2} \, dy\\
+r=r(\varphi), \alpha \leq \varphi \leq \beta & s= \int\limits_\alpha^\beta \sqrt{(r(\varphi))^2  + (r' (\varphi))^2} \, d\varphi\\
+\end{array}$
+\end{enumerate}
+\end{itemize}
+\subparagraph{Bogenlänge von Raumkurven} P.d. der Kurve $K: \; x=x(t), y=y(t), z= z(t), \alpha \leq t \leq \beta$
+\[ s= \int\limits_\alpha^\beta \sqrt{\dot{\vec{x}}^2 + \dot{\vec{y}}^2 + \dot{\vec{z}}^2 } \, dt\]
+
+\subparagraph{Beispiel 2} Schraubenlinie $\vec{r} = \vec{r} (t) = \begin{pmatrix} a \cos{t} \\ a \sin{t} \\ \frac{h}{2\pi} t\\ \end{pmatrix}, 0 \leq t \leq 2\pi$\\
+$\dot{\vec{r}}(t) = \begin{pmatrix} - a \sin{t} \\ a \cos{t} \\ \frac{h}{2\pi} \\ \end{pmatrix} \curvearrowright s = \int\limits_{0}^{2\pi} \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2 } \, dt = \int\limits_0^{2\pi} \sqrt{ \underbrace{a^2 \sin{t}^2 + a^2 \cos{t}^2 }_{a^2} + \frac{h^2}{4 \pi^2} } \, dt$\\
+$=2 \pi \cdot \sqrt{a^2 + \frac{h^2}{4 \pi^2} } = \underline{\underline{\sqrt{4 \pi a^2 + h^2}}}$
+
+\subparagraph{Beispiel 3} Archimedische Spirale
+\[ r = r(\varphi) = a \varphi, \, 0 \leq \varphi \leq \varphi_1 , \, a > 0 \]
+$\curvearrowright r'(\varphi) = a \curvearrowright$\\
+\begin{itemize}
+\item $\int\limits_{0}^{\varphi_1} \sqrt{(r(\varphi))^2 + (r' ( \varphi))^2 } \, d\varphi = \int\limits_{0}^{\varphi_1} \sqrt{a^2\varphi^2 + a^2} \, d\varphi$\\
+$= a \cdot \int\limits_{0}^{\varphi_1} \sqrt{\varphi^2 +1} d\varphi \underbrace{=}_{*} \frac{a}{2} \left ( \varphi_1 \sqrt{\varphi_1^2 +1} + \ln{(\varphi_1 + \sqrt{\varphi_1^2 +1})} \right )$\\
+$*$) s Tabelle oder Subst. $\varphi = \text{sinh} \, t, \sqrt{\varphi^2 +1 } = \text{cosh} \, t , \frac{d\varphi}{dt} = \text{cosh} \, t$ usw.
+\item Zahlenwert für $a= \frac{1}{2} [\text{cm}] , \varphi_1 = 4\pi $ (vgl. ÜA B1.28b)\\
+$\underline{\underline{s= 40,41 [\text{cm}] }}$
+\end{itemize}
+
+\paragraph{Volumen von Rotationskörpern}
+\begin{enumerate}
+\item Geg. Kurve $y= f(x), a \leq x \leq b$\\
+Das Flächenstück $F_x$ zwischen Kurve und $x$-Achse rotiere um $x$-Achse, $V_x$ sei das Volumen des dabei erzeugten Körpers %TODO 2014-04-23T1225
+\[ V_x = \pi \int\limits_a^b (f(x))^2 \, dx\]
+Approx von $F_x$ durch Rechteckflächen $\curvearrowright$ Zylinderscheiben bei Rotation $\curvearrowright V_x \approx \sum\limits_i  \pi (\underbrace{f(\xi_i)}_{\text{Radius}})^2 \cdot \underbrace{\Delta x_i}_{\text{Höhe}} \rightarrow \pi  \int\limits_{a}^{b} (f(x))^2 \, dx)$
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Allg. gilt $V_x = \pi \int\limits_{x=a}^{b} y^2 \, dx \quad  (a < b)$
+\item P.d. $x=x(t), y=y(t) , \alpha \dots t \dots \beta $, aus der allg. Formel (s. Diskussion 1) folgt
+\[ V_x = \pi \int\limits_{t=\alpha}^{\beta} (y(t))^2 \dots \underbrace{\dot{x} (t) \, dt}_{dx} \]
+Orientierung von $K$ ist so zu wählen, dass $a:= x(\alpha) < x (\beta) =: b$ (von links nach rechts)
+\end{enumerate}
+\item Analg Volumen $V_y$ bei Rotation um $y$-Achse, vgl. Merkblatt
+
+\subparagraph{Beispiel 4} Gesucht Volumen des Rotationsparabolids der Höhe $h$ und dem Basiskreisradius $R$\\
+$\underbrace{y}_{h}=a\underbrace{x^2}_{R} \curvearrowright h = a R^2 $\\
+$\curvearrowright a = \frac{h}{R^2}$\\
+$V_y = \pi \int\limits_{y=0}^{h} x^2 \, dy = \pi \int\limits_{y=0}^h \frac{y}{a} \, dy = \pi \left [ \frac{y^2}{2a} \right ]_0^h$\\
+$= \pi \frac{h^2}{2a} = \underline{\underline{\frac{\pi R^2 h}{2}}}$
+\end{enumerate}
+
+\paragraph{Mantelfläche von Rotationslkörpern}
+\begin{enumerate}
+\item Geg: Kurve $y=f(x) \; (\geq 0) , \quad a \leq x \leq b $\\
+Es sei $M_x$ die von der Kurve $K$ bei Rotation um die x-Achse erzeugte Fläche.
+
+\[M_x= 2 \pi \int\limits_{x=a}^b f(x) \sqrt{1+(f'(x))^2} \, dx\]
+(Approximation von $K$ durch Polygonzug $\curvearrowright$ Kegelstumpfflächen bei Rotation:\\
+$M_x \approx \sum\limits_i 2 \pi f(\xi_i) \cdot \Delta s_i \rightarrow 2 \pi \int\limits_{a}^{b} f(x) \cdot \underbrace{\sqrt{1+(f'(x))^2}}_{ds \text{ (Bogenelement)}} \, dx$
+Allgemein:
+\[ M_x = 2\pi \int\limits_{K} y \, ds \quad (y \geq 0) \]
+
+\item Analog Mantelfläche $M_y$ bei Rotation um $y$-Achse
+\end{enumerate}
+
+\subparagraph{Beispiel 5} Kugeloberfläche
+$K$ \dots Halbkreis, P.d: $x= R \cdot \cos{t} , y= R \cdot \sin{t} \quad (0 \leq t \leq \pi )$\\
+$\curvearrowright \dot{x} = - R \sin{t} , \dot{y} = R \cos{t}$\\
+$M_x = 2\pi \int\limits_{K} y \, \underbrace{ds}_{\sqrt{\dot{x}^2 + \dot{y}^2 } \, dt} = 2 \pi \int\limits_{t=0}^\pi R \sin{t} \cdot \underbrace{R \, dt}_{ds} = 2 \pi R^2 \cdot \underbrace{\left [ - \cos{t} \right ]_0^\pi }_{2} = \underline{\underline{4 \pi R^2}}$
+
+
+\subsubsection{\textsc{Fourier}-Reihen}
+Geg: Funktion: $y=f(x), x\in [0;T] $\\
+Ges: Reihendarstellung mit trigonomertrischen Funktionen der Perioden $T,\frac{T}{2},\frac{T}{3}, \dots$ (d.h. $\omega = \frac{2\pi}{T}$ \dots Kreisfrequenz)\\
+$\cos{(\omega x)}, \cos{(2\omega x)}, \cos{(3\omega x)}, \dots $\\
+$\sin{(\omega x)}, \sin{(2\omega x)}, \sin{(3\omega x)}, \dots $
+
+$\curvearrowright$ Ansatz:
+\[ f(x) = \frac{a_0}{2} + \sum\limits_{k=1}^{\infty} (a_k \cos{(k \omega x)} + b_k \sin{(k \omega x)})\]
+Koeffizienten $a_k, b_k$ sind zu ermitteln
+
+\subparagraph{Motivation} Approximation von $f$ zum Zwecke der Speicherplatzreduzierung (Abgespeichert werde nur wenige der Koeffizienten $a_k,b_k$. Das gilt auch dann, wenn $f$ in diskreter Form vorliegt.\\
+Messwerte $y_k$ an den Stellen $x_k$.)
+
+\subparagraph{Vorgehensweise}
+\begin{enumerate}
+\item Zunächst endliche Reihe
+\begin{equation}\label{4521} f_n(x) := \frac{a_0}{2} + \sum\limits_{k=1}^{n} (a_k \cos{(k\omega x)} + b_k \sin{(k\omega x)} )
+\end{equation}
+$a_k,b_k$ so wählen, dass $f_n(x)$ die geg. Funktion  $f(x) $ gut approximiert
+\item Approximation in Vektorräumen mit Skalarprodukt
+\begin{itemize}
+\item Es sei $V$ ein Vektorraum, Skalarprodukt $(f,g)$ nennt man eine Abbildung von $V \times V$ in $\mathbb{R}$ mit folgenden Eigenschaften:
+\begin{enumerate}
+\item $(f,f) > 0$ für $f\neq 0$
+\item $(f,g) = (g,f) \forall f,g \in V$ (Symmetrie)
+\item $(\alpha f + \beta g,h) = \alpha(f,h) + \beta (g,h)$ (Linearität)
+\end{enumerate}
+\item Norm(Betrag) von $f\in V: \, \lvert \lvert f \rvert \rvert := \sqrt{(f,f)}$
+\item $f$ und $g$ heißen orthogonal, wenn $(f,g) =0$ gilt
+\item Beispiele: 
+\begin{enumerate}
+\item $V= \mathbb{R}^n , (\vec{x},\vec{y}) = \sum\limits_{i=1}^{n} x_i,y_i$ (vgl. Kapitel 1.5.)
+\item $V=C(a;b)$ \dots Menge der auf $[a,b]$ stetigen reellen Funktionen, $(f,g) := \int\limits_{a}^b f(x) g(x) \, dx, \lvert \lvert f \rvert \rvert = \sqrt{\int\limits_{a}^{b} (f(x))^2 \, dx}$
+\end{enumerate}
+\item Aufgabe: Approximation von $f \in V$, durch $f^* \in V^* $ wobei $V^* \subseteq V$ ein $m$-dimensionaler Teilraum von $V$ mit der orthogonalen Basis $e_1,\dots,e_m$ (d.h. $(e_i,e_j) = 0$ falls $i\neq j)$ ist. Gesucht ist dasjenige $f^* \in V^*$, für welches $\lvert \lvert f - f^* \rvert \rvert$ minimal wird $\curvearrowright f^*$ ist die Orthogonal-Projektion von $f$ in $V^*$
+\end{itemize}
+\subparagraph{Satz 1} Es gilt
+\[ f^* = \sum\limits_{i=1}^{m} \alpha_i e_i \text{ mit } \alpha_i = \frac{(f;e_i)}{(e_i;e_i)}, i=1, \dots , m \]
+
+Beweis: $(f-f^*,e_i) = 0 \forall i \Leftrightarrow (f-(\alpha_1 e_1 + \dots + \alpha_m e_m), e_i) = (f;e_i) - \alpha_i (e_i,e_i)=0$
+
+\item Übertragung auf $C(0,T) (T= \frac{2\pi}{\omega} \Leftrightarrow \omega = \frac{2\pi}{T})$
+\begin{itemize}
+\item Man kann leicht zeigen (ÜA?!), dass die Funktionen\\
+$\underbrace{1}_{g_0},\underbrace{\cos{(\omega x)}}_{g_1}, \underbrace{\cos{(2\omega x)}}_{g_2}, \underbrace{\cos{(3\omega x)}}_{g_3}, \dots, \underbrace{\sin{(\omega x)}}_{h_1}, \underbrace{\sin{(2\omega x)}}_{h_2}, \dots$\\
+in $C(0,T)$ paarweise orthogonal sind, z.B.
+\[ (g_0;g_1) = \int\limits_{0}^{T} 1 \cdot \cos{(\omega x)} \, dx = \left [ \frac{1}{\omega} \sin{(\omega x)} \right ]_0^T = \underline{\underline{0}}\]
+\item Fener gilt $(g_0,g_0) = T, (g_k,g_k) = \frac{T}{2} , (h_k;h_k)= \frac{T}{2}$
+\end{itemize}
+\item Damit ergibt die Projekt von $f \in C (0;T)$ in $L(g_0,g_1,\dots , g_n,h_1,\dots,h_n)$ folgende Koeffizienten für die Approximation (\ref{4521}) (vgl. Satz 1)
+\[ a_k = \frac{(f;g_k)}{(g_k;g_k)} = \frac{2}{T} \int\limits_0^T f(x) \cos{(k\omega x)} \, dx \]
+analog
+\[ b_k = \frac{2}{T} \int\limits_0^T f(x) \sin{(k \omega x)} \, dx\]
+\item Frage: $f_n \to f$?
+
+\subparagraph{Satz 2} $f(x)$ und $f'(x)$ seien stückweise stetig mit höchstens endlich vielen, endlichen Sprungstellen in $[0;T]$
+\begin{itemize}
+\item Dann gilt an allen Stetigskeitsstellen von $f$
+\[ f(x) = \frac{a_0}{2} + \sum\limits_{k=1}^\infty (a_k \cos{(k \omega x)} + b_k \sin{(k \omega x)} ) \quad  \text{ \textsc{Fourier}-Reihe} \]
+mit \[a_0 = \frac{2}{T} \int\limits_0^T f(x) \, dx \]
+\[a_k = \frac{2}{T} \int\limits_0^T f(x) \cos{(k\omega x)} \, dx\]
+\[b_k = \frac{2}{T} \int\limits_0^T f(x) \sin{(k \omega x)} \, dx\]
+$(k= 1,2,\dots)$
+\item Für die Sprungstellen $x_s$ gilt:
+\[ \lim\limits_{n\to \infty} f_n (x_s) = \frac{1}{2} ( \lim\limits_{x \to x_s -0} f(x) + \lim\limits_{x \to x_s +0} f(x) )\]
+\end{itemize}
+\end{enumerate}
+
+\subparagraph{Bemerkungen}
+\begin{enumerate}
+\item Die vorstehenden Ausführungen gelten automatisch auch für die periodische Fortsetzung $\tilde{f}$ einer zunächst auf $[0;T]$ erklärten Funktion $f$, vgl. ÜA B2.25
+\item Integrationsintervalle $[0;T]$ können im periodischen Fall durch beliebige Intervalle der Länge $T$ ersetzt werden, z.B. $\left [ -\frac{T}{2}; \frac{T}{2} \right ]$
+\item Vereinfachung bei Symmetrie\\
+$\begin{array}{|c|c|}\hline
+f \text{ gerade} & a_0 = \frac{4}{T} \int\limits_0^{\frac{T}{2}} f(x) \, dx , a_k = \frac{4}{T} \int\limits_0^{\frac{T}{2}} f(x) \cos{(k \omega x)} \, dx , b_k=0\\ \hline
+f \text{ ungerade} & a_0=0, a_k=0, b_k= \frac{4}{T} \int\limits_0^{\frac{T}{2}} f(x) \sin{(k\omega x)} \, dx \\ \hline
+\end{array}\\
+k=(1,2,\dots)$ vgl. ÜA(B2.9)
+\item Amplitudenspektrum $A_k := \sqrt{a_k^2 + b_k^2} \; (k=1,2,\dots)$ \dots Amplituden der Schwingungen, die sich durch Zusammenfassung der Sinus- und Konsiunusanteile gleicher Frequenz ergeben $\curvearrowright$ Möglichkeit der Verstärkung /Dämpfung der Frequenzen
+\end{enumerate}
+
+\subparagraph{Beispiel 6} $f(x) = \left \{ \begin{array}{lcr} 0 & \dots & -1 \leq x <0 \\ 1 & \dots & 0 \leq x <1\\ \end{array} \right. , \quad \tilde{f}$ \dots periodische Fortsetzung.
+
+Gesucht: \textsc{Fourier}-Reihe, $T=2,\omega = \frac{2\pi}{T} = \pi $ \\
+$a_0 = \frac{2}{2} \int\limits_{-1}^1 f(x) \, dx = \int\limits_0^1 1 \cdot dx = \underline{\underline{1}}$\\
+$a_k = \frac{2}{2} = \int\limits_{-1}^{1} f(x) \cos{(k\pi x)} \, dx = \int\limits_0^1 \cos{(k \pi x)} \, dx = \frac{1}{k \pi} \left [ \sin{(k \pi x)} \right ]_0^1 = \underline{\underline{0}}$\\
+$b_k= \frac{2}{2} \int\limits_{-1}^{1} f(x) \sin{(k \pi x)} \, dx = \int\limits_0^1 \sin{(k \pi x)} \, dx =  - \frac{1}{k \pi} \left [ \cos{(k \pi x )} \right ]_0^1$\\
+$= -\frac{1}{k\pi} (\underbrace{\cos{(k \pi)}}_{(-1)^k} -1) = \left \{ \begin{array}{lcr} 0 & \text{für} & k \text{ gerade} \\
+\frac{2}{k\pi} & \text{für} & k \text{ ungerade} \\ \end{array} \right.$\\
+$\curvearrowright \tilde{f} (x) = \frac{1}{2} + \frac{2}{\pi} ( \sin{(\pi x)} + \frac{1}{3} \sin{( 3 \pi  x)} + \frac{1}{5} \sin{(5 \pi x) } + \dots ) \quad x \in \mathbb{R} \backslash \mathbb{Z}$
+
+\subparagraph{Diskreter Fall} Geg: $y= f(x) , x \in [0;T]$, gerade Anzahl $N$ von Messstellen (Abtastpunkte), z.B. alle $\frac{1}{100}$ Sek. $\curvearrowright$ Samplerate 100 Hz (bei Autio-CD: 44,1 kHz)\\
+$x_j = j \cdot h = j \cdot \frac{T}{N} (j=0,1,\dots,N-1), y_j = f(x_j)$
+
+\begin{itemize}
+\item Ansatz (\ref{4521}) für $ n \leq \frac{N}{2}$ führt im Vektorraum $\mathbb{R}^N$ mittels Satz 1 auf $a_0 = \frac{2}{N} \sum\limits_{j=0}^{N-1} y_j, a_k = \frac{2}{N} \sum\limits_{j=0}^{N-1} y_j \cos{(k \omega x_j)}, b_k = \frac{2}{N} \sum\limits_{j=0}^{N-1} y_j \sin{(k \omega x_j)} \quad (1 \leq k \leq n)$
+\item Im Falle $2n = N$ ergibt sich keine Approximation, sonder eine exakte Darstellung des Vektors $\vec{y} = (y_j)_{j_0}^{N-1}$ mit Hilfe einer anderen Basis.\\
+Mit Hilfe der \textsc{Euler}schen Formel $e^{i\varphi} = \cos{\varphi} + i \cdot \sin{\varphi}$ lässt sich der Ansatz (\ref{4521}) mit komplexen Koeffzienten $c_k$ umschreiben:
+\[f_n(x) = \sum\limits_{k=0}^{N-1} c_k  \cdot e^{i \omega k x} \]
+und damit 
+\begin{equation}\label{4522}y_j = f(x_j) = \sum\limits_{k=0}^{N-1} c_k e^{i\frac{2\pi}{N} jk} \quad (j=0,1,\dots,N-1) \end{equation}
+\end{itemize}
+
+\subparagraph{Matrix-Form} Es sei $w:= e^{i \cdot \frac{2 \pi}{N}}$ (eine von $N$ Lösungen der Kreisteilungsgleichung $z^N = 1$)\\
+$\underline{F} := \left (w^{jk} \right )_{j,k=0}^{N-1}$ \dots \textsc{Fourier}-Matrix\\
+\begin{equation}\label{4523}\curvearrowright \underline{y} = \underline{F} \cdot \underline{c} \quad \text{( mit } \underline{c} = \left (c_k \right )_{k=0}^{N-1}) \end{equation}
+
+\begin{itemize}
+\item Man kann zeigen: $\underline{F}$ ist regulär mit $\underline{F}^{-1} = \frac{1}{N} F^*$ mit $\underline{F}^* = \overline{\underline{F}^T} = \left ( \bar{w}^{kj} \right )_{k,j=0}^{N-1}$, dabei\\
+$\bar{w} = e^{-i \frac{n\pi}{N}}$ (komplex. konj. Zahl)\\
+Damit ist $\underline{c} = \frac{1}{N} \underline{F}^* \underline{y}$, d.h.
+\begin{equation}\label{4524}
+c_k = \frac{1}{N} \sum\limits_{j=0}^{N-1} y_j \cdot e^{-i \cdot \frac{2\pi}{N} kj} \quad (k=0,1,\dots,N-1)
+\end{equation}
+(\ref{4524}) \dots DFT (diskrete \textsc{Fourier}-Transformation)\\
+(\ref{4522}) \dots IDFT (inverse diskrete \textsc{Fourier}-Transformation)
+
+\item FFT (schnelle diskrete \textsc{Fourier}-Transformation) für $N=2^m$) lässt sich die Rechenzeit verkürzen
+\item Diskrete Kosinustransformation DCT\\
+$y= f(x), x \in [0;T], N$ gleiche Intervalle, meist $N=2^m$ Abtastpunkte hier aber die Mitten der Intervalle $x_j = \frac{h}{2} + j \cdot h = T \cdot \frac{2j+1}{2N} (j=0,1,\dots,N-1)$\\
+Ansatz: $y= \sum\limits_{k=0}^n a_k \cos{(k \frac{\omega}{2} x)}$ (stetiger Fall) bzw.\\
+$y_j = \sum\limits_{k=0}^{N-1} a_k \cos{(\frac{k \pi (2j +1)}{2N})}$ (diskreter Fall $j=0,1,\dots,N-1)$\\
+Matrixform $\underline{y} = \underline{C} \cdot \underline{a} $ , Spalten von $\underline{C}$ bilden eine orthogonale Basis von $\mathbb{R}^N$, Normierung so möglich, dass orthonormierte Basis entsteht; damit Vorgehensweise wie bei \textsc{Fourier}-Transformation möglich:
+\[ \underline{a} = \underline{C}^{-1} \underline{y} \dots D\underbrace{C}_{\text{Kosinus}}T, y= \underline{C} \, \underline{a} \dots IDCT \]
+
+\item  Anwendung: Audio-/Videokompression (MP3,JPEG) Die komprimierung erfolgt dabei im Frequenzbereich (kleinere Amplituden $a_k \longrightarrow 0$, damit Datenreduktion)
+
+\end{itemize}
+
+\section{Differentialrechnung für Funktionen mehrerer reeller Variablen}
+\subsection{Funktionen mehrerer Variabler $z=f(x_1,\dots,x_n)$}
+Funktion $f, Db(f) \subseteq \mathbb{R}^n, Wb(f) \subseteq \mathbb{R} (n \in \mathbb{N}, n \geq 2)$\\
+\[ z=f(x_1,\dots,x_n)  \quad \begin{array}{lcr} x_1,\dots,x_n & \dots & \text{unabhängige Variable}\\ z & \dots & \text{abhängige Variable} \\ \end{array} \]
+
+\subparagraph{Gemetrische Veranschaulichung für} $n=2$\\*
+Meist $x,y$ anstelle von $x_1,x_2: z=f(x,y), (x,y) \in B \subseteq \mathbb{R}^2$
+$\curvearrowright \{(x,y,z)) | (x,y) \in B \wedge z=f(x,y) \}$ \dots im allgemeinen Fläche im $\mathbb{R}^3$
+
+\subsubsection{Flächen im $\mathbb{R}^3$}
+\begin{enumerate}
+\item Darstellung eines Punktes $P(x,y,z)$ im $\mathbb{R}^3$
+\begin{itemize}
+\item $x,y,z$ \dots kartesische Koordinate
+\item Zylinderkoordinaten $r,\varphi,z$\\
+\begin{align*}
+x & =  r \cos{\varphi}\\
+y & =  r \sin{\varphi} \\
+z & =  z \\
+\end{align*}
+Umrechnung: $x^2+y^2 = r^2$ usw.
+\item Kugelkoordinaten $r,\varphi,\vartheta$ (sphärische Kugelkoordinaten)
+\begin{align*}
+x & = r \sin{\vartheta} \cos{\varphi}\\
+y & = r \sin{\vartheta} \sin{\varphi}\\
+z & = r \cos{\vartheta}\\
+\end{align*}
+Achtung: $r$ hat andere Bedeutung als bei Zylinderkoordinatne!
+\end{itemize}
+\item Flächendarstellungen
+\begin{itemize}
+\item Explizite kartesische Darstellung $z=f(x,y), (x,y) \in B \subseteq \mathbb{R}^2$
+\item Implizite kartesische Darstellung $F(x,y,z) = 0$
+\item Parameterdarstellung\\
+$x=x(u,v)$\\
+$y=y(u,v), \quad (u,v) \in B \subseteq \mathbb{R}^2$\\
+$z=z(u,v)$\\
+$\vec{r} = \vec{r}(u,v) = \begin{pmatrix} x(u,v) \\ y(u,v) \\ z(u,v)\\ \end{pmatrix}, (u,v) \in B$\\
+
+
+Koordinatenlinien\\
+$v=v_0$ fest $\curvearrowright \vec{r} = \vec{r} (u,v_0)$ \dots Kurvenschar (mit Parameter $u$) auf Fläche\\
+$u=u_0$ fest $\curvearrowright \vec{r} = \vec{r}(u_0,v)$ \dots Kurvenschar (mit Parameter $v$) auf Fläche\\
+
+\subparagraph{Beispiel 1} Kugel, Mittelp. $0$, Radius $R$, Kugelkoordinaten $r=R=\text{const.} \curvearrowright$\\
+$x= R \sin{\vartheta} \cos{\varphi} \quad 0 \leq \varphi \leq 2 \pi \quad \varphi \triangleq$ geogr. Länge\\
+$y= R \sin{\vartheta} \sin{\varphi} \quad 0 \leq \vartheta \leq \pi \quad \vartheta \triangleq$ geogr. Breite (vom Nordpol gemessen)\\
+$z = R \cos{\vartheta}$\\
+Parameterfreie Darstellung\\
+$x^2+y^2+z^2=R^2$ \dots implizite kartes. Darstellung\\
+$\curvearrowright z = \pm \sqrt{R^2-x^2-y^2}$ \dots explizite kartes. Darstellung $\left. \begin{array}{c} \text{obere} \\ \text{untere} \end{array} \right \}$ Halbkugel
+
+\item Explizite Darstellung in Zylinderkoordinaten\\
+$z=f(r,\varphi),(r,\varphi) \in B \subseteq [0;\infty) \times \mathbb{R}$\\
+$(r,\varphi$ \dots ebene Polarkoord.)
+\begin{enumerate}
+\item $z=f(r,\varphi) = \underbrace{g(r)}_{\varphi \text{ kommt nicht explizit vor}}, r \in I \subseteq [0;\infty), \varphi \in [0;2\pi]$\\
+$\curvearrowright$ Rotationsflächen, Rotationsachse = $z$-Achse\\
+kartesisch: $r = \sqrt{x^2+y^2} \curvearrowright z=g(\sqrt{x^2+y^2}) =: \underbrace{h(x^2+y^2)}_{\begin{array}{c}\text{Kennzeichen einer kartesisch} \\ \text{gegebener Rotationsfläche} \\ \text{ (um z-Achse)}\end{array} }$
+\subparagraph{Beispiel2} $z=x^2+y^2 = h(x^2+y^2) \quad (x=r \cos{\varphi}, y= r \sin{\varphi})$\\
+$\curvearrowright x^2+y^2=r^2 \curvearrowright Z =f(r,\varphi) = r^2 =: g(r) \quad (0 \leq \varphi \varphi 2\pi$\\
+Rotationsparabolid $z=f(x,y) = x^2+y^2$
+
+\item \[z=f(r,\varphi)\underbrace{=}_{r \text{ kommt nicht explizit vor}} g(\varphi), r \in I_1 \subseteq[0,\infty), \varphi \in I_2 \subseteq \mathbb{R} \]
+$\curvearrowright$ Wendelflächen (Achse $z$-Achse)
+
+\subparagraph{Beispiel 3} $z=f(r,\varphi) = \frac{h}{2\pi} \varphi =: g(\varphi)$\\ $0\leq \varphi \leq 4 \pi, \quad 0 \leq r \leq R$\\
+Polar Darstellung:\\
+$x=r \cos{\varphi}, y= r\sin{\varphi}, z = \frac{h}{2\pi} \varphi \quad r \in [0;R], \varphi \in [0;4\pi]$
+\end{enumerate}
+
+\subparagraph{Bemerkung} Polardarstellung bei expliziter Darstellung auf einfache Weise angebbar (als PArameter unabh. Variablen wählen).\\
+z.B: $u=x,v=y$ bei kartes. Darst.\\
+$u=r, v = \varphi$ bei Zylinderkoordinaten
+
+\end{itemize}
+\item Geometrische Darstellungsmöglichkeiten
+\begin{itemize}
+\item Allgemeines Prinzip
+\begin{enumerate}
+\item Kurvenscharen auf Flächen erzeugen (Koordinatenlinien $u=const.$ oder $v= const.$ bei Polardarstellung $r=const, \varphi= const,$ oder $z= const.$ bei Zylinderkoordinaten $x=const, y=const.$ oder $z=const$ bei kartesischen Koordinaten.)
+\item Projektionen einschließlich der Koordinatenachsen oder Koordinatenbox auf eine Bildebene $\curvearrowright$ 3D-Darstellung("`Schrägbild"')
+\end{enumerate}
+
+\item Spezialfall Höhenlinienbild, Karte für $z=f(x,y),(x,y) \in B$ dabei 
+\begin{enumerate}
+\item Höhenlinien zum Niveau (zur Höhe) $c$:
+\[ \{ (x,y,z) | (x,y) \in B \wedge z=f(x,y) \wedge z=c \} \]
+(= Schnitt der Fläche $z=f(x,y)$ mit der Ebene $z=c \parallel x-y$-Ebene
+
+\item Projektion der Höhenlinien für ausgewählte Niveauwerte $c$ in die $x-y-$Ebene $\curvearrowright$ Karte (analog Landkarte) (mit Angaben der Höhenwerte)
+\end{enumerate}
+\subparagraph{Beispiel 3} $z=f(x,y) = 4-(x^2 +y^2)$\\
+(Gestalt $z=f(x^2+y^2) \curvearrowright$ Rotationsfläche, $z$-Achse $=$ Rotationsachse)
+\item Höhenlinien zum Niveau $z=c$
+\[ c=4-(x^2+y^2) \Leftrightarrow x^2+y^2 = 4-c\]
+\item Projektion in $x-y$-Ebene :\\
+\begin{tabular}{ccl}
+$c<4$& \dots &Kreis um $0$, Radius $\sqrt{4-c}$\\
+$c=4$& \dots &Punkt $0(0,0)$\\
+$c>4$& \dots &leere Menge\\
+\end{tabular}
+\item Karte \\
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-5.788658895806452,0.0) -- (8.720552222579512,0.0);
+\foreach \x in {-5.0,-4.0,-3.0,-2.0,-1.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt);
+\draw[->,color=black] (0.0,-3.6716758368617564) -- (0.0,4.198886798111758);
+\foreach \y in {-3.0,-2.0,-1.0,1.0,2.0,3.0,4.0}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt);
+\clip(-5.788658895806452,-3.6716758368617564) rectangle (8.720552222579512,4.198886798111758);
+\draw(0.0,-0.0) circle (3.0089200720524296cm);
+\draw(0.0,-0.0) circle (1.0192153844992726cm);
+\draw(0.0,0.0) circle (1.9654007224991037cm);
+\begin{scriptsize}
+\draw[color=black] (-1.435895560290663,2.4057673108395305) node {-5};
+\draw[color=black] (-0.47774010907649556,0.7084633686887205) node {3};
+\draw[color=black] (-0.943129899666234,1.51605153471209) node {0};
+\end{scriptsize}
+\end{tikzpicture}
+
+\item Zylinderkoordinaten $(x^2+y^2=r^2) \curvearrowright z=4-r^2 =g(r), r\geq 0, \varphi \in [0;2\pi]$ %TODO 2014-05-07T1152
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{Grenzwerte,Stetigkeit}
+\subparagraph{Einige Begriffe} ($n=2$, Fall $n>2$ analog)
+\begin{itemize}
+\item $\varepsilon$-Umgebung eines Punktes $P_0(x_0,y_0), \varepsilon > 0$:
+\[\underbrace{U_\varepsilon}_{\text{Kreisscheibe um } x_0,y_0} (x_0,y_0) = \{ (x,y): \underbrace{\sqrt{(x-x_0)^2 + (y-y_0)^2}}_{\left \lvert \begin{pmatrix} (x-x_0)\\ y-y_0 \end{pmatrix} \right \rvert} < \varepsilon\}\]
+\item Umgebung $U(x_0,y_0)$: Jede Menge, für die ein $\varepsilon > 0$ existiert, mit $U_\varepsilon (x_0,y_0) \subseteq U(x_0,y_0) \subseteq \mathbb{R}^2$
+\item Innerer Punkt einer Menge $M$ \dots Punkt, für den $M$ eine Umgebung ist.
+\item Häufigkeitspunkt $P$ von $M$ \dots Punkt, für den in jeder $\varepsilon$-Umgebung mindestens ein von $P$ verschiedener Punkt von $M$ enthalten ist.
+\item Gebiet $G$ \dots zusammenhängende Menge, die nur aus inneren Punkten besteht
+\item Einfach zusammenhängendes Gebiet $G$ \dots Das Innerer jeder in $G$ verlaufender geschlossener, doppelpunktfreien Kurve $C$, gehört ganz zu $G$
+\item Abgeschlossener Bereich (Abschließung eines Gebietes) $\overline{G}$: Vereinigung von $G$ mit der Menge aller Häufungspunkte von $G$
+\item Bereich $B$ Jede Menge, für die ein Gebiet $G$ existiert mit $G \subseteq B \subseteq \overline{G}$ ("`Gebiet einschließlich Rand"')
+\end{itemize}
+
+\subparagraph{Definition 1} Geg $z=f(x,y), (x,y) \in B = Db(f),$ ferner sei $(x_0,y_0) \in \mathbb{R}^2$ und es existiert eine Umgebung $U(x_0,y_0)$ mit $U(x_0,y_0) \backslash \{ (x_0,y_0) \} \subseteq Db(f)$\\
+$\lim\limits_{(x,y) \to (x_0,y_0)} f(x,y) =a \quad : \Leftrightarrow$ Für jede Folge $(x_n,y_n)$ mit $x_n,y_n) \in Db(f), (x_n,y_n) \neq (x_0,y_0) \wedge \lim\limits_{n \to \infty} x_n = x_0 \wedge \lim\limits_{n \to \infty} y_n = y_0$ gilt: 
+\begin{equation}\label{5121}
+\lim\limits_{n \to \infty} f(x_n,y_n) = a
+\end{equation}
+
+\subparagraph{Bemerkung} Für jede Annäherung an $(x_0,y_0)$ muss (\ref{5121}) gelten. Es genügt nicht die geradlinige Annäherung!
+
+\subparagraph{Definition 2} Es gelte $U(x_0,y_0)  \subseteq Db(f);$ $f$ heißt stetig an der Stelle $(x_0,y_0)$, wenn \[\lim\limits_{(x,y) \to (x_0,y_0)} f(x,y) = f(x_0,y_0)\] gilt. (vgl. Definition 3, Kapitel 2.2), "`Grenzwert = Funktionswert"`)
+
+\subsection{Partielle Ableitungen}
+\subparagraph{Definition 1} Die Funktion $z=f(x,y),(x,y) \in B \subseteq \mathbb{R}^2$ heißt an der Stelle $(x_0,y_0)$ partiell nach $x$ diffbar, falls der Grenzwert
+\[f_x(x_0,y_0) := \lim\limits_{h \to 0} \frac{f(x_0+h,y_0) -f(x_0,y_0)}{h}\]
+existiert.
+
+Analog: $f$ an der Stelle $(x_0,y_0)$ partiell nach $y$ diffbar, wenn
+\[f_y(x_0,y_0) := \lim\limits_{h \to 0} \frac{f(x_0,y_0+h) -f(x_0,y_0)}{h}\]
+existiert.
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Es sei $g(x) := f(x,y_0)$, d.h. $y_0$ fest. Dann ist $g' (x_0) =f_x (x_0,y_0)$ (gewöhnliche Ableitung einer Funktion einer (1!) Veränderlichen!) $\curvearrowright$ Ableitungsregeln aus Abschnitt 3.2. sind sinngemäß anzuwenden.
+\item $f$ heißt in Gebiet $G$ partiell diffbar, wenn $f$ für alle $(x_0,y_0) \in G$ partiell diffbar ist.
+\item Analaog: Funktion mit mehr als 2 Veränderlichen $z=f(x_1,x_2,\dots,x_n)$, Variabeln $x_2,\dots,x_n$ festhalten, nach $x_1$ diff. $\curvearrowright f_{x1}$ usw.
+\item Bezeichnungen: $f_x = \frac{\partial f}{\partial x} =  \frac{\partial}{\partial x} f = z_x = \frac{\partial z}{\partial x}, f_y = \frac{\partial f}{\partial y} = \dots$
+\item Höhere Ableitungen: $f_{xx} = \frac{\partial}{\partial x} (\frac{\partial}{\partial x} f) = \frac{\partial^2 f}{(\partial x)^2} = \dots$\\
+\[ f_{xy} = \frac{\partial}{\partial y} (\frac{\partial}{\partial x} f) = \frac{\partial^2 f}{\partial x \partial y}\]
+\end{enumerate}
+
+\subparagraph{Satz von Schwarz} Die Funktionen $f,f_x,f_y,f_{xy}$ und $f_{yx}$ seien in $U(x_0,y_0)$ erklärt. Ferner sei $f_{xy}$ an der Stelle $(x_0,y_0)$ stetig. Dann gilt
+\[ f_{xy} (x_0,y_0) = f_{yx} (x_0,y_0)\]
+
+\subparagraph{Beispiel 1}
+\[\begin{array}{llcrr}
+\frac{\partial}{\partial x}
+&& f(x,y) = \frac{x^2}{y^3} + y^2 -x , \; y \neq 0 & \frac{\partial}{\partial y}&\\
+&f_x=  \frac{2x}{y^3}-1 & & f_y= - \frac{3x^2}{y^4 + 2y}&\\
+
+
+\end{array}\]
+%TODO fertig ableiten
+
+\subparagraph{Satz 2} (verallgemeinerte Kettenregel)\\
+Die Funktion $z=f(u,v), u=g(x,y)$ und $v=h(x,y)$ besitzen stetige partielle Ableitungen nach allen Variablen. \\Dann ist die Funktion
+\[z=f^* (x,y) := f(\underbrace{g(x,y)}_{u} , \underbrace{h(x,y)}_{v})\]
+partiell nach $x$ und $y$ diffbar mit
+\[ z_x = z_u \cdot u_x + z_v \cdot v_x \quad z_y = z_u \cdot u_y + z_v \cdot v_y\]
+
+\subparagraph{Beispiel 2} $z=(x^2 + 3y^2 )^{x+2y}$ ist nach $x$ und $y$ zu differenzieren.\\
+Wir setzen $u=x^2 3y^2, v=x+2y \curvearrowright z=u^v$
+
+\begin{itemize}
+\item $z_x= z_u \cdot u_x + z_v \cdot v_x = vu^{v-1} \cdot 2x + u^v \ln{u} \cdot 1$\\
+$=u^v (\frac{v}{u} 2x + \ln{u} ) = (x^2 + 3y^2 )^{x+2y} (\frac{x+2y}{x^2+3y^2} \cdot 2x + \ln{(x^2 + 3y^2)})$
+\item $z_y = z_u \cdot u_y + z_v \cdot v_y = vu^{v-1} \cdot by + u^v \ln{u} \cdot 2$\\
+$=u^v(\frac{v}{u} \cdot by + 2 \ln{u}) = \dots$
+\end{itemize}
+
+\subparagraph{Bemerkung} Verallgemeinerung auf mehr als 2 Variablen:
+\[ z=f(u_1,u_2,\dots,u_m), u_i = g_i(x_1,\dots,x_n), i = 1,\dots,m\]
+\[ \frac{\partial z}{\partial x_k} = \sum\limits_{i=1}^m \frac{\partial z}{\partial u_i} \cdot \frac{\partial u_i}{\partial x_k} \; k=1,\dots,n)\]
+
+\subparagraph{Satz 3} (Satz über implizite Funktionen)\\*
+$F(x,y)$ sei in einer Umgebung von $(x_0,y_0)$ stetig partiell nach $x$ und $y$ diffbar und es sei $F(x_0,y_0) = 0$ und $F_y(x_0,y_0) \neq 0$. Dann ist durch die Gleichung $F(x,y) = 0$ eindeutig eine Funktion $y=f(x), x \in U(x_0)$ erklärt mit $F(x,f(x))$ und es gilt $f'(x) = -\frac{F_x}{F_y}$ für $x \in U(x_0)$
+
+Zum Beweis der Ableitungsformel:\\*
+$F(\underbrace{x}_{u}, \underbrace{y}_{v} = F(\underbrace{x}_{u},\underbrace{f(x)}_{v} = 0 \quad | \text{Diff nach } x$\\
+$F_u \cdot u_x + F_v \cdot v_x = F_x \cdot 1 + F_y \cdot f'(x) = 0 \curvearrowright f'(x) = - \frac{F_x}{F_y}$
+
+\subparagraph{Diskussion} Mittels Satz 3 ist eine Kurvendiskussion für implizit gegebene Kurven $F(x,y) = 0$ möglich, ohne die Gleichung explizit auflösen zu müssen.\\
+Für die 2. Ableitung ergibt sich:
+\[f'' (x) = - \frac{F_{xx} \cdot 1 + F_{xy} \cdot y') F_y - F_x ( F_{yx} \cdot 1 + F_{yy} \cdot y')}{F_y^2}\]
+
+\[\underbrace{\curvearrowright}_{y'=-\frac{F_x}{F_y}} f''(x) = \frac{F_{xx} F_y^2 - 2 F_{xy} \cdot F_x F_y + F_{yy} \cdot F_x^2}{F_y^3}\]
+
+\subparagraph{Definition 2}
+\begin{itemize}
+\item Geg. sei die Funktion $z=f(x,y), (x,y) \in B$.Die vektorwertige Funktion (Vektorfeld)
+\[ \text{grad}\, f(x,y) := \begin{pmatrix} f_x(x,y)\\ f_y(x,y)\\ \end{pmatrix}, (x,y) \in B\]
+heißt Gradient von $f$ an der Stelle $(x,y)$
+\item Allgemein $z=f(x_1,\dots,x_n)$, dann 
+\[ \text{grad} \, f:=\ \begin{pmatrix} f_{x_1} \\ \vdots \\ f_{x_n}\\ \end{pmatrix} \in \mathbb{R}^n\]
+\end{itemize}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Eigenschaften des Gradienten und Anwendung siehe Kapitel 5.4.1.
+\item Umkehrung: Geg. Vektorfeld $\vec{v} = \begin{pmatrix} P(x,y) \\ Q(x,y) \\ \end{pmatrix}$, ges. Funktion F (Skalarfeld) mit $\vec{v} = \text{grad}\, F$ (Ableitungen vorgeg, gesucht Funktion F,) $F$ heißt Stammfunktion (Potential) von $\vec{v}$. Es existiert genau dann eine Stammfunktion $F(x,y)$ mit $F_x = P(x,y), F_y=Q(x,y)$, wenn in einem einfach zusammenhängenden Gebiet $G \subseteq \mathbb{R}^2 $ die sogenannte Integrabilitätsbedingung $P_y = Q_x$ erfüllt ist.
+\end{enumerate}
+
+\subsection{Totale Differenzierbarkeit, Fehlerrechnung}
+\subparagraph{Definition 1} Die Funktion $z=f(x,y)$ heißt an der Stelle $(x_0,y_0)$ total differenzierbar, wenn es Konstanten $\alpha$ und $\beta$ gibt, so dass für alle $h$ und $k$ die Zerlegung $f(x_0 + h, y_0 + k) - f(x_0,y_0) = \alpha \cdot h + \beta \cdot k + R(h,k)$ mit $\lim\limits_{(h,k) \to (0,0)} \frac{R(h,k)}{\sqrt{h^2+k^2}} = 0$ gilt.
+
+\subparagraph{Satz 1}
+\begin{enumerate}
+\item $f$ sei in $U(x_0,y_0)$ partiell nach $x$ und $y$ diffbar, die partielle Ableitung sei stetig in $(x_0,y_0)$. Dann ist $f$ an der Stelle $(x_0,y_0) $ diffbar.
+\item $f$ sei an der Stelle $(x_0,y_0)$ total diffbar. Dann ist $f$ an der Stelle $(x_0,y_0)$ partiell diffbar und es gilt
+\[\alpha = f_x(x_0,y_0) , \beta  = f_y(x_0,y_0)\]
+\end{enumerate}
+
+\subparagraph{Definition 2} $df(x_0,y_0) := f_x(x_0,y_0) \cdot h + f_y(x_0,y_0) \cdot k$ heißt das zur Stelle $(x_0,y_0)$ und den Zuwächsen $h= \Delta x =dx$ und $k = \Delta y = dy$ gehörende totale Differential von $f$. (die Summanden sind die partiellen Differentiale)\\*
+Schreibweise $df= f_x d_x + f_y d_y$
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Es gilt
+$ \Delta f := f(x_0+h,y_0+k) - f(x_0,y_0) = d_f + \underbrace{R(h,k)}_{{Restglied } \to 0 \text{ wenn } (h,k) \to (0,0)}$\\
+$\curvearrowright \Delta f \approx df (\text{falls } \lvert h \rvert, \lvert k \rvert \text{ klein})$\\
+$\curvearrowright$ Fehlerrechnung: Absoluter Fehler $\lvert \Delta f \rvert$\\
+Es gilt $\lvert \Delta f \rvert \approx \lvert df \rvert \leq \lvert f_x(x_0,y_0) \rvert \cdot \lvert \Delta x \rvert + \lvert f_y(x_0,y_0)\rvert \cdot \lvert \Delta y \rvert$\\
+Für Fehlerschranken $s_p := \max{\lvert \Delta f \rvert}, s_x := \max{\lvert \Delta x \rvert}, s_y  := \max{\lvert \Delta y \rvert}$ gilt
+\[ s_f \approx \lvert f_x(x_0,y_0) \rvert \cdot s_x + \lvert f_y(x_0,y_0) \rvert \cdot s_y \] (Lineares Fehlerfortpflanzungsgesetz)
+\item Geometrische Veranschaulichung
+\begin{itemize}
+\item $\Delta f$ ist der Zuwachs der Funktion, wenn $(x,y)$ von $(x_0,y_0)$ in $(x_0 + h, y_0 + k)$ übergeht
+\item $df$ ist der entsprechende Zuwachs der Tangentialebene (TE) an die Fläche $z=f(x,y)$ in Punkt $(x_0,y_0,z_0)$ (TE= Linearisierung)
+
+Beispiel 1: (Fehlerrechnung)\\*
+Zur Ermittlung der Entfernung $d$ zweier (z.B. schwer zugänglicher) Punkte $P$ und $Q$ werden die Entfernungen $p$ und $q$ von einem 3. Punkt $S$ sowie der Winkel $\varphi = \measuredangle PSQ$ gemessen.
+\end{itemize} 
+\end{enumerate}
+
+
+\subsection{Weitere Begriffe, Anwendungen}
+\subparagraph{Definition 1} $f(x,y)$ besitze in $(x_0,y_0)$ stetige partielle Ableitungen 1. Ordnung. Für jeden Vektor
+\[\vec{s} = \begin{pmatrix} s_1 \\ s_2 \end{pmatrix} = \lvert s \rvert (\cos{\alpha} \cdot \vec{i} + \sin{\alpha} \cdot \vec{i} \]
+heißt
+\[\frac{\partial f}{\partial s} (x_0,y_0) := \lim\limits_{h \to 0} \frac{f(x_0 + h \cos{\alpha}, y_0 + h \sin{\alpha}) - f(x_0,y_0)}{h}\]
+
+\subparagraph{Richtungsableitung} von $f$ an der Stelle $(x_0,y_0)$ in Richtung $\vec{s}$ (bzw. in Richtung $\vec{s^0}$, in Richtung $\alpha$)
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $\frac{\partial f}{\partial s} (x_0,y_0)$ ist der Flächenanstieg in Richtung $\vec{s}$ (genauer, der Anstieg der Schnittkurve der Fläche $z=f(x,y)$ mit der Ebene durch $(x_0,y_0,0)$ und $(x_0+s_1, y_0 +s_2,0)$, die senkrecht zur $x-y-$Ebene steht.
+\item Speziell
+\[\vec{s} = \vec{i}, \quad \text{d.h. } \alpha = 0 \curvearrowright \frac{\partial f}{\partial s} = f_x\]
+\[\vec{s} = \vec{i}, \quad \text{d.h. } \alpha = \frac{\pi}{2} \curvearrowright \frac{\partial f}{\partial s} = f_y \]
+\end{enumerate}
+
+\subparagraph{Satz 1} (Berechnung der Richtungsableitung)\\*
+Es gilt 
+\[\frac{\partial f}{\partial s} (x_0,y_0) = f_x (x_0,y_0) \cdot \cos{\alpha} + f_y (x_0,y_0) \cdot \sin{\alpha}\]
+\[ = \frac{f_x (x_0,y_0) \cdot s_1 + f_y(x_0,y_0) \cdot s_2}{\sqrt{s_1^2 + s_2^2}} = \left ( \text{grad} \, f(x_0,y_0), \vec{s^0} \right ) \]
+
+\subparagraph{Satz 2} (Eigenschaften des Gradienten im Falle $z=f(x,y)$)\\*
+Der Vektor $\text{grad} \, f(x_0,y_0)$
+\begin{itemize}
+\item steht senkrecht auf (der Proj) der Höhenlinie $f(x,y) = c $ zum Niveau $z=c=f(x_0,y_0)$ (in die $x-y$-Ebene) und 
+\item zeigt in Richtung des stärksten Funktionszuwachses (Flächenanstiegs) Dieser ergibt zu $\begin{array}{c} \text{max} \\ \vec{s} \\ \end{array} \frac{\partial f}{\partial s} (x_0,y_0) = \lvert \text{grad} \, f(x_0,y_0) \rvert$
+\end{itemize}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Fall $n=3$: Funktion $u=f(x,y,z)$. Analog zu Satz 3 steht der Vektor $\text{grad} \, f (x_0,y_0,z_0) \in \mathbb{R}^3$ senkrecht auf (der Projektion) Niveaufläche $f(x,y,z) = c$ zum Niveau $u=c=f(x_0,y_0,z_0)$ (in $\mathbb{R^3}$) und zeigt in Richtung des stärksten Funktionszuwachses; z.B. Erdatmosphäre, $\dots u = $ Luftdruck(idealisiert), Niveauflächen = Kugelflächen, Niveau mit wachsenden Radius exponentiell abnehmend $\curvearrowright$ Gradient zeigt in Richtung Erdmittelpunkt.
+\item Anwendung Tangentialebenengleichungen
+\begin{itemize}
+\item TE an die Fläche $F(x,y,z)= 0$ im Punkt $(x_0,y_0,z_0)$
+\begin{equation}\label{TE42}
+F_x (x_0,y_0,z_0) \cdot (x-x_0) + F_y (\dots) \cdot (y-y_0) + F_2 (\dots) \cdot (z-z_0) = 0
+\end{equation}
+Denn: Fläche $F(x,y,z) = 0$ ist Niveaufläche von $u=F(x,y,z)$ zum Niveau $u=0 \curvearrowright \vec{n} = \text{grad} \, F(x_0,y_0,z_0)$ ist ein Normalenvektor der Fläche und damit der TE $\curvearrowright$
+
+\[(\vec{n},\vec{r}-\vec{r_0}) = 0, \text{ vgl. 1.5.5.5., d.h. } \left ( \begin{pmatrix} F_x(x_0,y_0,z_0) \\ F_y(x_0,y_0,z_0)\\ F_z(x_0,y_0,z_0)\\ \end{pmatrix}, \begin{pmatrix} x-x_0 \\ y-y_0\\ z-z_0 \\ \end{pmatrix} \right ) = 0\]
+\item speziell $z=f(x,y) \curvearrowright $ TE in $(x_0,y_0,z_0)$
+\begin{equation}\label{TE43}
+z = z_0 + f_x(x_0,y_0) \cdot (x-x_0) + f_y(x_0,y_0) \cdot (y-y_0)
+\end{equation}
+Denn: $z=f(x,y) \Leftrightarrow 0 = f(x,y) - z =: F(x,y,z)$\\
+$\curvearrowright F_x = f_x , F_y = f_y, F_z = -1$ einsetzen in (\ref{TE42}) ergibt (\ref{TE43}).
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{Lokale Extrema (ohne Nebenbedingungen) von Funktionen zweier Veränderlicher}
+\subparagraph{Defnition 2} $f(x,y)$ heißt in $(x_0,y_0)$ lokal $\left \{ \begin{array}{c} \text{maximal} \\ \text{minimal} \\ \end{array} \right.$, wenn es für eine Umgebung $U(x_0,y_0)$ gibt, so dass für alle $(x,y) \in U(x_0,y_0) \backslash \{ (x_0,y_0) \}$ gilt $\left \{ \begin{array}{lcr} f(x,y) & < & f(x_0,y_0) \\ f(x,y) & > & f(x_0,y_0)\\ \end{array} \right.$
+
+\subparagraph{Diskussion} Anschaulich $\text{TE} \parallel x-y-$Ebene\\
+Bezeichnungen:
+\begin{itemize}
+\item $(x_0,y_0) $ \dots Extremstelle
+\item $z_0 = f(x_0,y_0)$ \dots Extremstelle
+\item $(x_0,y_0,z_0)$ \dots Extrempunkt
+\end{itemize}
+$TE$ ist Extrempunkt horizontal\\
+$\curvearrowright$ Funktionsanstieg (Richtungsableitung) für alle Richtungen $=0$, also auch $f_x (x_0,y_0) = 0$ und $f_y(x_0,y_0) = 0 \curvearrowright$
+
+\subparagraph{Satz 3} (notwendige Bedingung für Vorliegen lokaler Extrema)
+$f(x,y)$ sei  an der Stelle $(x_0,y_0)$ lokal extremal und diffbar nach $x$ und $y$ $\Rightarrow$ $(f_x(x_0,y_0) = 0) \wedge (f_y (x_0,y_0) = 0)$
+
+\subparagraph{Satz 4} (hinreichende Bedingung für lokale Extrema)
+\begin{enumerate}
+\item $f(x,y)$ besitze in $U(x_0,y_0)$ stetige partielle Ableitungen bis zur 2. Ordnung
+\item Die notwendige Bedingung $(f_x(x_0,y_0) = 0) \wedge (f_y (x_0,y_0) = 0)$ sei erfüllt
+\end{enumerate}
+Dann gilt mit $\Delta(x,y) := f_{xx}f_{yy} - f_{xy}^2 = \begin{vmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \\ \end{vmatrix}$\\
+$\Delta (x_0,y_0) > 0 \Rightarrow f \text{ in } (x_0,y_0)$ lokal extremal und zwar
+\begin{equation}\label{5411} \begin{array}{lcr} \text{lokal maximal} & \text{falls zusätzlich} & f_{xx}(x_0,y_0) <0 \\ \text{lokal minimal} & \text{falls zusätzlich} & f_{xx}(x_0,y_0) > 0 \\ \end{array}
+\end{equation}
+
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $\Delta (x_0,y_0) > 0 \Rightarrow f_{xx} (x_0,y_0)$ und $f_{yy} (x_0,y_0)$ sind beide positiv oder beide negativ, daher kann in Zusatzbedingung (\ref{5411} ) anstelle $f_{xx}$ auch $f_{yy}$ stehen.
+\item Allgemeine Vorgehensweise zur Bestimmung der lokalen Extremstellen von $z=f(x,y)$
+\begin{enumerate}
+\item Gleichungssystem $\begin{array}{c} f_x=0 \\ f_y = 0\\ \end{array}$ lösen (notwendige Bedingung)\\*
+$\curvearrowright$ extremwertverdächtige Stellen (stationäre Stellen) $P_E(x_E,y_E)$
+\item Für diese Stellen $P_E(x_E,y_E)$ Diskriminante $\Delta$ berechnen
+\begin{enumerate}
+\item Fall $\Delta (x_E,y_E) > 0 \Rightarrow$ Extremum, $f_{xx} (x_E,y_E) \left \{ \begin{array}{lr} <0 & \text{\dots Max} \\ > 0 & \text{\dots Min} \\ \end{array} \right.$
+\item Fall $\Delta (x_E,y_E) = 0 \Rightarrow$ gesonderte Untersuchung notwendig  (vgl. Diskussion 4)
+\item Fall $\Delta (x_E,y_E) <0 \Rightarrow$ kein Extremum sondern Sattelstelle (im engeren Sinne), vgl. Diskussion 3
+\end{enumerate}
+Allgemein: Stationäre Stellen, die keine Extremstellen sind, werden als Sattelstellen (im weiteren Sinne) bezeichnet.
+\end{enumerate}
+\end{enumerate}
+
+\subparagraph{Beispiel 2} $z=f(x,y) = 2xy^2 - 2x^2 - y^2 +4$\\*
+
+\[ f_x = 2y^2 - 4x = 0 \]
+\[ f_y = 4xy - 2y = 0\]
+
+$(f_y = 4xy - 2y = 0) \Leftrightarrow 2y (2x-1) = 0$\\
+\begin{enumerate}
+\item Fall $y=0, (f_x = 2y^2 - 4x = 0) \curvearrowright x= 0 \curvearrowright \underline{\underline{P_1(0;0)}}$
+\item Fall $x=\frac{1}{2}, (f_x = 2y^2 - 4x = 0) \curvearrowright 2y^2 -2 = 0 \curvearrowright  y^2 = 1 \curvearrowright y = \pm 1 \curvearrowright \underline{\underline{ P_2(\frac{1}{2};-1),P_3(\frac{1}{2};1)}}$ (stationäre Stellen $P_{1-3}$)
+
+
+$f_{xx} = -4, f_{yy} = 4x -2, f_{xy} =4y \curvearrowright \Delta (x,y) = (-4) \cdot (4x-2) -(4y)^2 $\\
+$P_1: \left. \begin{array}{c} \cdot \Delta (0,0) = (-4) \cdot (-2) - 0^2 = 8>0 \\ f_{xx} (0,0) = -4 <0 \\ \end{array} \right \} \curvearrowright  \text{max} \, (0;0) , z_{\text{max}} = 4$\\*
+$P_2 : \Delta (\frac{1}{2}; -1) = (-4) \cdot 0 - 16 <0 \curvearrowright$ keine Extrema, Stattelstelle (im erweiterten Sinne)\\*
+$P_3: \Delta(\frac{1}{2};1) =(-4) \cdot 0 -16 < 0 \curvearrowright$ keine Extrema, Stattelstelle (im engeren Sinne)
+
+\item Sattelstellen im engeren Sinne (i.e.S.) anschaulich
+\item Im Falle $\Delta (x_E,y_E) = 0$ ist eine gesonderte Untersuchung notwendig, z.B: Einschräkung des Diff.-Bereiches auf Kurven, die durch $P_E$ verlaufen. Genau dann, wenn all diese Einschränkungen ein Max. bei $P_E$ aufweisen, ist $P_E$ eine Max.-Stelle, analog beim Minimum.
+
+\subparagraph{Beispiel 3} $z=f(x,y) = x^4 - y^4$\\*
+$\left. \begin{array}{c} f_x = 4x^3 = 0\\ f_y = -4y^3 = 0 \\ \end{array} \right \}  \curvearrowright x=0, y= 0 \curvearrowright P_E (0;0)$\\
+$f_{xx} = 12x^2, f_{yy} = -12 y^2, f_{xy} = 0 \curvearrowright \Delta (P_E) = 0$
+
+\begin{itemize}
+\item Einschränkung auf Gerade $x=0 \curvearrowright z = -y^4$
+\item Einschränkung auf Gerade $y=0 \curvearrowright z = x^4$
+\end{itemize}
+$\curvearrowright$ keine Extremstelle
+\item $z=f(x_1, \dots , x_n), \vec{x} \in B \subseteq \mathbb{R}^n$
+\begin{itemize}
+\item notwendige Bedingung für Extrema $\frac{\partial f}{\partial x_i} = 0 \quad i=1,\dots,n) \curvearrowright$ mögl. Extremstellen (stationäre Stellen) $\vec{x}_E$
+\item Hinreichende Bedingung
+\subparagraph{Definition} \textsc{Hesse}-Matrix  $\underline{H}(\vec{x}) := \left ( \frac{\partial^2 f}{\partial x_i \partial x_j} \right )^n_{i,j=1} \dots (n,n)$-Matrix
+
+\begin{enumerate}
+\item Alle Eigenwerte von $\underline{H}(\vec{x}_E) $ sind positiv $\curvearrowright \vec{x}_E$ \dots lokales Minimum.
+\item Alle Eigenwerte von $\underline{H}(\vec{x}_E) $ sind negativ $\curvearrowright \vec{x}_E$ \dots lokales Maximum.
+\item Es gibt positive und negative Eigenwerte $\curvearrowright \vec{x}_E$ \dots Sattelstelle (kein Extremum)
+\item Wenigstens ein EW $=0 (\leftrightarrow \det{\underline{H}(\vec{x}_E)} = 0)$ \dots gesonderte Untersuchung notwendig (außer, es gilt gleichzeitig Fall c))
+\end{enumerate}
+
+\subparagraph{Fall $n=2$} $\det{(\underline{H} (\vec{x}_E) - \lambda E)}  = (\lambda - \lambda_1) (\lambda - \lambda_2) \underbrace{\curvearrowright}_{\lambda = 0}$ (char. Polynom)\\*
+$\det{\underline{H} (\vec{x}_E)} = \lambda_1 \cdot \lambda_2 = \Delta (\vec{x}_E), \lambda_1 + \lambda_2 = f_{xx} (\vec{x}_E) + f_{yy} (\vec{x}_E)$ Damit sind die Bedingungen unter der \textsc{Hesse}-Matrix Definition identisch mit der Fallunterscheidung in Diskussion 2
+
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{Lokale Extrema (mit Nebenbedingungen)}
+\subparagraph{Problem} Gesucht sind lokale Extrema von $z=f(x,y)$ unter der Nebenbedingung $g(x,y) = 0$, d.h.
+\begin{itemize}
+\item Fläche $z=f(x,y)$ schneiden mit Zylinderfläche $g(x,y) = 0 \curvearrowright$ Schnittkurve $C$
+\item Gesucht sind Stellen $(x_0,y_0)$ auf der Kurve $g(x,y) = 0$ an denen extremale Höhe über der $x-y-$Ebene erreicht wird.
+\end{itemize}
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item $g(x,y) = 0$ ist auffassbar als  
+\begin{enumerate}
+\item Kurve $K$ in der $x-y$-Ebene, $K = \{ (x,y) | g(x,y)=0 \}$
+\item Zylinderfläche $\perp x-y$-Ebene: $\{(x,y,z) | g(x,y) =0 \}$
+\end{enumerate}
+(Zylinderfläche wird allgemein erzeugt von einer ebenen Kurve $K$, die längs einer nicht in dieser Ebene liegenden Gerade $g$ verschoben wird.
+\item Falls $g_y \neq 0 \curvearrowright g(x,y)$ auflösbar nach $y \curvearrowright y = y(x)$, damit $z=f(x,y(x)) \rightarrow$ extr., notwendige Bedingung
+\begin{equation}\label{5431}
+\frac{dz}{dx} = f_x + f_y \cdot y' = 0
+\end{equation}
+\begin{itemize}
+\item Außerdem gilt $g(x,y(x))=0 \curvearrowright$\begin{equation}\label{5432} g_x + g_y \cdot y' = 0\end{equation}
+\item Mit $\vec{a} := \begin{pmatrix} 1 \\ y' \\ \end{pmatrix} \neq \vec{0}, \vec{b} := \begin{pmatrix} f_x \\ f_y \\ \end{pmatrix}$ und $\vec{c} := \begin{pmatrix} g_x \\ g_y \\ \end{pmatrix} \neq \vec{0}$ gilt $(\vec{a},\vec{b}) = 0$ Skalarprodukt(\ref{5431}), $(\vec{a},\vec{c}) = 0$ (\ref{5432})\\
+$\curvearrowright \vec{b} = \alpha \cdot \vec{c} \underbrace{\curvearrowright}_{-\alpha =: \lambda} \vec{b} + \lambda \vec{c} = \vec{c} = \vec{0} \Leftrightarrow \begin{array}{c} f_x + \lambda g_x = 0 \\ f_y + \lambda g_y = 0\\ \end{array}$
+\end{itemize}
+Fall $g_x \neq 0$ analog $\curvearrowright$ \textsc{Lagrange}-Methode
+\begin{enumerate}
+\item \textsc{Lagrange}-Funktion
+\[ F(x,y,\lambda) := f(x,y) + \lambda g(x,y)\]
+mit einer Hilfsgröße $\lambda$ bilden, dabei beachten: Nebenbedingung muss in der Form $g(x,y) = 0$ (implizit) [sein]!
+\item Notwendige Bedingung: Es sei $(x_E,y_E)$ eine lokale Xtremstelle von $z=f(x,y)$ unter der NB $g(x,y) = 0$. $f$ und $g$ besitzen in $U(x_E,y_E)$ stetige partielle Ableitungen 1. Ordnung und es gelte\begin{equation}\label{543eins}\text{grad}\, g(x_E,y_E) \neq \vec{0}\end{equation} (d.h. $g_x(x_E,y_E) \neq 0 \vee g_y(x_E,y_E) \neq 0 \curvearrowright$ NB auflösbar nach $x$ bzw. $y$)\\
+Dann gibt es eine Lösung des Gleichungssystems \begin{equation}\label{543zwo}\begin{array}{c} F_x = 0 \\ F_y = 0\\ F_\lambda = 0\\ \end{array}\end{equation} der Gestalt $(x_E,y_E,\underbrace{\lambda_E}_{\text{Hilfsgröße}})$, d.h. die Lösungen von (\ref{543zwo}) liefern stationäre Stellen (mögliche Extremstellen) $(x_E,y_E)$
+
+Sonderfall: Eventuell vorhandene Stellen $(x_0,y_0)$ mit $g_x(x_0,y_0) = g_y(x_0,y_0) = 0$ (sogenannte singuläre Stellen der Kurve $g(x,y) = 0$ können Extremstellen sein, ohne sich aus (\ref{543zwo}) zu ergeben, sie müssen daher gesondert untersucht werden
+\item Untersuchung der stationären Stellen z.B.
+\begin{itemize}
+\item mittels Höhenlinienbild von $z=f(x,y)$
+\item oder mittels geometrischen oder physikalischen Überlegungen
+\item meist Verzicht auf Untersuchung der auch hier existierenden hinreichenden Bedingung
+\end{itemize}
+\end{enumerate}
+
+\subparagraph{Beispiel 4} $z=f(x,y) = x^2 + y^2 \rightarrow$ extremum unter der NB: $x^2 + \frac{y^2}{4} = 1$
+\begin{enumerate}
+\item $F(x,y,\lambda) = \underbrace{x^2+y^2}_{f(x,y)} + \lambda (\underbrace{x^2 + \frac{y^2}{4} -1}_{g(x,y)})$
+\item $\begin{array}{c|r}
+F_x = 2x + 2\lambda x = 0 & (1) \curvearrowright 2x (1 + \lambda ) = 0\\
+F_y = 2y + \frac{1}{2} \lambda y = 0 & (2) \text{ 1. Fall } x=0, (3): \frac{y^2}{4} -1 = 0\\
+F_\lambda = x^2 + \frac{y^2}{4} -1 =0 & (3) \curvearrowright y = \pm 2, (2): \lambda = -4\\
+ & \curvearrowright P_1(0;-2),P_2(0;2)\\
+\end{array}$
+
+2. Fall: $\lambda = -1, \left. \begin{array}{c} (2) \curvearrowright 2y - \frac{1}{2} y=0 \curvearrowright y=0 \\ (3) \curvearrowright x^2 -1 = 0 \curvearrowright x = \pm 1 \\ \end{array} \right \} \begin{array}{c} P_3(-1;0)\\ P_4(1;0)\\ \end{array} $\\
+
+$\begin{array}{l|c|c|c|c}
+\text{stationäre Stellen} & P_1(0;-2) & P_2(0;2) & P_3(-1;0) & P_4(1;0)\\ \hline
+\text{Funktionswert} z & 4 & 4 & 1 & 1\\
+\end{array}$
+
+(Sonderfall $g_x= 2 x=0, g_y = 2y = 0 \curvearrowright x = 0, y=0 \curvearrowright g(0,0) \neq 0 \curvearrowright$ keine singulären Stellen sind vorhanden
+
+\item Höhenlinien von $f: x^2 + y^2 = C$ (Kreise um 0 mit Radius $\sqrt{C}$, falls $C > 0$)\\
+NB: Ellipse $\frac{x^2}{1^2} + \frac{y^2}{2^2} = 1$\\
+$\curvearrowright P_1,P_2$ \dots Stellen lokaler Maxima, $z_\text{max} = 4$\\
+$\curvearrowright P_3,P_4$ \dots Stellen lokaler Minima, $z_\text{min} = 1$
+
+Bemerkungen:
+\begin{enumerate}
+\item Für Funktionen $f(x_1,\dots,x_n)$ mit $n>2$ Veränderlichen und $k<n$ NB $g_i(x_1,\dots,x_n)$ analogen Vorgehen: \textsc{Lagrange}-Funktion
+\[F(x_1,\dots,x_n, \lambda_1,\dots,\lambda_k) = f (x_1,\dots,x_n) + \sum\limits_{j=1}^k \lambda_j g_j (\dots) \text{ usw.} \]
+Bedingung (1) hier: $\text{rang} \, \left ( (\frac{\partial g_j}{\partial x_j} )_{\begin{array}{c}i=1,\dots,n\\ j = 1, \dots ,k\\ \end{array}} \right ) = k$
+\item Falls NB eindeutig nach $k$ Variablen auflösbar sind, dann Rückführung auf Problem mit $(n-k)$ Variablen ohne NB möglich.
+
+Vorsicht im Beispiel 4: $y^2 = 4(1-x^2) \curvearrowright  y =\pm \sqrt{4(1-x^2)}$\\
+Einsetzen $\curvearrowright z = 4-3x^2, \frac{dz}{dx} = -6x = 0 \curvearrowright x_E = 0 \curvearrowright$ nur $P_1,P_2$
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+\subsection{Weitere Begriffe, Anwendungen}
+\subsection{Richtungsableitung, Tangentialebenen}
+
+\subparagraph{Beispiel 5} Bei einem Stochastik-Problem (vgl. 3. Sem) ergibt sich die Aufgabe, die Zahl 1 so in $n$ Summanden $a_j$ zu zerlegen, dass die Summe der Quadrate minimal wird.\\
+Mathematisches Modell:
+\[ s= a_1^2 + a_2^2 + \dots + a_n^2 \rightarrow \text{ min. unter der} \]
+\[\text{NB: } a_1+a_2 + \dots + a_n = 1, a_i \in \mathbb{R} (i=1,\dots,n) \; n \geq 2 \]
+
+\begin{enumerate}
+\item \textsc{Lagrange}-Funktion \[ F(a_1, \dots,a_n,\lambda ) = a_1^2 + \dots + a_n^2 + \lambda (a_1 + \dots + a_n1-1)\]
+\item Notwendige Bedingung
+\[ \frac{\partial F}{\partial a_i} = 2 a_i + \lambda  = 0 (i=1, \dots, n) \] %1
+\[ \frac{\partial F}{\partial \lambda} = a_1 + \dots + a_n -1 = 0 \] %2
+\[ \curvearrowright a_i = - \frac{\lambda}{2} (i=1,\dots,n) \curvearrowright a_1= a_i = \dots = a_n =: a \]
+\[ \curvearrowright n a -1 = 0 \curvearrowright a = \frac{1}{n}, \text{d.h. } \underline{\underline{a_1=a_2 = \dots = a_n = \frac{1}{n} }} \quad (\lambda = -2a_i = \underline{\underline{-\frac{2}{n}}}) \]
+\item Minimum ist klar: $S$ kann nicht beliebig  klein werden , aber beliebig groß, daher existiert ein Minumum. Da die notwendige Bedingung nur eine Lösung besitzt, ist dies die gesuchte Min.-Stelle.
+\end{enumerate}
+
+\section{Integralrechnung  für Funktionen von mehreren reellen Variablen}
+\subsection{Integrale über ebene Bereiche}
+\subsubsection{Begriff}
+\begin{itemize}
+\item Geg.
+\begin{enumerate}
+\item Beschränkter, abgeschlossener Bereich $B \subseteq \mathbb{R}^2$
+\item Fläche $z=f(x,y) \geq 0$, $f$ stetig
+
+\end{enumerate}
+Ges: Volumen $V$ des Körpers $K$ unter der Fläche über dem Bereich $B$\\
+*) Zum vergleich fläche kaum entfalten, wenn der Rand von $B$ durch Schnitt der Fläche $z=f(x,y)$ mit der $x-y$-Ebene entsteht.
+\item Zerlegung von $B$ in Teilbereich $\Delta b_i$\\
+$\curvearrowright$ Zerlegung von $K$ in Säulen mit dem Volumen $\Delta V_i$\\
+$\curvearrowright V = \sum\limits_{i} \Delta V_i \approx \sum\limits_{i} (\xi_i,\eta_i) \cdot \Delta b_i$
+\item $f$ stetig, Verfeinerung, Grenzübergang $\curvearrowright$\\
+Grenzwert $:= V$ existiert unabhängig von der Zerlegungsfolge\\
+Schreibweise \[V= \iint\limits_{B} f(x,y) \, db \quad \text{ \dots Bereichsintegral} \]
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Einteilung von $B$ durch achsenparallele Geraden:\\
+$db = dxdy \curvearrowright$\\
+Schreibweise \[ \iint\limits_{B} f(x,y) \, db = \iint\limits_{B} f(x,y) \, dxdy \]
+\item Unabhängig von der geometrische Bedeutung wird das Bereichtsintegral auch für Funktionen mit negativen Funktionswerten erklärt.
+\end{enumerate}
+\end{itemize}
+
+\subsubsection{Reduktion auf Doppelintegrale}
+Geg. seien zwei stetige Funktionen $\varphi_1 (x)$ und $\varphi_2 (x)$ mit $\varphi_1 (x) \leq \varphi_2 (x)$ für $x \in [a;b] (a<b)$\\
+Der Bereich \[B := \{ (x,y) | a \leq x \leq b, \varphi_1 (x) \leq y \leq \varphi_2 (x) \} \] heißt Normalbereich bzgl. der $x$-Achse (normal=orthogonal=senkrecht\\
+Dann gilt: \[ \iint\limits_{B} f(x,y) \, db = \int\limits_{x=a}^b \left ( \int\limits_{y=\varphi_1 (x)}^{\varphi_2 (x)} f(x,y) \, dy \right ) \, dx \]
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Normalbereich bzgl. $x$-Achse wird links und rechts begrenzt von Koordinatenlinien $x=a,x=b$. Diese Begrenzungen können zu Punkten entarten.\\
+Das Intervall $[a,b]$ ergibt sich durch Orthogonalprojektion von $B$ auf die $x$-Achse. Daraus ergeben sich die stets konstanten Grenzen für die äußere Integration ($x$ läuft von $a$ bis $b$!)\\
+Dagegen läuft $y$ in Abhängigkeit von $x$ nur von $\varphi_1(x)$ bis $\varphi_2(x)$ (und nicht von $c$ bis $d$!).\\
+$\rightarrow$ Grenzen für die innere Integration hängen im allgemeinen von der äußeren Integrationsvariablen ab
+\item Analog: Geg. $\psi_1 (y) \leq \psi_2 (y)$ für $y \in [c;d]$ Normalbereich bzgl. $y$-Achse \[B=\{ (x,y) | c \leq y \leq d, \psi_1(y) \leq x \leq \psi_2(y) \} \]
+Dann \[\iint\limits_{B} f(x,y) \, db = \int\limits_{y=c}^d \left ( \int\limits_{x=\psi_1(y)}^{\psi_2 (y)} f(x,y) \, dx \right ) \, dy\] (horizontale Grenzen für $y$ durch Projektion von $B$ auf $y$-Achse)
+\item Oft sich beide Varianten möglich (vgl. Beispiel 1), manchmal ist Zerlegung notwendig:
+\[ \iint\limits_{B} \dots = \iint\limits_{B_1} \dots + \iint\limits_{B_2} \dots \]
+\item Außen und innere konstante Grenzen $\Leftrightarrow B$ ist achsenparralleles) Rechteck (in diesem Falle ist die Integrationsreihenfolge egal)
+
+\subparagraph{Beispiel 1} Zu berechnen ist $I = \iint\limits_{B} \frac{x}{y} \, db$, dabei werde $B$ begrenzt von $y=x^2, x=2$ und $y=1$ (Volumen unter einer Wendelfläche)
+\begin{itemize}
+\item Skizzen %2014-05-26T14:35
+$var 1: B= \{ (x,y) | 1 \leq x \leq 2 , 1 \leq y \leq x^2 \}$ (Projektion auf $x$-Achse)
+$var 2: B= \{ (x,y) | 1 \leq y \leq 4 , \sqrt{y} \leq x \leq 2 \}$ (Projektion auf $y$-Achse)
+\item Berechnung von $I$ als Doppelintegral (z.B. nach Var 2)\\
+$I = \int\limits_{y=1}^{4} (\int\limits_{x=\sqrt{4}^2} \frac{x}{y} \, dx)dy = \int\limits_{y=1}^4 \left [ \frac{x^2}{2y} \right ]_{x = \sqrt{y}}^2 dy$
+\end{itemize}
+\end{enumerate}
+
+
+\subsubsection{Anwendungen}
+$\begin{array}{|c|c|} \hline
+\text{Volumen } V \text{ unter } z=f(x,y) \geq 0 \text{ über } B & V = \iint\limits_B f(x,y) \, db\\ \hline
+\text{Flächeninhalt } [B] \text{ von } B & [B] = \iint\limits_B \, db \text{ ( Integrand = 1)}\\ \hline
+\text{(geometr.) Schwerpunkt } S(x_s,y_s) \text{ von } B & x_s= \frac{1}{[B]} \iint\limits_{B} x \, db , y_s= \frac{1}{[B]} \iint\limits_{B} y \, db \\ \hline
+\text{Integralmittelwert von } f \text{ in } B & m = \frac{1}{[B]} \iint\limits_B f(x,y) \, db \\ \hline
+\end{array}$
+
+\subsubsection{Koordinatentransformation}
+\begin{itemize}
+\item Ziel: Durch Einführung neuer Koordinaten (z.B: $u$ und $v$) möglichst einfache Grenzen erzeugen.\\
+Günstig ist es, wenn möglichst viele Begrenzungen von $B$ auf Koordinatenlinien liegen. ($u = const., v = const.$)
+\item Besonders wichtig: Polarkoordinaten $x=r \cos{\varphi}, y = r \sin{\varphi}$\\
+Koordinatenlinien $r=const \curvearrowright$ Kreislinien um 0)\\
+$\varphi = const. \curvearrowright$ Strahlen von 0 aus)
+\end{itemize}
+Anwendung falls $B$ ein Kreisbereich, Kreisring, Kreissektor usw. mit Mittelpunkt 0 ist. Das Bereichselement $db$ ist ebenfalls durch die neuen Koordinaten ausdrückbar.\\
+Man erhält: \[db=r \, dr \, d\varphi \text{ (Herleitung s. allg. Koord.transf.)}\]
+
+
+\subparagraph{Beispiel 2} Gesucht Volumen $V$ des Körpers,  bergrenzt vom Rotationsparabolid $z=4-(x^2+y^2)$ und der $x-y$-Ebene $(z=0)$
+\begin{itemize}
+\item Schnittkurve $x^2 + y^2 = 4$ (Kreis in $x-y$-Ebene)
+\item $B$ in Polarkoordinaten $x=r \cos{\varphi}, y= r \sin{\varphi}: 0 \leq r \leq 2, 0 \leq \varphi \leq 2\pi $
+$\curvearrowright V = \iint\limits_B (4-(x^2+y^2))db = \int\limits_{r=0}^{2} \int\limits_{\varphi=0}^{2\pi} (4-r^2) \underbrace{r \, d\varphi dr}_{db}$\\
+$=\int\limits_{r=0}^{2}(4r-r^3) \underbrace{[\varphi]_0^{2\pi}}_{2\pi} \, dr = 2\pi \left [ 2r^2 - \frac{r^4}{4} \right ]_0^2 = \underline{\underline{8\pi}}$
+\end{itemize}
+
+\subparagraph{Allg. Koordinatentransformation} \begin{equation}\label{6141}x=x(u,v),y=y(u,v)\end{equation}
+\subparagraph{Definition 1} \[ \frac{\partial (x,y)}{\partial (u,v)}=: \begin{vmatrix} x_u & x_v \\ y_u & y_v \\ \end{vmatrix}\] heißt Funktionaldeterminante der Transformation (\ref{6141})\\
+Es ergibt sich für das Bereichselement
+\[ db=\lvert \begin{vmatrix} x_u & x_v \\ y_u & y_v \\ \end{vmatrix} \rvert \, du \, dv\]
+Falls $\frac{\partial (x,y)}{\partial (u,v)} \neq 0$ erhält man durch (\ref{6141}) eine umkehrbar eindeutige Abbildung $(x,y) \in B \leftrightarrow (u,v) \in B'$. Für das Bereichsintegral gilt in den neuen Koordinatne:
+\[ I = \iint\limits_{B} f(x,y) \, db = \iint\limits_{B'} f(x(u,v),y(u,v)) \cdot \lvert \frac{\partial (x,y)}{\partial (u,v)} \rvert \, du \, dv \]
+
+\subparagraph{Diskussion}
+\begin{itemize}
+\item Veranschaulichung der Formel für das Bereichselement:
+Koordinatenlinien $u=const, v=const$\\
+Linearisierung $\Delta b \approx db$\\
+$\curvearrowright db= \lvert \vec{r}_u du \times \vec{r}_v dv \rvert \quad (du > 0,dv >0)$\\*
+$= \lvert \begin{vmatrix} \vec{i} & x_u & x_v \\ \vec{j} & y_u & y_v \\  \vec{k} & 0 & 0\\ \end{vmatrix} \rvert \, du dv = \lvert \begin{vmatrix} x_u & x_v \\ y_u & y_v \\ \end{vmatrix}  \vec{k} \rvert du dv = \lvert \begin{vmatrix} x_u & x_v \\ y_u & y_v \\ \end{vmatrix} \rvert du dv$
+\end{itemize}
+
+\subparagraph{Funktionaldeterminante bei Polarkoordinaten} $x=r \cos{\varphi}, y= r \sin{\varphi}$
+\[\frac{\partial (x,y)}{\partial (r,\varphi)} = \begin{vmatrix} x_r & x_\varphi\\ y_r & y_\varphi\\ \end{vmatrix} = \begin{vmatrix} \cos{\varphi} & -r \sin{\varphi} \\ \sin{\varphi} & r \cos{\varphi} \\ \end{vmatrix} = r \cos^2{\varphi} + r \sin^2{\varphi} = \underline{\underline{r}}\]
+$\curvearrowright db = r dr d\varphi$ (s.o.)
+
+\subparagraph{Beispiel 3} Gesucht sei der geometrische Schwerpunkt $S$ der Halbkreisfläche begrenzt von $x^2 +y^2 = R^2 (y \geq 0)$ und $y=0$\\
+Polarkoordinaten: $x = r \cos{\varphi}, y=r\sin{\varphi}$\\
+Grenzen: $ 0 \leq r \leq R, 0 \leq \varphi \leq \pi$\\
+\begin{itemize}
+\item $[B] = \iint\limits_{B} db = \int\limits_{r=0}^{R} \underbrace{\int\limits_{\varphi = 0}^{\pi} r \, d\varphi}_{r \cdot \pi} \, dr = \pi \int\limits_{r=0}^{R} r \, dr$\\*
+$=\pi \left [ \frac{r^2}{2} \right ]_0^R = \underline{\underline{\frac{1}{2} \pi R^2}}$
+\item $x_s = 0$ (aus Symmetriegründen)\\
+(Rechnung: $\iint\limits_{B} x \, db = \int\limits_{r=0}^{R} \int\limits_{\varphi = 0}^{\pi} \underbrace{r \cos{\varphi}}_{x} \cdot \underbrace{r \, d\varphi \, dr}_{db}$\\
+$= \int\limits_{r=0}^R r^2 \underbrace{[ \sin{\varphi} ]_{\varphi=0}^\pi }_{0} \, dr = 0 \curvearrowright x_s = 0$
+\item $\iint\limits_{B} y \, db = \int\limits_{r=0}^{R} \int\limits_{\varphi =0}^{\pi} \underbrace{r \sin{\varphi}}_{y} \underbrace{r d\varphi dr}_{db} = \int\limits_{r=0}^{R} r^2 \cdot \underbrace{\left [- \cos{\varphi} \right ]_{\varphi = 0}^{\pi}}_{2} \, dr$\\
+$=2 \cdot [\frac{r^3}{3}]_0^R = \underline{\underline{\frac{2}{3} R^3}}$\\
+$\curvearrowright y_s = \frac{\frac{2}{3} R^3}{\frac{\pi}{2} R^2} = \underline{\underline{\frac{4}{3\pi} R}} = \underline{\underline{0,424 \, R}} \curvearrowright \underline{\underline{ S \left (0 | \frac{4R}{3\pi} \right ) }}$
+
+\end{itemize}
+
+\subparagraph{Beispiel 4} Flächeninhalt innerhalb der Ellipse $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$\\
+Polardarstellung $x= a \cos{v}, y=b\sin{v}, v \in [0;2\pi]$
+\begin{itemize}
+\item elliptische Polarkoordinaten $x=x(u,v) = a \cdot u \cos{v}, y=y(u,v) = b \cdot u \sin{v}$\\
+Koordinatenlinien $u=1$: Ellipse\\*
+$0\leq u <1 \curvearrowright$ Inneres der Ellipse\\
+$\curvearrowright B= \left \{ (x,y)| \begin{array}{lr} x= a u \cos{v} & u \in [0;1] \\ y=bu\sin{v} & v \in [0;2\pi] \\ \end{array} \right \}$
+\item Funktionaldeterminante: $\frac{\partial (x,y)}{\partial (u,v)} = \begin{vmatrix} x_u & x_v \\ y_u & y_v \\ \end{vmatrix} = \begin{vmatrix} a\cos{v} & -au\sin{v}\\ b\sin{v} & bu\cos{v} \\ \end{vmatrix}$\\*
+$=abu \cos^2{v} + abu\sin^2{v} = abu$\\
+$\curvearrowright db= abu \,du \, dv$\\
+$\curvearrowright [B]= \iint\limits_B = \dots = \pi ab$
+\end{itemize}
+
+\subsection{Oberflächenintegrale}
+\subsubsection{Flächen im Raum}
+Zur Erinnerung:
+\begin{itemize}
+\item $x,y,z$ \dots kartesisches Koordinatensystem
+\item $r,\varphi,z$ \dots Zylinderkoordinaten ($r$-Abstand zur $z$-Achse)
+\item $r,\varphi,\vartheta$ \dots Kugelkoordinaten ($r$-Abstand vom Ursprung)
+\end{itemize}
+Flächendarstellungen
+\begin{itemize}
+\item $z=f(x,y)$ \dots explizite kartesische Darstellung
+\item $F=(x,y,z) = 0$ implizite kartesische Darstellung
+\item $x=x(u,v),y=y(u,v),z=z(u,v)$ \dots Parameterdarstellung
+\item $z=f(r,\varphi)$ \dots explizite Zylinderkoordinatendarstellung, speziell
+\begin{itemize}
+\item $z=f(r,\varphi) = g(r), r \in I \subseteq [0;\infty), \varphi \in [0;2\pi]$ Rotationsflächen um die $z$-Achse
+\item $z=f(r,\varphi) = g(\varphi)$ \dots Wendelflächen
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Oberflächenelement, Berechnung und Anwendungen}
+\begin{itemize}
+\item Geg. Fläche \[\vec= \begin{pmatrix} x(u,v) \\ y(u,v) \\ z(u,v) \\ \end{pmatrix}, (u,v) \in B\], analog zu ebenen Bereichsintegralen ergibt sich
+\[ dF = \lvert \vec{r}_u \times \vec{r}_v \rvert \, du \, dv\] \dots (skalares) Oberflächenelement
+\item Oberflächenintegral (über ein Skalarfeld)
+\[ \iint\limits_F f(x,y,z) \, dF = \iint\limits_B f(x(u,v),y(u,v),z(u,v)) \cdot \lvert \vec{r}_u \times \vec{r}_v \rvert \, du \, dv\]
+\item Anwendung(analog ebene Bereichsintegrale)\\
+\begin{tabular}{|c|c|} \hline
+$[F]$ \dots Flächeninhalt von $F$ & $[F] = \iint\limits_F \, dF$\\ \hline
+geometrischer Schwerpunkt $S(x_s,y_s,z_s)$ & $x_s = \frac{1}{[F]} \iint\limits_F x \, dF, y_s= \frac{1}{[F]} \iint\limits_F y \, dF, z_s= \frac{1}{[F]} \iint\limits_F z \, dF$\\ \hline
+Integral-Mittelwert von $f$ auf $F$ & $m = \frac{1}{[F]} \iint\limits_F f(x,y,z) \, dF$\\ \hline
+\end{tabular}
+\end{itemize}
+
+Berechnung von $dF$ für spezielle Flächendarstellungen
+\begin{itemize}
+\item $z=f(x,y) \curvearrowright$ Polardarstellung $\vec{r} = \begin{pmatrix} x \\y\\z \\ \end{pmatrix} = \begin{pmatrix} u \\ v \\ f(u,v) \\ \end{pmatrix} \curvearrowright \vec{r}_u = \begin{pmatrix} 1 \\ 0 \\ f_u \\ \end{pmatrix}, \vec{r}_v = \begin{pmatrix} 0\\ 1\\ f_v \\ \end{pmatrix}$\\
+$\lvert \vec{r}_u \times \vec{r}_v \rvert = \lvert \begin{vmatrix} \vec{i} & 1 & 0\\ \vec{j} & 0 & 1 \\ \vec{k} & f_u & f_v \\ \end{vmatrix} \rvert = \lvert \begin{pmatrix} - f_u \\ - f_v \\ 1 \\ \end{pmatrix} \rvert = \sqrt{1 + f_u^2 + f_v ^2 } = \sqrt{ 1 + f_x^2 + f_y^2}$
+
+\item $z=f(r,\varphi) \curvearrowright$ P.d. $\vec{r} = \begin{pmatrix} x\\y\\z\\ \end{pmatrix} = \begin{pmatrix} u \cos{v}\\ u \sin{v} \\ f(u,v) \\ \end{pmatrix}$\\
+$\curvearrowright \vec{r}_u = \begin{pmatrix} \cos{v} \\ \sin{v} \\ f_u \\ \end{pmatrix} , \vec{r}_v = \begin{pmatrix} - u \sin{v} \\ u \cos{v} \\ f_v \\ \end{pmatrix} \curvearrowright$\\
+$\lvert \vec{r}_u \times \vec{r}_v \rvert = \lvert \begin{vmatrix} \vec{i} & \cos{v} &-u \sin{v} \\ \vec{j}& \sin{v}& u \cos{v}\\ \vec{k} &f_u& f_v \\ \end{vmatrix} \rvert = \lvert \begin{pmatrix} \sin{v} \cdot f_v - u \cos{v} \cdot f_u \\ - \cos{v} \cdot f_v - u \cdot \sin{v} \cdot f_u \\ u \\ \end{pmatrix} \rvert $
+\item Kugel $M=0$, Radius $R$, Kugelkoordinaten $r=R=const. \curvearrowright$
+(vgl. auch Beispiel 1, Kapitel 5.1.1.), P.d: \\
+$\begin{array}{c|c}
+x= R \sin{\vartheta} \cos{\varphi} & 0 \leq \varphi \leq 2 \pi\\
+y= R \sin{\vartheta} \sin{\varphi} & 0 \leq \vartheta \leq \pi \\
+z = R \cos{\vartheta} & \\ \end{array}$\\
+$\vec{r}_\vartheta = \begin{pmatrix} R \cos{\vartheta} \cos{\varphi} \\ R \cos{\vartheta} \sin{\varphi} \\ -R \sin{\vartheta} \\ \end{pmatrix} , \vec{r}_\varphi = \begin{pmatrix} - R \sin{\vartheta} \sin{\varphi} \\ R \sin{\vartheta} \cos{\varphi} \\ 0 \\ \end{pmatrix}$\\
+$\curvearrowright \lvert \vec{r}_\vartheta \times \vec{r}_\varphi \rvert = \begin{pmatrix} R^2 \sin^2{\vartheta} \cos{varphi} \\ R^2 \sin^2{\vartheta} \sin{\varphi} \\ R^2 \cos{\vartheta} \\ R^2 \cos{\vartheta} \sin{\vartheta} \\ \end{pmatrix} \rvert$\\
+$= \sqrt{R^4 \sin^4{\vartheta} + R^4 \cos^2{\vartheta} \sin^2{\vartheta}} = R^2 \sin{\vartheta}$
+\end{itemize}
+
+\subparagraph{Zusammenfassung}
+\begin{tabular}{|c|c|} \hline
+Fläche & $dF$ \\ \hline
+$z=f(x,y)$ \dots explizite. kar. Dar. & $dF = \sqrt{1 + f_x^2 + f_y^2} \, dx \, dy$\\ \hline
+$z=f(r,\varphi)$ \dots expl. Zyl. Dar. & $dF= \sqrt{r^2 (1 + f_r^2) + f_\varphi^2} \, dr \, d\varphi$\\
+speziell Rot.flächen $z=f(r,\varphi) = g(r), \varphi \in [0;2\pi]$ & $dF = r \cdot \sqrt{1 + (g^2(r))^2} \, dr \, d\varphi$\\ \hline
+Kugel, $M=0$, Rad. $R$ (Kugelkoord.) & $dF = R^2 \sin{\vartheta} \, d\varphi \, d\vartheta$ \\ \hline
+\end{tabular}
+
+\subsection{Raumintegrale}
+\subsubsection{Begriff}
+\subparagraph{Vorbetrachtung}
+\begin{itemize}
+\item Geg.
+\begin{enumerate}
+\item Abgeschlossener, beschränkter Bereich $B \subset \mathbb{R}^3$
+\item Dichte $\varrho = \varrho (x,y,z) \geq 0$, stetig für $(x,y,z) \in B$
+\end{enumerate}
+\item Ges: Masse $m$ des Körpers $B$\\
+Zerlegung von $B$ in kleine Teile $B_j$ mit dem Volumen $\Delta b_i$\\
+$\curvearrowright m = \sum\limits_{i} \Delta m_i \approx \sum\limits_i \varrho (\underbrace{\xi_i, \eta_i, \zeta_i}_{\in B_i}) \Delta b_i$\\
+Grenzübergang $\max_i{\Delta b_i} \to 0 \curvearrowright$ Grenzwert $m$ existiert unabhängig von Zerlegungsfolge
+\item Schreibweise $m= \iiint\limits_B \varrho (x,y,z) \, db$ \dots Raumintegral 
+\end{itemize}
+\subsubsection{Reduktion auf Dreifachintegrale}
+\begin{itemize}
+\item Gegeben sei ein Bereich $B_{xy}$ in der $x-y$-Ebene und zwei Funktionen $g_1$ und $g_2$ mit $g_1(x,y) \leq g_2(x,y)$ für $(x,y) \in B_{xy}$
+\item Der räumliche Bereich $B$ habe $z=g_1(x,y)$ und $z=g_2(x,y)$ als untere bzw. obere Begrenzung. Alle weiteren Begrenzungsflächen seien orthogonal zur $x-y$-Ebene (Zylinderflächen auf dem Rand von $B_{xy}$). Dann
+\[ B = \{ (x,y,z) | (x,y) \in B_{xy}, g_1(x,y) \leq z \leq g_2(x,y) \} \] \dots Normalbereich bzgl. $x-y$-Ebene
+\item Normalprojekt von $B$ auf $x-y$-Ebene liefert den ebenen Bereich $B_{xy}$
+\item Falls (z.B.) $B_{xy}$ ein Normalbereich bzgl. der $x$-Achse ist, d.h. $B_{xy} = \{ (x,y) | a \leq x \leq b \; \varphi_1 (x) \leq y \leq \varphi_2(x)\}$ dann
+\[ \iiint\limits_B  f(x,y,z) \, db = \int\limits_{x=a}^b \int\limits_{\varphi = \varphi_1 (x)}^{\varphi_2 (x)} \int\limits_{z=g_1(x,y)}^{g_2(x,y)} f(x,y,z) \, dz \, dy \, dx\]
+\end{itemize}
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Zylinderfläche kann ganz oder teilweise entfallen.
+\item Anstelle der Projektion auf $x-y$-Ebene auch $x-z$- bzw. $y-z$-Ebene möglich (günstig, falls außer 2 Begrenzungsflächen alle übrigen senkrecht auf der entsprechenden Ebene stehen)\\
+Denkbar sind 3 Varianten $B_{xy},B_{xz}$ bzw. $B_{yz}$ für die 1. Projektion, jeweils 2 Varianten für die Projektion dieser ebenen Bereich auf eine Achse $\curvearrowright 6$ mögliche Variante für die Integrationsreihenfolge (i. allg. nicht alle gleich "`günstig"') 
+\item Auch hier gilt stets:\\
+Außen konstante Grenzen, in der Mitte (bzw. innen) können die Grenzen abhängen von der bzw. den äußeren Integrationsvariablen\\
+Berechnung: Von innen nach außen
+\item Kartesische Korrdinaten $db = dx \, dy \, dz$
+\end{enumerate}
+
+\subsubsection{Koordinatentransformationen}
+\subparagraph{(analog zum zweidimensionalen Fall)}
+$\\ \begin{array}{c|c}
+\text{allg.} x=x(u,v,w) & db = \lvert \begin{vmatrix} x_u & y_u & z_u \\ x_v & y_v & z_v \\ x_w & y_w & z_w \\ \end{vmatrix} \rvert \, du \, dv \, dw\\
+y = y(u,v,w) & \\
+z=z(u,v,w) & \\ \hline
+\text{speziell} a) Zyl. koord. x=r \cos{\varphi} & db = r \, dr \, d\varphi \, d\varphi \\
+y=r \sin{\varphi} & \\
+(z = z) &\\ \hline
+b) \text{ Kugelkoord. } x = r \sin{\vartheta} \cos{\varphi} & db = r^2 \sin{\vartheta} \, dr \, d\varphi \, d\vartheta \\
+y= r \sin{\vartheta} \sin{\varphi} & \\
+z = r \cos{\vartheta} & \\
+
+\end{array}$
+
+\subsubsection{Anwendungen} 
+\begin{tabular}{c|c}
+Masse des Körpers $B$ mit der Dichte $\varrho = \varrho (x,y,z)$ & $m = \iiint\limits_B \varrho (x,y,z) \, db$\\ \hline
+Volumen $[B]$ von $B$ & $[B] = \iiint\limits_B \, db$ (Integrand 1)\\ \hline
+geometrischer Schwerpunkt $S(x_s,y_s,z_s)$ von $B$ & $x_s = \frac{1}{[B]} \iiint\limits_B x \, db,$ \\ & \\ & $ y_s = \frac{1}{[B]} \iiint\limits_B y \, db, z_s = \frac{1}{[B]} \iiint\limits_B z \, db$\\ \hline
+Massenschwerpunkt von $B$ bei Dichte & $x_s = \frac{1}{m} \iiint\limits_B x \varrho \, db,$ \\ $\varrho = \varrho (x,y,z)$ ($\varrho = const \curvearrowright$ geometr. Schwerp.)  & $y_s = \frac{1}{m} \iiint\limits_B y \varrho \, db,$ \\ & $z_s = \frac{1}{m} \iiint\limits_B z \varrho \, db,$ \\ \hline
+Trägheitsmoment $I_g$ bei & $I_g = \iiint\limits_B d^2 (x,y,z) \varrho (x,y,z) \, db$ \\
+Rotation um Achse $g$ & speziell :\\
+& a) $g \dots z$-Achse: $ d^2 = x^2 + y^2$\\
+& b) $g \dots x$-Achse $d^2 = y^2 + z^2 $\\
+& c) $g \dots y$-Achse: $d^2 = x^2 + z^2$\\ \hline
+Integralmittelwert von $f$ und $B$ & $\frac{1}{[B]} \iiint\limits_B f(x,y,z) \, db$\\
+\end{tabular}
+\subparagraph{Diskussion (Trägheitsmoment)}
+\begin{enumerate}
+\item Kinetische Energie eines sich geradlinig mit konstanter Geschwindigkeit $v$ bewegenden Körpers mit der Masse $m: W= \frac{1}{2} m v^2 \curvearrowright$
+\item Kinetische Energie eines rotierenden Körpers (konstante Winkelgeschw. $\omega (=\frac{2\pi}{T})$:\\
+$W_{rot} = \sum\limits_i \Delta W_i \approx \sum\limits_i \frac{\Delta m_i}{2} (\underbrace{\omega d_i}_{v_i} ) ^2  = \frac{\omega^2}{2} \sum\limits_i d_i^2 \varrho_i \Delta b_i $ \\
+$\curvearrowright W_{rot} = \frac{1}{2} I_g \cdot \omega^2$
+\end{enumerate}
+
+\section{Gewöhnliche Differentialgleichungen}
+\subsection{Grundbegriffe}
+\subparagraph{Vorbetrachtung}
+Beispiel 1: Federmasse $m$ an Schraubenfeder mit der Federkonstante $c_F$ Anfangsauslenkung zum Zeitpunkt $t=0, y_0$, Ruhelage $0$\\
+Gesucht: Zeitverlauf $y=y(t)$ der Bewegung der Punktmasse.\\
+Grundgesetz der Mechanik: $F = m \cdot \ddot{y}$ hier\\
+freie ungedämpfte Schwingung $F = - c_F y$ (\textsc{Hook}sches Gesetz)
+\begin{equation}\label{71.1}
+m \ddot{y} = - c_F y | y(0) = y_0, \dots{y}(0) = 0
+\end{equation}
+\paragraph{Begriff} Eine Differential (DGL) ist eine Bestimmungsgleichung für eine unbekannte Funktion, die mindestens eine Ableitung der gesuchten Funktion enthält
+\subparagraph{2 Grundarten}
+\begin{enumerate}
+\item Gesuchte Funktion $y=y(x)$, d.h. eine unabhängige Variable: Gewöhnliche DGL
+\item Gesuchte Funktion $u=u(x,y)$ bzw. $u=u(x_1,\dots,x_n)$, d.h. mindestens 2 unabhängige Veränderliche $\curvearrowright$ Ableitungen sind partielle Ableitungen: Partielle DGL
+\end{enumerate}
+
+\subparagraph{Beispiel 2} $y' = x^2$, gewöhnliche DGL für Funktion $y=y(x)$\\
+Lösung: $y= \int x^2 \, dx = \underline{\underline{\frac{x^3}{3} + c}}$, d.h. Lösung ist Kurvenschar mit einem freien Parameter $c$
+
+\subparagraph{Beispiel 3} $u_x = xy \dots $ partielle DGL für Funktion $u=u(x,y)$\\
+Lösung: $u=\frac{x^2}{2} y + c(y)$\\
+Bemerkung: Im folgenden nur gewöhnliche DGLn.
+
+\begin{itemize}
+\item Allg. Form einer gewöhnlichen DGL $n$-ter Ordnung\\
+implizit: $F(x,y,y',\dots,y^{(n)}) = 0$\\
+explizit: $y^{(n)} = f(x,y,,y',\dots,y^{(n-1)}$
+\item Die allg. Lösung ist eine Kurvenschar mit $n$ Parametern (Integrationskonstanten)
+\item Anfangswertproblem (AWP): $n$ zusätzliche Bedingungen $y=(x_0) = a_0,y'(x_0) = a_1,\dots,y^{(n-1)} (x_0) = a_{n-1}$ (Anfangsbedingung $[AB]$ Funktionswert und Ableitungen an einer festen Stelle $x_0$ vorgeben, vgl. (1))
+\end{itemize}
+
+\subsection{Differentialgleichungen 1. Ordnung}
+Allg. Form 
+\[ F(x,y,y') = 0 \text{ (implizit)} \]
+\[ y' = f(x,y) \text{ (explizit)} \]
+
+\subsubsection{Geometrische Interpretation}
+Gegeben: $y'=f(x,y), (x,y) \in B$
+
+\subparagraph{Richtungsfeld:} In jedem Punkt $(x,y) \in B$ Richtung mit dem Anstieg $f(x,y)=: \tan{\alpha}$ markieren
+
+Gesucht: Kurven $y=y(x)$, die sich in jedem Punkt diesem Richtungsfeld anpassen, d.h. die vorgegebene Ableitung besitzen $y' = f(x,y)$ (Lösungskurven der DGL)
+
+\subsubsection{DGLn mit trennbaren Variablen}
+\[ \begin{array}{l|l}
+\text{Typ } y' = f(x) \cdot g(y) & \text{Bsp 1 } y'=xy^2, y(1) =-2\\ \hline 
+\text{Lösungsmethode } \frac{dy}{dx} = f(x) \cdot g(y) & \frac{dy}{dx} = xy^2\\ \hline
+\text{Trennung der Verändl. (TdV)} & \int \frac{dy}{y^2} = \int x \, dx\\
+\text{beide Seiten integr. } \int \frac{dy}{g(y)} = \int f(x) \, dx & - \frac{1}{y} = \frac{x^2}{2} + c \text{ allg. Lösung, implizit} \\ \hline
+\text{Falls möglich Auflösen n. y:} y=y(x) = \varphi (x,c) & y= - \frac{1}{\frac{x^2}{2} +c} \text{ allg. Lösung expl.} \\ \hline
+\text{Untersuchung von } g(y) = 0 \curvearrowright \text{ Nebenlös.} & y^2 = 0 \Leftrightarrow y=0 \text{ (erfüllt ebenfalls DGL} \curvearrowright \text{Nebenlös} \\ \hline
+\text{Bei AWP: AB erfüllen} & x=1,y=-2, \text{ einsetz. in allg. Lös. (impl)} \\ &\curvearrowright \frac{1}{2} = \frac{1}{2} + c \curvearrowright c = 0 \curvearrowright
+\text{ Lösung der AWP } \\ & : y= -\frac{2}{x^2}\\
+\end{array} \]
+
+\subparagraph{Diskussion}
+\begin{enumerate}
+\item Rechtfertigung des Lösungsschritt (beide Seiten integrieren)
+\begin{equation}\label{722.1} G(y) = F(x) + c \end{equation}
+diff nach x $\frac{dG}{dy} \cdot \frac{dy}{dx} = \frac{dF}{dx}$\\
+$\curvearrowright \frac{1}{g(y)} \cdot y' = f(x) \curvearrowright y' = f(x) \cdot g(y)$, d.h. (\ref{722.1}) erfüllt die DGL.
+\item Spezialfälle:
+\[ y' = f(x), \text{ d.h. } g(y) = 1\]
+\[ y' = g(y), \text{ d.h. } f(x) = 1\]
+\[ y' = \frac{f(x)}{h(y)} = f(x) \cdot \frac{1}{h(y)}, \text{d.h. } g(y) = \frac{1}{h(y)}\]
+\end{enumerate}
+\subparagraph{Beispiel 2} Ein Körper habe zum Zeitpunkt $t=0$ die Temperatur $T_0 = 100^\circ $C. Die Temperatur der umgebenen Luft $T_L = 20^\circ$ C (= const.) . Zur Zeit $t_1 = 10$ min hat sich der Körper  auf $T_1 = 60^\circ$ abgekühlt
+\begin{enumerate}
+\item Man ermittle die Temperatur $T$ als Funktion  der Zeit $t$
+\item Zu welchem Zeitpunkt $t_2$ beträgt die Temperatur des Körpers $T_2 = 25^\circ C$?
+\end{enumerate}
+
+\subparagraph{Lösung}
+\begin{enumerate}
+\item \textsc{Newton}sches Abkühlungsgesetz: Geschwindigkeit der Abkühlung proportional Temperaturdifferenz zum Medium\\
+$T=T(t)$ \dots Temp, t.. Zeit \\
+$\frac{dT}{dt} = \alpha \cdot (T-T_L), \underbrace{T(0) = T_0}_{AB},\underbrace{T(10) = T_1}_{\text{zur Ermittlung von } \alpha}$
+TdV: $\int \frac{dT}{T-T_L} = \int \alpha \, dt = \ln{\lvert T - T_L\rvert} = \alpha t + c^*$\\
+\dots\\
+Also allg. Lösung: \[T = T_L + c e^{\alpha t}\]
+\end{enumerate}
+
+
+
+
 
 
 
