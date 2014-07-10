@@ -900,8 +900,9 @@ Es seien $a,b \in \mathbb{N}^*,\, a >b$. Man bildet die (endliche) Folge
 \[ r_0 := b\, , r_1=\mod{(a,b)}, r_2=\mod{(r_0,r_1)},...\]
 \[... r_n=\mod{(r_{n-2},r_{n-1})}\, ,\text{Abbruch falls } r_n=0\]
 In diesem Fall gilt
-\[ggT(a,b)=r_{n-1}\]
+\[\text{ggT}(a,b)=r_{n-1}\]
 (letzter, nicht verschwindender Rest)
+\[ [ \text{ggT}(m,n) \cdot \text{kgV}(m,n)  = \lvert m \cdot n \rvert ] \]
 
 Bezeichnungen: $j$-te Division\\
 $r_{j-2}: r_{j-1} = q_j \text{ Rest } r_j \: (j=1,...,n)$ \\
@@ -912,7 +913,7 @@ Zusätzlich zur Folge $(r_n)$ aus Satz 4 bilde man die Folgen \[x_0 = 0, x_1 =1,
 $(j\leq n-1)$ und
 \[y_0=1, y_1=-q_1,y_2=y_0-q_2y_1,...,y_j=y_{j-2}-q_jy_{j-1}\]
 $(j\leq n-1)$\\
-Dabei ist $q_j$ der Quotient bei der Division von $r_{j-2}$ durch $r_{j-1}$, d.h. $r_{j-2} = q_jr_{j-1} + r_j$\\
+Dabei ist $q_j$ der ganzzahlige Quotient bei der Division von $r_{j-2}$ durch $r_{j-1}$, d.h. $r_{j-2} = q_jr_{j-1} + r_j$ [und $- q_1  = \frac{r_1 -a}{b}]$\\
 Dann gilt für alle $j=0,...,n-1: \; r_j=x_j a + y_j\cdot b$
 Insbesondere gilt $ggT(a,b)=x_{n-1}a + y_{n-1}b$
 
@@ -5380,7 +5381,77 @@ Geometrische Veranschaulichung, vgl. Kaptiel 7.1.
 
 \subparagraph{Zweckmäßig} Isoklinen (= Kurven, die alle Punkte $(x,y)$ verbinden, in denen der Anstieg des Richtungsfeldes den gleichen Wert $a$ besitzt, hier $f(x,y) = x^2 + y^2 = a$, Kreise um $0$ mit Radius $\sqrt{a}\; ( a>0)$
 
+\subparagraph{Beispiel 1} $y'= y^2 +x^2, y(0) = 0$\\
 
+Ansatz: $y= a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \dots \rightarrow$ \textsc{Cauchy}-Product $\curvearrowright y^2$\\*
+$y^2= a_0^2 + 2a_0 a_1 x + (2a_0 a_2 + a_1^2)x^2 + (2a_0a_3+2a_1 a_2) x^3 + (2a_0 a_4+ 2a_1 a_4 + 2a_1 a_3 + a_2^2)x^4 + \dots$\\
+$y' = a_1 + 2a_2 x + 3a_3 x^2 + 4a_4 x^3 + 5 a_5 x^4 + \dots$\\
+AB: $y(0) = 0 \curvearrowright a_0 = 0$\\
+$\begin{array}{c|lr}
+\text{Koeff. vgl.} & y' = x^2 + y^2 & \\ \hline
+x^0 & a_1 = a_0^2 & \curvearrowright a_1 = 0 \\
+x^1 & 2a_2 = 2a_0 a_1 & \curvearrowright a_2 = 0\\
+x^2 & 3a_3 = 2a_0a_2 + a_1^2 + 1 & \curvearrowright a_3 = \frac{1}{3}\\
+x^3 & 4a_4 = 2a_0a_3 + 2a_1a_2 & \curvearrowright a_4 = 0\\
+x^4 & 5a_5 = 2a_0a_4 + 2a_1a_3 + a_2^2 & \curvearrowright a_5 = 0 \\
+x^5 & 6a_6 = 2a_0a_5 + 2a_1a_4 + 2a_2 a_3 & \curvearrowright a_6 = 0\\
+x^6 & 7a_7 = 2a_0a_6 + 2a_1a_5 + 2a_2a_4 + a_3^2 & \curvearrowright a_7 = \frac{1}{63}\\
+\vdots & \text{analog: } a_8=a_9=a_10 = 0 & \\
+x^{10} & 11 a_{11} = 2(\dots + a_3a_7 + \dots ) + a_5^2 & \curvearrowright a_{11} = \frac{2}{11} \cdot \frac{1}{3} \cdot \frac{1}{63} = \frac{2}{2079}\\
+\end{array}$
+
+$\curvearrowright y = \frac{1}{3} x^3 + \frac{1}{63} x^7 + \frac{2}{2079} x^{11} + \dots$
+
+\subparagraph{Bemerkung} Der geometrische Ansatz eignet sich als Start für verschiedene numerische Verfahren, wie das Polygonzug-Verfahren von \textsc{Euler} und das \textsc{Runge-Kutta}-Verfahren
+
+\subsubsection{Sukzessive  Approximation}
+\subparagraph{Satz 1} (Existenz- und Eindeutigkeitssatz von \textsc{Pircard-Lindelöf})\\
+Die Funktion $f(x,y)$ sei in einem Bereich $B=\{(x,y) : \lvert x - x_0 \rvert \leq a, \lvert y -y_0 \rvert \leq 6 \}$ der x-y-Ebene stetig. Ferner gelte: $\lvert f(x,y_1) - f(x,y_2) \rvert \leq K \cdot \lvert y_1 - y_2 \rvert$. Dann gibt es in einer Umgebung von $x_0$ genau eine Lösung $y= y(x)$ der DGL: $y'= f(x,y)$ mit $y(x_0) = y_0$.
+
+\subparagraph{Methode der sukzessiven Approximation}
+\begin{itemize}
+\item Geg. DGL \begin{equation}\label{742_1} y' = f(x,y), AB: y(x_0)  = y_0 \end{equation} $f$ erfülle die Vorraussetzungen des Satzes 1
+\item Integration liefer die Integralgleichung
+\[ y(x) = y_0 + \int\limits_{x_0}^{x} f(t,y(t)) \, dt \]
+\item $y_n (x)$ sei folgende iterativ berechnete Funktionenfolge:\\
+$y_0(x)= y_0 = \textsc{const},y_1 (x) = y_0 + \int\limits_{x_0}^{x} f(t,y_0(t)) \, dt,\dots$\\
+\[ y_n (x) = y_0 + \int\limits_{x_0}^{x} f(t,y_{n-1} (t))\, dt, \dots \quad (n = 1,2,3,\dots)\]
+\item Dann konvergiert $y_n(x)$ im Intervall $[x_0 - a, x_0 + a ]$ gleichmäßig gegen die (eindeutige) Lösung von (\ref{742_1}): $\lim\limits_{n \to \infty} y_n (x) = y(x)$
+\end{itemize}
+
+\subparagraph{Beispiel 2} $y'=x^2 + y^2, y(0) = 0$ (vgl. Beispiel 1)\\*
+$y_0 (x) = 0,y_n(x) = \int\limits_0^x (x^2 + (y_{n-1} (x))^2 )\, dx (n=1,2,\dots)$\\
+Also: $y_0(x)= 0 , y_1(x) = \int\limits_{0}^{x} (x^2 + 0^2) \, dx = \frac{x^3}{3}$\\
+$y_2 (x) = \int\limits_0^x (x^2 + \underbrace{(\frac{x^3}{3})^2}_{\frac{x^6}{9}} ) \, dx = \frac{x^3}{3} + \frac{x^7}{63}$\\
+$y_3(x) = \int\limits_{0}^x (x^2 + \underbrace{(\frac{x^3}{3} + \frac{x^7}{63} )^2}_{\frac{x^6}{9} + \frac{2x^10}{3 \cdot 63} + \frac{x^{14}}{63^2}} )\, dx = \frac{x^3}{3} + \frac{x^7}{63} + \frac{2x^{11}}{2079} + \frac{x^{15}}{59525}$
+
+\subparagraph{Das letzte (Beispiel)} Geg: Kreisförmiger See, in der Mitte befindet sich auf einer kleinen Insel $I$ ein Schiffbrüchiger ($S$), der mit einer (Dauer-)Geschwindigkeit von $v_0 = 1 \; (\frac{m}{s})$ schwimmen kann. Am Rande lauert ein Menschenfressender $(M)$, der mit einer Geschwindigkeit von $v_1 = 4 \; \frac{m}{s}$ laufen kann. Wie kann $S$ den Rand gefahrlos erreichen?
+\subparagraph{1. Versuch} (nur gedanklich) geradlinig schwimmen\\
+$t_S = \frac{R}{v_0}$ (Schwimmer)\\
+Menschenfresser: $t_M = \frac{\pi R}{v_1} = \frac{\pi}{4} \cdot \frac{R}{v_0} < t_S$\\
+Wird gefressen
+
+\subparagraph{2. Versuch} (zunächst) so schwimmen, dass stets die Insel zwischen $M$ und $S$ ist\\
+konstante Winkelgeschw. $\varphi  = \omega \cdot t$\\
+$a(t) = \text{ Abstand } \overline{SI}$ zur Zeit $t$
+\begin{equation}\label{742_2} \begin{array}{c} x= - a(t) \cos{(\omega t)} \\ y= -a(t) \sin{(\omega t)}\\ \end{array} \end{equation}
+Geschwindigkeit von $S: \vec{v} = \begin{pmatrix} \dot{x} \\ \dot{y} \\ \end{pmatrix}$ mit $\dot{x} = -\dot{a} \cos{(\omega t)} + a \omega \sin{(\omega t)}, \dot{y} = - \dot{a} \sin{(\omega t)} - a \omega \cos{(\omega t)}$\\
+$\lvert \vec{v} \rvert^2 = \dot{x}^2 + \dot{y}^2 = \dot{a}^2+ a^2 \omega^2 = \textsc{const} (= v_0^2) | \text{diff nach } t$\\
+(Kettenregel) $a \dot{a} \ddot{a} + 2a \cdot \dot{a} \omega^2 = 0, AB: a(0) = 0, \dot{a}(0) = v_0$
+\begin{itemize}
+\item 1. Fall : $\dot{a} = 0$ erfüllt, keine Lösung der AWAufgabe
+\item 2. Fall: $\ddot{a} + \omega^2 a =  0$ (lin. DGL , 2. Ordnung, mit konst. Koeff., homogen)
+\end{itemize}
+char Gl. $\lambda^2 + \omega^2 = 0 \curvearrowright \lambda_{1,2} = \pm i \omega \curvearrowright FS \{ \cos{(\omega t)}, \sin{(\omega t)} \}$\\
+$\curvearrowright a(t) = c_1 \cos{(\omega t)} + c_2 \sin{(\omega t)}$ (allg. Lösung)
+
+$AB: \curvearrowright c_1 = 0, c_2 = \frac{v_0}{\omega} = \frac{v_0}{\frac{v_1}{R}} = \frac{R}{4} \curvearrowright$ \begin{equation}\label{742_3} a(t)= \frac{R}{4} \sin{(\omega t)}\end{equation}
+maximaler Abstand $(=\frac{\pi}{4}) \text{ für } \omega t = \frac{\pi}{2} \curvearrowright a(t) = \frac{R}{4}, \varphi(t)= \omega t = \frac{\pi}{2}$\\
+neuer Start: $t_S = \frac{3R}{4v_0}, t_M = \frac{\pi R}{4 v_0} > t_S \rightarrow$ OK
+
+Welche Kurve beschreibt S zunächst Einsetzen von (\ref{742_3}) in (\ref{742_2})\\
+$\curvearrowright x = - \frac{R}{4} \sin{(\omega t)} \cos{(\omega t)} = - \frac{R}{8} \sin{(2 \omega t)}, y= - \frac{R}{4} \sin^2{(\omega t)} = - \frac{R}{8} + \frac{R}{8} \cos{(2 \omega t)}$\\
+$x^2 + (y + \frac{R}{8})^2 = (\frac{R}{8})^2),$ Kreis $M(0,-\frac{R}{8})$
 
 
 
